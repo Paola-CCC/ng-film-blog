@@ -1,0 +1,33 @@
+
+<div class="">
+    <section class="app-detail" >
+        <ul style="padding:0">
+            <ng-container *ngFor="let keys of contents">
+                <li style="list-style: none">	        
+                    <div class="card-list" >
+                        <h4>{{keys.title}}  |  Id : {{id}} </h4>
+                        <p>{{keys.content}}</p>
+                        <span><small>Créé le {{keys.createdAt}} par {{keys.username}}</small></span>
+                    </div>
+                </li>
+            </ng-container>
+        </ul>
+    </section>
+    <section class="app-detail zone-comments"></section>
+    <section class="app-detail creat-forms">
+        <form>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Saisissez vous commentaire :</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div>
+                <button class="btn-submit" id="add-comment" type="submit" value="Submit">Envoyer</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+
+
+
+

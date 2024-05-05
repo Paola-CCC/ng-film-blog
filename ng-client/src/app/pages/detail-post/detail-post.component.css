@@ -1,0 +1,49 @@
+.zone-comments {
+    height: 200px;
+    background-color: dodgerblue;
+}
+
+/* button#add-comment {
+    background-color: bisque;
+} */
+
+.app-detail:first-of-type{
+    background-color: rgb(255, 255, 255);
+    padding: 1.5em;
+}
+.app-detail:nth-child(2){
+    background-color: rgb(217, 213, 213);
+    padding: 1.5em;
+
+}
+
+.app-detail {
+    margin-top: 50px;
+}
+  
+
+
+button#add-comment {
+    display: block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 56px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 7px;
+    background-color: #0070f3;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+    float: right;
+
+}
+    
+
+button#add-comment:hover{
+    background: #1e84f8;
+    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+}

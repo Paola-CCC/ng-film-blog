@@ -1,0 +1,27 @@
+FROM node:18.10.0
+# Set working directory
+WORKDIR /usr/src/app
+# Copy all files from current directory to working dir in image
+COPY ./ng-client /usr/src/app
+# install node modules and build assets
+RUN npm i -g @angular/cli@16.2.11
+
+RUN npm install
+
+CMD ["ng", "serve", "--host", "0.0.0.0"]
+
+# 1) Contruction de l'image à partir d'un dockerfile.angular ( om choisir par moi)
+# docker build -t angular_image:v01 -f Dockerfile.angular .
+
+
+# 2) Faire tourner créer un container et lui donner un port pour son exécution
+# docker run -p 4200:4200 angular_image:v01
+
+
+# Pour donner un nom au container 
+#docker run --name container-docker -p 4200:4200 angular_image:v01
+
+
+# Pour exécuter un conteneur Docker en mode daemon, vous pouvez utiliser l'option -d ou --detach lors de la création du conteneur. 
+#Cette option permet de détacher le conteneur de la console courante et de le faire tourner en arrière-plan.
+#docker run --name container-docker -p 4200:4200 --detach angular_image:v01

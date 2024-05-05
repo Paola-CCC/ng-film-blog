@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+
+  #PHP && Apache
+  php-apache:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: blog_apache_docker
+    restart: on-failure
+    ports:
+      - 8000:80
+    volumes:
+      - ./api/:/var/www/html/
+    depends_on:
+      - database
+    networks:
+      - app-network
+
+  # MySQL Service
+  database:
+      image: 'mariadb:10.4'      
+      container_name: mariadb_blog
+      restart: always
+      tty: true
+      environment:
+        MYSQL_USER: 'root'
+        MYSQL_ROOT_PASSWORD: 'example'
+        MYSQL_DATABASE: 'blog_database'
+      volumes:
+        - ./sql/dump-sql.sql:/docker-entrypoint-initdb.d/init.sql
+        - blog-bd-data:/var/lib/mysql
+      ports:
+        - "3306:3306"
+      networks:
+        - app-network
+
+  phpmyadmin:
+    container_name: mysql_blog
+    image: phpmyadmin:latest
+    restart: always
+    depends_on:
+        - database
+    ports:
+        - 8080:80
+    environment:
+        PMA_HOST: database
+        PMA_PASSWORD: example
+        PMA_ARBITRARY: 1
+        PMA_USER: root
+        PMA_PORT: 3306
+    networks:
+        - app-network
+  
+  angular-ui:
+    build: 
+          context: .
+          dockerfile: Dockerfile.angular
+    container_name: angular-ui
+    ports:
+        - "4200:4200"
+    volumes: 
+        - ./ng-client:/usr/src/app
+    depends_on:
+        - php-apache
+    networks:
+        - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  blog-bd-data:
+    name: blog-bd-data

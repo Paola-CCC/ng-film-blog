@@ -1,0 +1,14 @@
+
+<div class="container-home">
+    <ul class="grid-posts">
+        <ng-container *ngFor="let keys of contents">
+            <li>	        
+                <div class="card-list" (click)="navigateToElement(keys.id)">
+                    <h4>{{keys.title}}</h4>
+                    <p>{{keys.content}}</p>
+                    <span><small>Créé le {{keys.createdAt}} par {{keys.username}}</small></span>
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+</div>
