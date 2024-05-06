@@ -1,14 +1,26 @@
 
 <div class="container-home">
+    <div class="title">
+        <h3> Tous les posts</h3>
+    </div>
     <ul class="grid-posts">
         <ng-container *ngFor="let keys of contents">
-            <li>	        
-                <div class="card-list" (click)="navigateToElement(keys.id)">
-                    <h4>{{keys.title}}</h4>
-                    <p>{{keys.content}}</p>
-                    <span><small>Créé le {{keys.createdAt}} par {{keys.username}}</small></span>
-                </div>
-            </li>
+                <li class="card-list" (click)="navigateToElement(keys.id)"   >
+
+                    <div class="card-img-container">
+                        <img class="img-card" [src]="keys.thumbnail" />
+                    </div>
+
+                    <div class="card-body">
+                        <div class="date">
+                            <small> {{keys.author}} <i class="fa-solid fa-circle fa-2xs"></i> {{keys.createdAt}}  </small>
+                        </div>
+                        <div  class="main-content">
+                            <h4>{{keys.title}}</h4>
+                            <p>{{keys.content}}</p>
+                        </div>
+                    </div>
+                </li>
         </ng-container>
     </ul>
 </div>

@@ -4,10 +4,20 @@
         <ul style="padding:0">
                 <li style="list-style: none">	        
                     <div class="card-list" >
-                        <!-- <h4>{{contents.title}}  |  Id : {{postId}} </h4> -->
+                        <img [src]="post?.thumbnail" [style.width]="'150px'" [style.heigth]="'200px'"/>
                         <p>{{post?.content}}</p>
                         <span><small>Créé le {{post?.createdAt}} par {{post?.author}}</small></span>
                     </div>
+                    <div class="container-btn">
+                            <button>
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                {{post.likes}}
+                            </button>
+                            <button>
+                                <i class="fa-solid fa-thumbs-down"></i>
+                                {{post.dislikes}}
+                            </button>
+                        </div>
                 </li>
         </ul>
     </section>
@@ -26,8 +36,6 @@
 
     </section>
     <section class="app-detail creat-forms">
-
-        {{ commentText}}
         <form>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Saisissez vous commentaire :</label>

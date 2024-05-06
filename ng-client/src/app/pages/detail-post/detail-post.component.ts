@@ -9,7 +9,7 @@ import { PostService } from 'src/app/_services/post/post.service';
 @Component({
   selector: 'app-detail-post',
   templateUrl: './detail-post.component.html',
-  styleUrls: ['./detail-post.component.css']
+  styleUrls: ['./detail-post.component.scss']
 })
 export class DetailPostComponent implements OnInit {
 
@@ -51,7 +51,6 @@ export class DetailPostComponent implements OnInit {
   addComment() {
     this.commentsService.addNewComment(this.commentText, this.userId, this.postId).subscribe({
       next: data => {
-        this.console.log( " add " ,data)
         this.getAllPosts();
       },
       error: err => {
@@ -59,6 +58,8 @@ export class DetailPostComponent implements OnInit {
         this.errorMessage = err;
       }
     })
+
+    this.commentText = '';
   }
 
 }

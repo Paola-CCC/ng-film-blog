@@ -6,7 +6,7 @@ import { UserService } from 'src/app/_services/user/user.service';
 @Component({
   selector: 'app-posts-list',
   templateUrl: './posts-list.component.html',
-  styleUrls: ['./posts-list.component.css']
+  styleUrls: ['./posts-list.component.scss']
 })
 export class PostsListComponent implements OnInit {
   /**Element à afficher */
