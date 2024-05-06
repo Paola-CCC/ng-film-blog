@@ -30,7 +30,7 @@ export class CommentsService {
   }
 
   //OK
-  addNewComment( content : any, userId : any , postId : any): Observable<any> {
+  addNewComment( content : string, userId : number |null , postId : number): Observable<any> {
     return this.http.post(API + 'comment-new', {
       content,
       userId,

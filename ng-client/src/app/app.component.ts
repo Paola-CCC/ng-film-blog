@@ -7,15 +7,4 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  private roles: string[] = [];
-  isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  username?: string;
-
-  constructor(private tokenStorageService: TokenStorageService) { }
-
-  ngOnInit(): void {}
-
-}
+export class AppComponent {}

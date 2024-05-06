@@ -2,26 +2,39 @@
 <div class="">
     <section class="app-detail" >
         <ul style="padding:0">
-            <ng-container *ngFor="let keys of contents">
                 <li style="list-style: none">	        
                     <div class="card-list" >
-                        <h4>{{keys.title}}  |  Id : {{id}} </h4>
-                        <p>{{keys.content}}</p>
-                        <span><small>Créé le {{keys.createdAt}} par {{keys.username}}</small></span>
+                        <!-- <h4>{{contents.title}}  |  Id : {{postId}} </h4> -->
+                        <p>{{post?.content}}</p>
+                        <span><small>Créé le {{post?.createdAt}} par {{post?.author}}</small></span>
+                    </div>
+                </li>
+        </ul>
+    </section>
+    <section class="app-detail zone-comments">
+        <ul style="padding:0">
+            <ng-container *ngFor="let keys of commentsList">
+                <li style="list-style: none">	        
+                    <div class="card-list" >
+                        <p>{{keys?.content}}</p>
+                        <span><small>Créé le {{keys.createdAt}} par {{keys.comment_author}}</small></span>
                     </div>
                 </li>
             </ng-container>
         </ul>
+
+
     </section>
-    <section class="app-detail zone-comments"></section>
     <section class="app-detail creat-forms">
+
+        {{ commentText}}
         <form>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Saisissez vous commentaire :</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" rows="3" [(ngModel)]="commentText" name="comment-writing"></textarea>
             </div>
             <div>
-                <button class="btn-submit" id="add-comment" type="submit" value="Submit">Envoyer</button>
+                <button class="btn-submit" id="add-comment" (click)="addComment()">Envoyer</button>
             </div>
         </form>
     </section>

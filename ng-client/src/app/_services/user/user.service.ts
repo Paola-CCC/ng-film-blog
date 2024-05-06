@@ -15,26 +15,26 @@ export class UserService {
 
   //OK
   getAll(): Observable<any> {
-    return this.http.get(API + 'userAll', httpOptions);
+    return this.http.get(API + 'user-all', httpOptions);
   }
 
   getAllWithDetails(): Observable<any> {
-    return this.http.get(API + 'userAllDetails', httpOptions);
+    return this.http.get(API + 'user-all-details', httpOptions);
   }
 
   //OK
-  getOneUser(id : number): Observable<any> {
-    return this.http.get(API + `userShow/${id}`, httpOptions);
+  getById(id : number  | null): Observable<any> {
+    return this.http.get(API + `user-show/${id}`, httpOptions);
   }
  
   //OK
   deleteOneUser(id : number): Observable<any> {
-    return this.http.delete(API + `userRemove/${id}`, httpOptions);
+    return this.http.delete(API + `user-remove/${id}`, httpOptions);
   }
 
   //OK
   updateUser(userId : number , username : string , email : string , password : string): Observable<any> {
-    return this.http.put(API + 'userUpdate', {
+    return this.http.put(API + 'use-update', {
       userId,
       username,
       email,

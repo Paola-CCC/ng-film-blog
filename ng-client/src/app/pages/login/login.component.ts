@@ -12,13 +12,13 @@ export class LoginComponent implements OnInit {
 
   loginForm : UntypedFormGroup;
   /** indique si la connexion a réussi ou non  */
-  loginIsSuccess = false;
+  loginIsSuccess: boolean | null = null;
   /** message d'erreur en cas d'ehec */
   errorMessage = '';
   /** message de success */
   sucessMessage = '';
   /** indique si le formualaire a été envoyé ou non  */
-  submitted : boolean = false;
+  submitted : boolean | null  = null;
 
   constructor(private fb: UntypedFormBuilder,private authService: AuthService , private storage: TokenStorageService) {
     this.loginForm = this.fb.group({
@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
       next: data => {
         console.log(data);
         this.storage.setToken(data.jwt);
+        localStorage.setItem('user', JSON.stringify(data.user));
         this.loginIsSuccess = true;
         
       },
@@ -70,5 +71,4 @@ export class LoginComponent implements OnInit {
     }
   }
   
-
 }

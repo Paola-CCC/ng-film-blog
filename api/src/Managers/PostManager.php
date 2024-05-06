@@ -32,41 +32,16 @@ class PostManager
 	// }
 
 	/** renvoie des Posts associés avec des commentaires */
-	public function findAllPostWithComments()
+	public function findAll()
 	{
-		$query = "SELECT p.id, p.title, p.content, p.createdAt, u.username as author, c.content , c.userId as comment_Author
+		$query = "SELECT p.id, p.title, p.content, p.createdAt, u.username as author
 				FROM posts p
 				LEFT JOIN users u ON p.userId = u.id
-				LEFT JOIN comments c ON c.postId = p.id
 				ORDER BY p.id";
 		$stmt = $this->_connexionBD->prepare($query);
 		$stmt->execute();
 		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-		$posts = array();
-
-		foreach ($row as $resultat) {
-			// Si le post n'a pas encore été ajouté, on l'ajoute au tableau des posts
-			if (!isset($posts[$resultat['id']])) {
-				$post = [
-					'id' => $resultat['id'],
-					'title' => $resultat['title'],
-					'content' => $resultat['content'],
-					'author' => $resultat['author'],
-					'createdAt' => $resultat['createdAt'],
-					'comments' => array()
-				];
-				$posts[$resultat['id']] = $post;
-			}
-			// On ajoute le commentaire au tableau des commentaires du post correspondant
-			$comment = array(
-				'comment_Author' => $resultat['comment_Author'],
-				'content' => $resultat['content']
-			);
-			$posts[$resultat['id']]['comments'][] = $comment;
-		}
-		// On retourne les posts sous forme de tableau
-		return array_values($posts);
+		return $row ;
 	}
 
 
@@ -111,7 +86,7 @@ class PostManager
 	//OK
 	public function findById(string $id)
 	{
-		$query = "SELECT p.id, p.title, p.content, p.createdAt, u.username
+		$query = "SELECT p.id, p.title, p.content, p.createdAt, u.username as author
 			FROM posts p
 			LEFT JOIN users u 
 			ON p.userId = u.id

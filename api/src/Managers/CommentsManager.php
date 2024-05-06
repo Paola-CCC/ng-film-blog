@@ -25,7 +25,7 @@ class CommentsManager
 
 		$query = "SELECT c.id, c.content, c.createdAt, c.postId, u.username
 			FROM comment c
-			LEFT JOIN user u 
+			LEFT JOIN users u 
 			ON c.userId = u.id";
 		$stmt = $this->_connexionBD->prepare($query);
 		$stmt->execute();
@@ -73,13 +73,27 @@ class CommentsManager
 	}
 
 	//OK
-	public function findById(string $id)
+	public function findById(int $id)
 	{
-		$query = "SELECT c.id, c.content, c.createdAt, c.postId, u.username
+		$query = "SELECT c.id, c.content, c.createdAt, c.postId, u.username as comment_author
 			FROM comments c
-			LEFT JOIN user u 
+			LEFT JOIN users u 
 			ON c.userId = u.id
 			WHERE c.id = :id";
+		$stmt = $this->_connexionBD->prepare($query);
+		$stmt->bindParam(":id", $id, PDO::PARAM_INT);
+		$stmt->execute();
+		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $row;
+	}
+
+	public function findAllByPostId(int $id)
+	{
+		$query = "SELECT c.id, c.content, c.createdAt, c.postId, u.username as comment_author
+			FROM comments c
+			LEFT JOIN users u 
+			ON c.userId = u.id
+			WHERE c.postId = :id";
 		$stmt = $this->_connexionBD->prepare($query);
 		$stmt->bindParam(":id", $id, PDO::PARAM_INT);
 		$stmt->execute();

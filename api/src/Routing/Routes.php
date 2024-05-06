@@ -28,7 +28,7 @@ class Routes
         $this->post('/post-new',['post' => 'new']);
         $this->get('/post-all',['post' => 'all']);
         $this->put('/post-update',['post' => 'update']);
-        $this->get('/pos-show/:id',['post' => 'show']);
+        $this->get('/post-show/:id',['post' => 'show']);
         $this->delete('/post-remove/:id',['post' => 'remove']);
 
         /** Commentaire */

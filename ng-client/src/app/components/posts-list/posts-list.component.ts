@@ -31,7 +31,7 @@ export class PostsListComponent implements OnInit {
   }
 
 
-  navigateToElement(id : any): void {
+  navigateToElement(id : number): void {
     this.router.navigate(['/post' , id]);
   }
 

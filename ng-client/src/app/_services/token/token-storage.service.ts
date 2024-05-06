@@ -31,6 +31,7 @@ export class TokenStorageService {
 
   doLogout() {
     let removeToken = localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
     if (removeToken == null) {
       this.router.navigate(['register']);
     }

@@ -37,20 +37,11 @@ class CommentController
             "id" => $commentId
         ];
 
-        // return json_encode([
-        //     "status" => http_response_code(200),
-        //     "message" => $this->commentManager->update($tabDatas)
-        // ]);
-
         return json_encode($this->commentManager->update($tabDatas));
     }
 
-    public function show(string $id)
+    public function show(int $id)
     {
-        // return json_encode([
-        //     "status" => http_response_code(200),
-        //     "message" => $this->commentManager->findById($id) 
-        // ]);
 
         return json_encode($this->commentManager->findById($id));
     }

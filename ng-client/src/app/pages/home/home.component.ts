@@ -18,31 +18,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private userService: UserService ,private postService : PostService, private router: Router) { }
 
-  ngOnInit(): void {
-
-    this.postService.getAll().subscribe({
-        next: data => {
-          this.contents = data;
-        },
-        error: err => {
-          this.console.log(err);
-          this.errorMessage = err;
-        }
-      });
-
-    // this.post.addNewPost(elementData).subscribe({
-    //   next: data => {
-    //     console.log('succes' , data); 
-    //   },
-    //   error: err => {
-    //     console.log('echec');
-    //   }
-    // });
-  }
+  ngOnInit(): void {}
 
 
-  navigateToElement(id : any): void {
-    this.router.navigate(['/post' , id]);
-  }
 
 }

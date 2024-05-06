@@ -1,14 +1,15 @@
-import { IAuth, IUser } from "src/app/_interfaces/auth.model";
+export interface IUser {
+  id?: number;
+  username?: string;
+  email?: string;
+  password?: string;
+  createdAt?: string;
+  role_name?: string;
+}
 
-export class User implements IAuth {
 
-    public status: number;
-    public user: IUser[]; 
-    public jwt : string
-
-    constructor(status: number, user :any, jwt : string) {
-        this.status = status;
-        this.user = user;
-        this.jwt = jwt;
-      }
+export interface IAuth {
+  status?: string;
+  user: IUser;
+  jwt: string;
 }

@@ -57,6 +57,7 @@ export class RegisterComponent implements OnInit {
       next: data => {
         console.log(data);
         this.storage.setToken(data.jwt);
+        localStorage.setItem('user', JSON.stringify(data.user));
         this.signUpIsSuccessful = true;
         
       },

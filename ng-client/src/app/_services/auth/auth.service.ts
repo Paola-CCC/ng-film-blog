@@ -28,4 +28,9 @@ export class AuthService {
       password
     }, httpOptions);
   }
+
+  get userDatasStored() {
+    const authToken = localStorage.getItem('user');
+    return authToken !== null ? JSON.parse(authToken) : '';
+  }
 }
