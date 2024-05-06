@@ -1,0 +1,18 @@
+# Utilisez l'image Node.js comme base pour exécuter Angular
+FROM node:16
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm i -g @angular/cli@16
+
+# Installation des dépendances
+RUN npm install
+
+# Copie du reste des fichiers de projet Angular
+COPY . .
+
+RUN ng build
+
+CMD ng serve --host 0.0.0.0 --port 4200

@@ -1,24 +1,23 @@
-version: '3.8'
 
 services:
 
-  #PHP && Apache
+
   php-apache:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile.server
     container_name: blog_apache_docker
     restart: on-failure
     ports:
       - 8000:80
     volumes:
-      - ./api/:/var/www/html/
+      - ./backend/:/var/www/html/
+      - ./config-server/vhosts.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - database
     networks:
       - app-network
 
-  # MySQL Service
   database:
       image: 'mariadb:10.4'      
       container_name: mariadb_blog
@@ -55,15 +54,13 @@ services:
   
   angular-ui:
     build: 
-          context: .
+          context: ./ng-client
           dockerfile: Dockerfile.angular
     container_name: angular-ui
     ports:
         - "4200:4200"
     volumes: 
         - ./ng-client:/usr/src/app
-    depends_on:
-        - php-apache
     networks:
         - app-network
 
