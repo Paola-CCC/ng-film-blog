@@ -38,6 +38,18 @@ class Routes
         $this->get('/comment-show/:id',['comment' => 'show']);
         $this->delete('/comment-remove/:id',['comment' => 'remove']);
 
+        /** Likes */
+        $this->post('/likes-posts-new',['likesPosts' => 'new']);
+        $this->get('/likes-posts-all',['likesPosts' => 'all']);
+        $this->get('/likes-posts-show/:id',['likesPosts' => 'show']);
+        $this->delete('/likes-posts-remove',['likesPosts' => 'remove']);
+
+        /** DisLikes */
+        $this->post('/dislikes-posts-new',['dislikesPosts' => 'new']);
+        $this->get('/dislikes-posts-all',['dislikesPosts' => 'all']);
+        $this->get('/dislikes-posts-show/:id',['dislikesPosts' => 'show']);
+        $this->delete('/dislikes-posts-remove',['dislikesPosts' => 'remove']);
+
     }
     
     /**

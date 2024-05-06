@@ -1,5 +1,6 @@
 <?php
 
+use App\Managers\LikesPostsManager;
 use App\Service\JwtToken;
 
 header('Access-Control-Allow-Credentials: true');
@@ -17,19 +18,7 @@ $router = new Router();
 echo $router->run();
 
 
+// $likes = new LikesPostsManager();
 
 
-function checkHeader()
-{
-    $headers = apache_request_headers();
-    $providerToken = new JwtToken();
-
-    if (isset($headers['Authorization']) && !empty($headers['Authorization'])) {
-        $authToken = substr($headers['Authorization'], 7);
-        return $providerToken->verifyToken($authToken);
-    }
-}
-
-checkHeader();
-
-
+// echo  json_encode($likes->findAllByPostId((int) 2));

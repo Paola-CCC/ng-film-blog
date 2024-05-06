@@ -34,7 +34,7 @@ class PostManager
 	/** renvoie des Posts associés avec des commentaires */
 	public function findAll()
 	{
-		$query = "SELECT p.id, p.title, p.content, p.createdAt, u.username as author
+		$query = "SELECT p.id, p.title, p.content,p.thumbnail, p.createdAt, u.username as author
 				FROM posts p
 				LEFT JOIN users u ON p.userId = u.id
 				ORDER BY p.id";
@@ -50,7 +50,7 @@ class PostManager
 	{
 		try {
 
-			$query = "INSERT INTO $this->_table (title, content,createdAt, userId) VALUES (:title, :content, :createdAt, :userId)";
+			$query = "INSERT INTO $this->_table (title, content,createdAt, userId , thumbnail) VALUES (:title, :content, current_timestamp(), :userId , :thumbnail)";
 			$stmt = $this->_connexionBD->prepare($query);
 			if ($stmt->execute($objet)) {
 				return "success";
@@ -68,7 +68,7 @@ class PostManager
 		try {
 
 			$query = "UPDATE $this->_table 
-				SET title = :title, content = :content ,createdAt = :createdAt , userId = :userId 
+				SET title = :title, content = :content ,createdAt = current_timestamp(), userId = :userId 
 				WHERE id = :id";
 			$stmt = $this->_connexionBD->prepare($query);
 			if ($stmt->execute($object)) {
@@ -86,7 +86,7 @@ class PostManager
 	//OK
 	public function findById(string $id)
 	{
-		$query = "SELECT p.id, p.title, p.content, p.createdAt, u.username as author
+		$query = "SELECT p.id, p.title, p.content,p.thumbnail, p.createdAt, u.username as author
 			FROM posts p
 			LEFT JOIN users u 
 			ON p.userId = u.id
@@ -109,3 +109,5 @@ class PostManager
 		$stmt->execute();
 	}
 }
+
+
