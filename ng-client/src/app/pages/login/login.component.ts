@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { TokenStorageService } from '../../_services/token/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   /** indique si le formualaire a été envoyé ou non  */
   submitted : boolean | null  = null;
 
-  constructor(private fb: UntypedFormBuilder,private authService: AuthService , private storage: TokenStorageService) {
+  constructor(private fb: UntypedFormBuilder,private authService: AuthService , private storage: TokenStorageService , private router: Router) {
     this.loginForm = this.fb.group({
       email: new UntypedFormControl('', [Validators.required]),
       password: new UntypedFormControl('', [Validators.required])
@@ -59,6 +60,8 @@ export class LoginComponent implements OnInit {
         this.storage.setToken(data.jwt);
         localStorage.setItem('user', JSON.stringify(data.user));
         this.loginIsSuccess = true;
+        this.router.navigate(['/home']);
+
         
       },
       error: err => {

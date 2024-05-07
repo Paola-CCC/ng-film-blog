@@ -1,11 +1,11 @@
 
-<div class="container-home">
+<section class="container-home">
     <div class="title">
         <h3> Tous les posts</h3>
     </div>
     <ul class="grid-posts">
         <ng-container *ngFor="let keys of contents">
-                <li class="card-list" (click)="navigateToElement(keys.id)"   >
+                <li class="card-post-body" (click)="navigateToElement(keys.id)"   >
 
                     <div class="card-img-container">
                         <img class="img-card" [src]="keys.thumbnail" />
@@ -23,4 +23,4 @@
                 </li>
         </ng-container>
     </ul>
-</div>
+</section>

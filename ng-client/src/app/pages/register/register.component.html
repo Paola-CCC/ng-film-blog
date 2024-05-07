@@ -3,7 +3,7 @@
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="username">Nom d'utilisateur</label>
-      <input type="text" [formControl]="username" class="form-control" id="username" name="username"   placeholder="Entrez votre nom d'utilisateur">
+      <input type="text" [formControl]="username" class="form-control" id="username" name="username"   placeholder="Nom d'utilisateur">
       <div *ngIf="controlRegister['username'].touched && controlRegister['username'].invalid" class="alert alert-danger">
         <div *ngIf="controlRegister['username'].errors && controlRegister['username'].errors['required']">Un nom d'utilisateur est requis</div>
         <div *ngIf="controlRegister['username'].errors && controlRegister['username'].errors['username']" [ngClass]= "'error'">Le nom d'utilisateur n'est pas valide</div>
@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
       <label for="email">Adresse e-mail</label>
-      <input type="email" [formControl]="email" class="form-control" id="email" name="email" placeholder="Entrez votre adresse e-mail">
+      <input type="email" [formControl]="email" class="form-control" id="email" name="email" placeholder="Adresse e-mail">
       <div *ngIf="controlRegister['email'].touched && controlRegister['email'].invalid" class="alert alert-danger">
           <div *ngIf="controlRegister['email'].errors && controlRegister['email'].errors['required']">Email requis.</div>
           <div *ngIf="controlRegister['email'].errors && controlRegister['email'].errors['email']" [ngClass]= "'error'">Email n'est pas valide</div>
@@ -20,24 +20,23 @@
     </div>
     <div class="form-group">
       <label for="password">Mot de passe</label>
-      <input type="password" [formControl]="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe">
+      <input type="password" [formControl]="password" class="form-control" id="password" name="password" placeholder="Mot de passe">
       <div *ngIf="controlRegister['email'].touched && controlRegister['email'].invalid" class="alert alert-danger">
           <div *ngIf="controlRegister['password'].errors && controlRegister['password'].errors['required']">Mot de passe requis.</div>
           <div *ngIf="controlRegister['password'].errors && controlRegister['password'].errors['password']" [ngClass]= "'error'">Le mot de passe n'est pas valide</div>
       </div>
+    </div>
+    <div>
+      <p>Vous avez déjà un compte ? 
+        <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active" > Se connecter</a>
+      </p>
     </div>
     <button type="submit" [disabled]="controlRegister.invalid" class="btn btn-primary">Inscription</button>
   </form>
 
   <ng-template [ngIf]="submitted">
 
-    <ng-template [ngIf]="signUpIsSuccessful" [ngIfElse]="notSucessful">
-      <div class="messages-success">
-        <p>Vous inscription a bien été enregistrée !</p>
-      </div>
-    </ng-template>
-
-    <ng-template #notSucessful >
+    <ng-template [ngIf]="signUpIsSuccessful" >
       <div class="messages-failed">
         <p>{{ errorMessage }}</p>
       </div>

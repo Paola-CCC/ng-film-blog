@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
+import { AuthService } from 'src/app/_services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,13 +12,21 @@ export class HeaderComponent implements OnInit {
   /** indique si navbar mobile est ouvert */
   mobileNavbarIsOpen: boolean = false;
   /** Id de l'utilisateur */
-  userId: string | number = 0;
+  userIsLogger: boolean = false;
 
   constructor(
-    private route : ActivatedRoute
+    private route : ActivatedRoute ,
+    private auth: AuthService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngDoCheck() {
+    this.userIsLogger = this.auth.userIsLogged;    
+  }
+
+  logOutNow(){
+    this.auth.logOut();
   }
 
   openMobileNavbar() {

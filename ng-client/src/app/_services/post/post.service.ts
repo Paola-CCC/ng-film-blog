@@ -19,7 +19,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
   //OK
   getAll(): Observable<any> {
-    return this.http.get(API + 'post-all', httpOptions);
+    return this.http.get(API + 'posts-all', httpOptions);
   }
   //OK
   getOnePost(id : any): Observable<any> {
@@ -32,7 +32,7 @@ export class PostService {
 
   //OK
   addNewPost(title :string , content : string , userId : any): Observable<any> {
-    return this.http.post(API + 'pos-new', {
+    return this.http.post(API + 'post-new', {
       title,
       content,
       userId

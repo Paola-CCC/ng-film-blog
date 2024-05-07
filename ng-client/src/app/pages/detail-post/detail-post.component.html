@@ -1,48 +1,88 @@
 
-<div class="">
-    <section class="app-detail" >
-        <ul style="padding:0">
-                <li style="list-style: none">	        
-                    <div class="card-list" >
-                        <img [src]="post?.thumbnail" [style.width]="'150px'" [style.heigth]="'200px'"/>
-                        <p>{{post?.content}}</p>
-                        <span><small>Créé le {{post?.createdAt}} par {{post?.author}}</small></span>
-                    </div>
-                    <div class="container-btn">
-                            <button>
-                                <i class="fa-solid fa-thumbs-up"></i>
-                                {{post.likes}}
-                            </button>
-                            <button>
-                                <i class="fa-solid fa-thumbs-down"></i>
-                                {{post.dislikes}}
-                            </button>
-                        </div>
-                </li>
-        </ul>
-    </section>
-    <section class="app-detail zone-comments">
-        <ul style="padding:0">
-            <ng-container *ngFor="let keys of commentsList">
-                <li style="list-style: none">	        
-                    <div class="card-list" >
-                        <p>{{keys?.content}}</p>
-                        <span><small>Créé le {{keys.createdAt}} par {{keys.comment_author}}</small></span>
-                    </div>
-                </li>
-            </ng-container>
-        </ul>
+<div class="global-detail-post">
+    <section class="app-detail show-post" >
+        <div class="card-body-post" >
+            <div class="post-category-date">
+                <span class="category">  Popular Choice </span>
+                <span class="date"> {{post?.createdAt}}  </span>
+            </div>
+
+            
+            <h1>{{post.title}} </h1>
+
+            <div class="container-thumbnail">
+                <img [src]="post?.thumbnail" />
+            </div>
+
+            <div class="post-text">
+                <p>{{post?.content}}  </p>
+            </div>
+
+        </div>
 
 
+        <div class="post-bottom">
+
+            <div class="author-info"> 
+                <img [src]="post?.picture_author_post" width="'15px'" height="'15px'"/>
+                <span> De {{post?.author}}</span>
+            </div>
+
+            <div class="container-btn">
+                    <button>
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        {{post.likes}}
+                    </button>
+                    <button>
+                        <i class="fa-solid fa-thumbs-down"></i>
+                        {{post.dislikes}}
+                    </button>
+            </div>
+
+        </div>
+
     </section>
-    <section class="app-detail creat-forms">
+
+
+    <section class="app-detail diplay-comments">
+        <div class="title">
+            <h3> Commentaires</h3>
+            <!-- <button>
+                Commenter
+            </button> -->
+        </div>
+        <ul *ngIf="commentsList.length > 0" >
+
+            <div class="cache-header-scroll">
+
+            </div>
+            <li *ngFor="let comment of commentsList">	
+
+                <div class="comment-infos">
+                    <div class="author-info"> 
+                        <img [src]="comment?.picture_avatar" width="'15px'" height="'15px'"/>
+                        <span> De {{comment?.comment_author}}</span>
+                    </div>
+                    <div class="comment-date">
+                        <span> <small>  le {{comment.createdAt}} </small> </span>
+                    </div>
+                </div>
+                <p>{{comment?.content}}</p>
+
+            </li>
+        </ul>
+        <p *ngIf="commentsList.length === 0"> Aucun commentaire</p>
+    </section>
+
+
+    <section class="app-detail add-comments">
         <form>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Saisissez vous commentaire :</label>
-                <textarea class="form-control" rows="3" [(ngModel)]="commentText" name="comment-writing"></textarea>
+                <label for="exampleFormControlTextarea1" class="form-label">Saisissez votre commentaire:</label>
+                <textarea class="form-control" rows="7" [(ngModel)]="commentText" name="comment-writing"></textarea>
             </div>
-            <div>
-                <button class="btn-submit" id="add-comment" (click)="addComment()">Envoyer</button>
+            <div class="send-comment-control">
+                <button class="btn-submit" id="add-comment" [disabled]="commentText === '' ? true : false"   (click)="commentText !== '' ? addComment() : null">Envoyer</button>
             </div>
         </form>
     </section>

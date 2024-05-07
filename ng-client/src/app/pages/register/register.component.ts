@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { TokenStorageService } from '../../_services/token/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: UntypedFormBuilder,
     private authService: AuthService,
-    private storage: TokenStorageService
+    private storage: TokenStorageService,
+    private router: Router
     ) {
     this.registerForm = this.fb.group({
       username: new UntypedFormControl('', [Validators.required]),
@@ -59,7 +61,8 @@ export class RegisterComponent implements OnInit {
         this.storage.setToken(data.jwt);
         localStorage.setItem('user', JSON.stringify(data.user));
         this.signUpIsSuccessful = true;
-        
+        this.router.navigate(['/home']);
+
       },
       error: err => {
         console.log(err);
