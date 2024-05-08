@@ -1,9 +1,14 @@
-
-<div>
-    {{userData.id }} 
-    <br>
-    {{userData.username}}
-    <br>
-    {{userData.email}}
-
+<div class="user-profile">
+    <div class="profile-picture">
+      <img src="{{userData.profilePicture}}" alt="User Profile" />
+    </div>
+  
+    <div class="username">
+      <h2>{{(userData.username).toUpperCase()}}</h2>
+    </div>
+    <div class="user-detail">
+      
+      <p> Email: {{userData.email}}</p>
+    </div>
 </div>
+  

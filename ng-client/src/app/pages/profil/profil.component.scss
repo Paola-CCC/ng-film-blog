@@ -1,0 +1,45 @@
+.user-profile {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+  }
+  
+  .profile-picture {
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  
+  .profile-picture img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .username {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 25px 0;
+
+    h2{
+        margin: 0;
+    }
+  }
+  
+  .user-detail {
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    padding: 10px 30px;
+    color: rgb(77, 77, 77);
+    p {
+        margin: 0;
+    }
+  }
+  

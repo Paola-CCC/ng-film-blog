@@ -23,7 +23,7 @@ use PDO;
     public function findById(string $id ) 
     {
 
-        $query = "SELECT u.id, u.username, u.email, r.name as role_name
+        $query = "SELECT u.id, u.username, u.email, r.name as role_name , u.picture_avatar as profilePicture
         FROM users u
         LEFT JOIN role r ON u.role_id = r.id
         WHERE u.id = :id";
