@@ -23,8 +23,8 @@ class CommentsManager
 	public function findAllComment()
 	{
 
-		$query = "SELECT c.id, c.content, c.createdAt, c.postId, u.username
-			FROM comment c
+		$query = "SELECT c.id, c.content, c.createdAt, c.postId, u.username ,u.picture_avatar
+			FROM comments c
 			LEFT JOIN users u 
 			ON c.userId = u.id";
 		$stmt = $this->_connexionBD->prepare($query);
@@ -75,7 +75,7 @@ class CommentsManager
 	//OK
 	public function findById(int $id)
 	{
-		$query = "SELECT c.id, c.content, c.createdAt, c.postId, u.username as comment_author
+		$query = "SELECT c.id, c.content, c.createdAt, c.postId, u.picture_avatar, u.username as comment_author
 			FROM comments c
 			LEFT JOIN users u 
 			ON c.userId = u.id
@@ -89,7 +89,7 @@ class CommentsManager
 
 	public function findAllByPostId(int $id)
 	{
-		$query = "SELECT c.id, c.content, c.createdAt, c.postId, u.username as comment_author
+		$query = "SELECT c.id, c.content, c.createdAt, c.postId, u.picture_avatar, u.username as comment_author
 			FROM comments c
 			LEFT JOIN users u 
 			ON c.userId = u.id

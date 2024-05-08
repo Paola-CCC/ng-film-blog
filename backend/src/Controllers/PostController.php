@@ -38,10 +38,12 @@ class PostController
         foreach($listPosts as $values ) {
             $StepOne = [];
             $commentsList = [];
+            $categories = [];
             $comments = $commentManager->findAllByPostId($values["id"]);
             $likesPosts = $likes->findAllByPostId((int) $values["id"]);
             $dislikesPosts = $dislikes->findAllByPostId((int) $values["id"]);
-
+            $decodeCategories = json_decode('[' . $values['categories'] . ']', true);
+            $categories = $decodeCategories[0]["id"] !== null ? $decodeCategories : [];
 
             if( count($comments) > 0){
 
@@ -58,7 +60,6 @@ class PostController
                 }
 
                 $commentsList = [...$StepOne];
-
             }
 
             if( count($likesPosts) > 0){
@@ -76,9 +77,12 @@ class PostController
                 "createdAt" => $this->date->getFrenchDate($values["createdAt"]),
                 "author" => $values["author"],
                 "thumbnail" => $values["thumbnail"],
+                "picture_author_post" => $values["picture_avatar"],
                 "comments" => $commentsList,
                 "likes" => $likesCounter,
-                "dislikes" => $dislikesCounter
+                "dislikes" => $dislikesCounter,
+                "categories" => $categories
+
             ];
 
         }
@@ -142,8 +146,8 @@ class PostController
         try {
 
             $results = $this->postManager->findAll();
+            return json_encode($this->getPostsWithComments($results));
 
-            return json_encode($this->getPostsWithComments($results)   );
 		} catch (PDOException $exception) {
             return json_encode([
                 "status" => http_response_code(404),

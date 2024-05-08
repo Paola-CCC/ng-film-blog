@@ -1,3 +1,4 @@
+import { ICategories } from "../categories/categories.model";
 import { IComments } from "../comments/comments.model";
 
 export interface IPosts {
@@ -10,5 +11,6 @@ export interface IPosts {
     picture_author_post?: string,
     comments: IComments[],
     liskes: number,
-    dislikes: number
+    dislikes: number,
+    categories: ICategories[]
 }

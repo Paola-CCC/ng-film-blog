@@ -3,8 +3,13 @@
     <section class="app-detail show-post" >
         <div class="card-body-post" >
             <div class="post-category-date">
-                <span class="category">  Popular Choice </span>
-                <span class="date"> {{post?.createdAt}}  </span>
+
+                <ng-container *ngFor="let category of post.categories" >
+                    <span class="category">
+                        {{category.name}}
+                    </span>    
+                </ng-container>
+                <span class="date"> Le {{post?.createdAt}}  </span>
             </div>
 
             

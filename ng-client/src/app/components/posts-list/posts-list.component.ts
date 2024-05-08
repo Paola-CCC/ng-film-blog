@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IPosts } from 'src/app/_models/post/post.model';
 import { PostService } from 'src/app/_services/post/post.service';
 import { UserService } from 'src/app/_services/user/user.service';
 
@@ -9,8 +10,8 @@ import { UserService } from 'src/app/_services/user/user.service';
   styleUrls: ['./posts-list.component.scss']
 })
 export class PostsListComponent implements OnInit {
-  /**Element à afficher */
-  contents : any ;
+  /** Liste de Posts à afficher */
+  postsList : IPosts[] = [];
   /** Message d'erreur */
   errorMessage : string = '';
 
@@ -21,7 +22,7 @@ export class PostsListComponent implements OnInit {
   ngOnInit(): void {
     this.postService.getAll().subscribe({
         next: data => {
-          this.contents = data;
+          this.postsList = data;
         },
         error: err => {
           this.console.log(err);

@@ -4,21 +4,34 @@
         <h3> Tous les posts</h3>
     </div>
     <ul class="grid-posts">
-        <ng-container *ngFor="let keys of contents">
-                <li class="card-post-body" (click)="navigateToElement(keys.id)"   >
+        <ng-container *ngFor="let post of postsList">
+                <li class="card-post-body" (click)="navigateToElement(post.id)"   >
 
                     <div class="card-img-container">
-                        <img class="img-card" [src]="keys.thumbnail" />
+                        <img class="img-card" [src]="post.thumbnail" />
                     </div>
 
                     <div class="card-body">
                         <div class="date">
-                            <small> {{keys.author}} <i class="fa-solid fa-circle fa-2xs"></i> {{keys.createdAt}}  </small>
+                            <small>{{post.author}}  </small>
+                                 <i class="fa-solid fa-circle fa-2xs"></i>  
+                            <small> {{post.createdAt}} </small>
                         </div>
                         <div  class="main-content">
-                            <h4>{{keys.title}}</h4>
-                            <p>{{keys.content}}</p>
+                            <h4>{{post.title}}</h4>
+                            <p>{{post.content}}</p>
                         </div>
+                    </div>
+
+                    <div class="card-footer">
+
+                        <ng-container *ngFor="let category of post.categories">
+
+                            <span>
+                                {{ category.name}}
+                            </span>
+                        </ng-container> 
+
                     </div>
                 </li>
         </ng-container>

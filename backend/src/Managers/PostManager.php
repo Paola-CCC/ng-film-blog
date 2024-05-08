@@ -34,10 +34,19 @@ class PostManager
 	/** renvoie des Posts associés avec des commentaires */
 	public function findAll()
 	{
-		$query = "SELECT p.id, p.title, p.content,p.thumbnail, p.createdAt, u.username as author
+		$query = "SELECT p.id, p.title, p.content,p.thumbnail, p.createdAt, u.picture_avatar, u.username as author, 
+		GROUP_CONCAT(
+			JSON_OBJECT(
+				'id', cat.id,
+				'name', cat.name,
+				'slug', cat.slug
+            )
+        ) AS categories
 				FROM posts p
 				LEFT JOIN users u ON p.userId = u.id
-				ORDER BY p.id";
+				LEFT JOIN posts_categories pc ON p.id = pc.postId
+				LEFT JOIN categories cat ON pc.categoryId = cat.id
+				GROUP BY p.id";
 		$stmt = $this->_connexionBD->prepare($query);
 		$stmt->execute();
 		$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -86,11 +95,19 @@ class PostManager
 	//OK
 	public function findById(string $id)
 	{
-		$query = "SELECT p.id, p.title, p.content,p.thumbnail, p.createdAt, u.username as author
+		$query = "SELECT p.id, p.title, p.content,p.thumbnail, p.createdAt, u.picture_avatar, u.username as author, GROUP_CONCAT(
+			JSON_OBJECT(
+				'id', cat.id,
+				'name', cat.name,
+				'slug', cat.slug
+            )
+        ) AS categories
 			FROM posts p
-			LEFT JOIN users u 
-			ON p.userId = u.id
-			WHERE p.id = :id";
+			LEFT JOIN users u ON p.userId = u.id
+			LEFT JOIN posts_categories pc ON p.id = pc.postId
+			LEFT JOIN categories cat ON pc.categoryId = cat.id
+			WHERE p.id = :id
+			GROUP BY p.id";
 		$stmt = $this->_connexionBD->prepare($query);
 		$stmt->bindParam(":id", $id, PDO::PARAM_INT);
 		$stmt->execute();

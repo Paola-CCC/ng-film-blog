@@ -19,21 +19,21 @@ class Routes
         $this->post('/login',['user' => 'login']);
         
         $this->get('/user-all',['user' => 'all']);
-        $this->get('/user-details',['user' => 'allDetails']);
+        $this->get('/users-details',['user' => 'allDetails']);
         $this->put('/user-update',['user' => 'update']);
         $this->get('/user-show/:id',['user' => 'show']);
         $this->delete('/user-remove/:id',['user' => 'remove']);
 
         /** Post */
         $this->post('/post-new',['post' => 'new']);
-        $this->get('/post-all',['post' => 'all']);
+        $this->get('/posts-all',['post' => 'all']);
         $this->put('/post-update',['post' => 'update']);
         $this->get('/post-show/:id',['post' => 'show']);
         $this->delete('/post-remove/:id',['post' => 'remove']);
 
         /** Commentaire */
         $this->post('/comment-new',['comment' => 'new']);
-        $this->get('/comment-all',['comment' => 'all']);
+        $this->get('/comments-all',['comment' => 'all']);
         $this->put('/comment-update',['comment' => 'update']);
         $this->get('/comment-show/:id',['comment' => 'show']);
         $this->delete('/comment-remove/:id',['comment' => 'remove']);
