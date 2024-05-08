@@ -1,11 +1,14 @@
 .global-detail-post {
   // background-color: blueviolet;
   padding-top: 50px;
+  width: 95%;
+  margin: 0 auto;
 
   section.app-detail {
     // background-color: coral;
     margin-top: 50px;
-    width: 950px;
+    max-width: 950px;
+    width: 100%;
     margin: 0 auto;
     padding: 0;
   }
@@ -37,18 +40,18 @@
         span.category {
           background-color: rgb(236, 249, 233);
           color: green;
-          padding: 5px 20px;
+          padding: 5px 12px;
           
           &:not(:last-of-type){
-            margin-right: 10px;
+            margin-right: 5px;
 
           }
         }
         span.date {
           // background-color: cadetblue;
           color: gray;
-          margin-left: 28px;
-
+          margin-left: 8px;
+          font-size: 12px;
         }
       }
 
@@ -143,7 +146,7 @@
 
 
      ul {
-        background-color: rgb(245, 245, 245);
+        border: 1px solid rgb(222, 222, 222);;
         padding: 0;
         position: relative;
         margin: 25px 0;
@@ -157,8 +160,8 @@
         .cache-header-scroll {
           background-color: rgb(222, 222, 222);
           position: sticky;
-          border-top-left-radius: 15px;
-          border-top-right-radius: 15px;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
           z-index: 99999;
           top: 0;
           right: 15px;
@@ -223,9 +226,9 @@
                 display: block;
             }
             textarea {
-                width: 100%;
-                padding: 8px;
-                border: 1px solid rgb(175, 175, 175);
+                width: calc(100% - 20px);
+                padding: 10px;
+                border: 1px solid rgb(222, 222, 222);;
                 border-radius: 15px;
             }
 
@@ -267,3 +270,19 @@
   } 
 }
 
+
+@media only screen and (max-width:900px) {
+
+  .global-detail-post section.show-post .card-body-post .container-thumbnail {
+    width: 75%;
+  }
+}
+
+
+
+@media only screen and (max-width:600px) {
+  
+  .global-detail-post section.show-post .card-body-post .container-thumbnail {
+      width: 90%;
+  }
+}

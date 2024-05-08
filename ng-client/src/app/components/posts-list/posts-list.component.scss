@@ -97,3 +97,24 @@ section.container-home {
     }
   }
 }
+
+@media only screen and (max-width:700px) {
+  
+  section.container-home {
+    ul.grid-posts li {
+      flex: 1 1 250px;
+
+    }
+  }
+}
+
+
+
+@media only screen and (max-width:458px) {
+  
+  section.container-home {
+    ul.grid-posts li {
+      flex: 1 1 250px;
+    }
+  }
+}

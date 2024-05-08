@@ -46,22 +46,9 @@ section.home-new-post {
 
   .new-post-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
     grid-template-rows: 250px 250px;
     gap: 25px;
-
-    .post-two,
-    .post-three {
-      .card-post-body {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-
-        .card-img-container {
-          width: 50%;
-        }
-      }
-    }
 
     .post-one {
       grid-row: 1 / 3;
@@ -89,6 +76,8 @@ section.home-new-post {
         .card-body {
           height: 250px;
           padding: 10px;
+          width: calc(100% - 20px);
+
           border-bottom-left-radius: 10px;
           border-bottom-right-radius: 10px;
           .date {
@@ -104,6 +93,60 @@ section.home-new-post {
 
           .main-content {
             margin: 5px 0;
+            h4 {
+              font-weight: 600;
+              font-size: 16px;
+            }
+
+            p {
+              color: rgb(96, 96, 96);
+            }
+          }
+        }
+      }
+    }
+
+    .post-two,
+    .post-three {
+      border-radius: 10px;
+      .card-post-body {
+        display: flex;
+        flex-direction: row;
+        .card-img-container {
+          height: 250px;
+          width: 50%;
+
+          img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .card-body {
+          padding: 10px;
+          width: calc(50% - 20px);
+
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+          .date {
+            color: rgb(122, 75, 167);
+            small {
+              font-weight: 500;
+            }
+
+            i {
+              padding: 0 5px;
+            }
+          }
+
+          .main-content {
+            margin: 5px 0;
+
             h4 {
               font-weight: 600;
               font-size: 16px;
@@ -120,116 +163,102 @@ section.home-new-post {
     .post-two {
       grid-column: 2 / 3;
       grid-row: 1 / 2;
-      gap: 25px;
-      .card-post-body {
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-        .card-img-container {
-          height: 250px;
-          width: 33.33%;
-
-          img {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-        }
-
-        .card-body {
-          padding: 10px;
-          max-width: 340px;
-          border-bottom-left-radius: 10px;
-          border-bottom-right-radius: 10px;
-          .date {
-            color: rgb(122, 75, 167);
-            small {
-              font-weight: 500;
-            }
-
-            i {
-              padding: 0 5px;
-            }
-          }
-
-          .main-content {
-            margin: 5px 0;
-
-            h4 {
-              font-weight: 600;
-              font-size: 16px;
-            }
-
-            p {
-              color: rgb(96, 96, 96);
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-          }
-        }
-      }
     }
 
     .post-three {
-      border-radius: 10px;
       grid-column: 2 / 3;
       grid-row: 2 / 3;
+    }
+  }
+}
 
-      .card-post-body {
-        border-radius: 10px;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-        .card-img-container {
-          height: 250px;
-          width: 33.33%;
 
-          img {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
+@media only screen and ( max-width: 900px) {
+  
+  section.home-new-post {
+
+    .new-post-container {
+      grid-template-columns: 1fr ;
+      grid-template-rows: auto auto auto;
+
+      .post-one {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+
+        .card-post-body .card-img-container  {
+          width: 100%;
+        }
+      }
+
+      .post-two {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+      }
+
+      .post-three {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+      }
+    }
+  }
+}
+
+
+@media only screen and ( max-width: 500px) {
+  
+  section.home-new-post {
+
+    .new-post-container {
+      display: grid;
+      grid-template-columns: 100% ;
+      grid-template-rows: auto auto auto;
+      gap: 25px;
+
+      .post-one {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+
+        .card-post-body {
+          .card-img-container {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: 250px;
+          }
+        }
+      }
+
+      .post-two {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        .card-post-body {
+          display: flex;
+          flex-direction: column;
+          .card-img-container {
+            width: 100%;
+            height: 250px;
+          }
+
+          .card-body { 
+            max-height: 250px;
+            padding: 10px;
+            width: calc(100% - 20px);
           }
         }
 
-        .card-body {
-          padding: 10px;
-          max-width: 340px;
-          border-bottom-left-radius: 10px;
-          border-bottom-right-radius: 10px;
+      }
 
-          .date {
-            color: rgb(122, 75, 167);
+      .post-three {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
 
-            small {
-              font-weight: 500;
-            }
-
-            i {
-              padding: 0 5px;
-            }
+        .card-post-body {
+          display: flex;
+          flex-direction: column;
+          .card-img-container {
+            width: 100%;
           }
 
-          .main-content {
-            margin: 5px 0;
-
-            h4 {
-              font-weight: 600;
-              font-size: 16px;
-            }
-
-            p {
-              color: rgb(96, 96, 96);
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
+          .card-body { 
+            width: calc(100% - 20px);
           }
         }
       }

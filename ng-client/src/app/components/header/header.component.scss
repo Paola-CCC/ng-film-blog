@@ -70,12 +70,7 @@ nav {
             }
           }
 
-
-
-          
       }
-
- 
     }
 
     div.icon-menu-mobile {
@@ -86,6 +81,10 @@ nav {
     div.mobile-navbar {
       display: none;
     }
+
+    .cache-header-mobile {
+      background-color: blue;
+    }
   
 }
 
@@ -95,7 +94,7 @@ nav {
   nav {
     padding: 15px 2em;
     position: relative;
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(255, 255, 255);
     box-shadow: none;
 
 
@@ -110,11 +109,12 @@ nav {
 
     div.mobile-navbar {
       position: absolute;
-      background-color: rgb(220, 220, 220);
+      background-color: rgb(255, 255, 255);
       top: 50px;
       width: 100%;
       right: 0cm;
       left: 0px;
+      z-index: 999999;
 
       &.open {
         display: block;
@@ -129,6 +129,19 @@ nav {
           padding: 20px 0;
         }
       }
+    }
+
+    .cache-header-mobile {
+      background-color: rgba(28, 28, 28, 0.867);
+      backdrop-filter: blur(5px);
+      position: absolute;
+      top: 50px;
+      width: 100%;
+      height: 100vh;
+      right: 0cm;
+      left: 0px;
+      z-index: 999;
+      opacity: 0.98;
     }
   }
 }

@@ -32,8 +32,11 @@ export class HeaderComponent implements OnInit {
   openMobileNavbar() {
     if(this.mobileNavbarIsOpen ){
       this.mobileNavbarIsOpen = false;
+      document.body.style.overflow = 'auto';
     } else {
       this.mobileNavbarIsOpen = true;
+      document.body.style.overflow = 'hidden';
+
     }
   };
 
