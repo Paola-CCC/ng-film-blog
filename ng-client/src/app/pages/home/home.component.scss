@@ -74,8 +74,8 @@ section.home-new-post {
         }
 
         .card-body {
-          height: 250px;
-          padding: 10px;
+          // height: 250px;
+          padding: 10px 10px 0 10px;
           width: calc(100% - 20px);
 
           border-bottom-left-radius: 10px;
@@ -93,6 +93,11 @@ section.home-new-post {
 
           .main-content {
             margin: 5px 0;
+            display: -webkit-box;
+            -webkit-box-orient: vertical; /* Orienter les boîtes de manière verticale */
+            overflow: hidden; /* Empêcher le débordement */
+            -webkit-line-clamp: 5; /* Limiter le texte à 3 lignes */
+            text-overflow: ellipsis; /* Ajouter des points de suspension si nécessaire */
             h4 {
               font-weight: 600;
               font-size: 16px;
@@ -100,6 +105,7 @@ section.home-new-post {
 
             p {
               color: rgb(96, 96, 96);
+              margin: 0;
             }
           }
         }
@@ -146,6 +152,11 @@ section.home-new-post {
 
           .main-content {
             margin: 5px 0;
+            display: -webkit-box;
+            -webkit-box-orient: vertical; /* Orienter les boîtes de manière verticale */
+            overflow: hidden; /* Empêcher le débordement */
+            -webkit-line-clamp: 5; /* Limiter le texte à 3 lignes */
+            text-overflow: ellipsis; /* Ajouter des points de suspension si nécessaire */
 
             h4 {
               font-weight: 600;

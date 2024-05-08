@@ -2,22 +2,24 @@
 .app-container-global {
     position: relative;
     min-height: 100vh;
-    padding-bottom: 70px;
+    padding-bottom: 50px;
 
     main {
       margin-bottom: 50px;
     }
   
     footer {
-      background-color: rgb(237, 237, 237);
+      background-color: rgb(245, 245, 245); 
+      border-top: 1px solid rgb(222,222,222); 
       position: absolute;
       height: 15px;
-      width: 100%;
       bottom: 0;
       right: 0;
       left: 0;
-      padding: 5px 2em;
-      font-size: 14px;
+      padding: 10px 2em;
+      font-size: 10px;
+      color: gray;
+      text-align: center;
     }
   
 }
