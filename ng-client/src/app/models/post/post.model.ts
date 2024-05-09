@@ -1,6 +1,6 @@
-import { ICategories } from "src/app/interfaces/categories.interface";
-import { IComments } from "src/app/interfaces/comments.interface";
-import { IPosts } from "src/app/interfaces/posts.interface";
+import { Comments } from "../comments/comments.model";
+import { Categories } from "../categories/categories.model";
+import { IPosts } from "src/app/interfaces/posts";
 
 export class Posts implements IPosts {
     id?: number;
@@ -10,10 +10,10 @@ export class Posts implements IPosts {
     createdAt?: string;
     title?: string;
     picture_author_post?: string;
-    comments: IComments[];
+    comments: Comments[];
     likes?: number;
     dislikes?: number;
-    categories?: ICategories[];
+    categories?: Categories[];
   
     constructor(
       id?: number,
@@ -23,10 +23,10 @@ export class Posts implements IPosts {
       createdAt?: string,
       title?: string,
       picture_author_post?: string,
-      comments: IComments[] =[],
+      comments: Comments[] =[],
       likes?: number,
       dislikes?: number,
-      categories: ICategories[] = []
+      categories: Categories[] = []
     ) {
       this.id = id;
       this.author = author;

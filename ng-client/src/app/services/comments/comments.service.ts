@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Comments } from 'src/app/models/comments/comments.model';
 
 
 const API = 'http://localhost:8000/';
@@ -17,11 +18,11 @@ export class CommentsService {
   constructor(private http: HttpClient) { }
   //OK
   getAll(): Observable<any> {
-    return this.http.get(API + 'comment-all', httpOptions);
+    return this.http.get<Comments>(API + 'comment-all', httpOptions);
   }
   //OK
   getOneComment(id : any): Observable<any> {
-    return this.http.get(API + `comment-show/${id}`, httpOptions);
+    return this.http.get<Comments>(API + `comment-show/${id}`, httpOptions);
   }
  
   //OK
@@ -30,7 +31,7 @@ export class CommentsService {
   }
 
   //OK
-  addNewComment( content : string, userId : number |null , postId : number): Observable<any> {
+  addNewComment( content: string, userId : number |null , postId : number): Observable<any> {
     return this.http.post(API + 'comment-new', {
       content,
       userId,

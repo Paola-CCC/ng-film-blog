@@ -1,5 +1,4 @@
-import { IComments } from "src/app/interfaces/comments.interface";
-
+import { IComments } from "src/app/interfaces/comments";
 
 export class Comments implements IComments {
     id: number;

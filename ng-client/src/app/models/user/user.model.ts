@@ -1,5 +1,4 @@
-import { IUser } from 'src/app/interfaces/user.interface';
-
+import { IUser } from 'src/app/interfaces/user';
 
 export class User implements IUser {
 
@@ -11,15 +10,15 @@ export class User implements IUser {
     role_name?: string;
     picture_user?: string;
 
-    public constructor(    
+    public constructor(
         id?: number,
         username?: string,
         email?: string,
         password?: string,
         createdAt?: string,
         role_name?: string,
-        picture_user?: string     
-     ){ 
+        picture_user?: string
+    ) {
 
         this.id = id;
         this.username = username;
