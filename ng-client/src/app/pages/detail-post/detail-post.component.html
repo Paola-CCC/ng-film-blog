@@ -9,18 +9,18 @@
                         {{category.name}}
                     </span>    
                 </ng-container>
-                <span class="date"> Le {{post?.createdAt}}  </span>
+                <span class="date"> Le {{post.createdAt}}  </span>
             </div>
 
             
             <h1>{{post.title}} </h1>
 
             <div class="container-thumbnail">
-                <img [src]="post?.thumbnail" />
+                <img [src]="post.thumbnail" />
             </div>
 
             <div class="post-text">
-                <p>{{post?.content}}  </p>
+                <p>{{post.content}}  </p>
             </div>
 
         </div>
@@ -29,8 +29,8 @@
         <div class="post-bottom">
 
             <div class="author-info"> 
-                <img [src]="post?.picture_author_post" width="'15px'" height="'15px'"/>
-                <span> De {{post?.author}}</span>
+                <img [src]="post.picture_author_post" width="'15px'" height="'15px'"/>
+                <span> De {{post.author}}</span>
             </div>
 
             <div class="container-btn">

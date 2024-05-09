@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IPosts } from 'src/app/_models/post/post.model';
-import { PostService } from 'src/app/_services/post/post.service';
-import { UserService } from 'src/app/_services/user/user.service';
+import { Posts } from 'src/app/models/post/post.model';
+import { PostService } from 'src/app/services/post/post.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-posts-list',
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/_services/user/user.service';
 })
 export class PostsListComponent implements OnInit {
   /** Liste de Posts à afficher */
-  postsList : IPosts[] = [];
+  postsList : Posts[] = [];
   /** Message d'erreur */
   errorMessage : string = '';
 
@@ -32,7 +32,7 @@ export class PostsListComponent implements OnInit {
   }
 
 
-  navigateToElement(id : number): void {
+  navigateToElement(id : number | undefined): void {
     this.router.navigate(['/post' , id]);
   }
 

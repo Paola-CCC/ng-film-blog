@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IAuth } from 'src/app/interfaces/user.interface';
 
 const API = 'http://localhost:8000/';
 
@@ -21,7 +22,7 @@ export class AuthService {
     }, httpOptions);
   }
 
-  register(username: string, email: string, password: string): Observable<any> {
+  register(username: string, email: string, password: string): Observable<IAuth> {
     return this.http.post(API + 'register', {
       username,
       email,

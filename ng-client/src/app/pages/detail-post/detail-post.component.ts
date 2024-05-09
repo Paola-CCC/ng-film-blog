@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { IComments } from 'src/app/_models/comments/comments.model';
-import { IPosts } from 'src/app/_models/post/post.model';
-import { AuthService } from 'src/app/_services/auth/auth.service';
-import { CommentsService } from 'src/app/_services/comments/comments.service';
-import { PostService } from 'src/app/_services/post/post.service';
+import { Posts } from 'src/app/models/post/post.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { CommentsService } from 'src/app/services/comments/comments.service';
+import { PostService } from 'src/app/services/post/post.service';
+import { IComments } from 'src/app/interfaces/comments.interface';
 
 @Component({
   selector: 'app-detail-post',
@@ -17,7 +17,7 @@ export class DetailPostComponent implements OnInit {
   postId : number = 1;
   console = console;
   errorMessage : string = '';
-  post: any;
+  post: Posts = new Posts() ;
   userId: number| null = 13;
   /** commentaire de l'utlisateur */
   commentText: string = '';

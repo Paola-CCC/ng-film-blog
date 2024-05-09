@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { TokenStorageService } from './_services/token/token-storage.service';
+import { TokenStorageService } from './services/token/token-storage.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

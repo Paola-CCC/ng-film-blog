@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/_services/auth/auth.service';
-import { TokenStorageService } from '../../_services/token/token-storage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { TokenStorageService } from '../../services/token/token-storage.service';
 import { Router } from '@angular/router';
 
 @Component({
