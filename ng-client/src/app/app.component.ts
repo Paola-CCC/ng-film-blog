@@ -6,7 +6,6 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None // Pour permettre le ciblage global
-
+  encapsulation: ViewEncapsulation.None 
 })
 export class AppComponent {}

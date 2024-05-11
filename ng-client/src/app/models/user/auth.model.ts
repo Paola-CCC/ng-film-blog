@@ -1,5 +1,6 @@
-import { IAuth } from "src/app/interfaces/user";
+import { IAuth } from "@interfaces";
 import { User } from "./user.model";
+
 
 export class Auth implements IAuth {
   user?: User;

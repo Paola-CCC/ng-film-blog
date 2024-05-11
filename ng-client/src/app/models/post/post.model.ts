@@ -1,6 +1,6 @@
-import { Comments } from "../comments/comments.model";
-import { Categories } from "../categories/categories.model";
-import { IPosts } from "src/app/interfaces/posts";
+import { IPosts } from "@interfaces";
+import { Categories } from "@models/categories/categories.model";
+import { Comments } from "@models/comments/comments.model";
 
 export class Posts implements IPosts {
     id?: number;

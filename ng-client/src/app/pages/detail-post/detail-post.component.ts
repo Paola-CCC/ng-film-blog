@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Posts } from 'src/app/models/post/post.model';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { CommentsService } from 'src/app/services/comments/comments.service';
-import { PostService } from 'src/app/services/post/post.service';
-import { IComments } from 'src/app/interfaces/comments.interface';
+import { ActivatedRoute } from '@angular/router';
+import { Comments, Posts } from '@models';
+import { AuthService, CommentsService, PostService } from '@services';
+
 
 @Component({
   selector: 'app-detail-post',
@@ -22,9 +20,13 @@ export class DetailPostComponent implements OnInit {
   /** commentaire de l'utlisateur */
   commentText: string = '';
   /** listes de commentaires */
-  commentsList: IComments[] = [];
+  commentsList: Comments[] = [];
 
-  constructor(private route: ActivatedRoute , private authService: AuthService,    private postService : PostService , private commentsService : CommentsService) {}
+  constructor(
+    private route: ActivatedRoute , 
+    private authService: AuthService,  
+    private postService : PostService, 
+    private commentsService : CommentsService) {}
 
 
   ngOnInit(): void {

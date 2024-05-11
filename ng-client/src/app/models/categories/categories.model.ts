@@ -1,4 +1,5 @@
-import { ICategories } from "src/app/interfaces/categories";
+import { ICategories } from "@interfaces";
+
 export class Categories implements ICategories {
   id: number;
   name: string;

@@ -11,18 +11,13 @@
                 </ng-container>
                 <span class="date"> Le {{post.createdAt}}  </span>
             </div>
-
-            
             <h1>{{post.title}} </h1>
-
             <div class="container-thumbnail">
                 <img [src]="post.thumbnail" />
             </div>
-
             <div class="post-text">
                 <p>{{post.content}}  </p>
             </div>
-
         </div>
 
 
@@ -34,18 +29,16 @@
             </div>
 
             <div class="container-btn">
-                    <button>
-                        <i class="fa-solid fa-thumbs-up"></i>
-                        {{post.likes}}
-                    </button>
-                    <button>
-                        <i class="fa-solid fa-thumbs-down"></i>
-                        {{post.dislikes}}
-                    </button>
+                <button>
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    {{post.likes}}
+                </button>
+                <button>
+                    <i class="fa-solid fa-thumbs-down"></i>
+                    {{post.dislikes}}
+                </button>
             </div>
-
         </div>
-
     </section>
 
 

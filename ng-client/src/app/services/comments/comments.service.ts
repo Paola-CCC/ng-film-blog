@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Comments } from '@models';
 import { Observable } from 'rxjs';
-import { Comments } from 'src/app/models/comments/comments.model';
 
 
 const API = 'http://localhost:8000/';
