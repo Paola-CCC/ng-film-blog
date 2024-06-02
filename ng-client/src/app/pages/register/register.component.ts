@@ -11,12 +11,15 @@ import { AuthService } from '@services';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm : UntypedFormGroup ;
+  registerForm = this.fb.group({
+    username: ['' , Validators.required],
+    email: ['' , Validators.required],
+    password: ['' , Validators.required]
+  })
   /** indique si le formulaire a été envoyé ou non  */
   submitted : boolean = false;
   /** indique si s'inscription a réussi ou non  */
   signUpIsSuccessful = false;
-
   errorMessage = '';
 
   constructor(
@@ -24,24 +27,18 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private storage: TokenStorageService,
     private router: Router
-    ) {
-    this.registerForm = this.fb.group({
-      username: new UntypedFormControl('', [Validators.required]),
-      email: new UntypedFormControl('', [Validators.required]),
-      password: new UntypedFormControl('', [Validators.required])
-    });
-  }
+    ) {}
 
   get username (): any {
-    return this.registerForm.get('username') as UntypedFormGroup ;
+    return this.registerForm.get('username') ;
   }
 
   get email (): any {
-    return this.registerForm.get('email') as UntypedFormGroup ;
+    return this.registerForm.get('email') ;
   }
 
   get password (): any {
-    return this.registerForm.get('password') as UntypedFormGroup ;
+    return this.registerForm.get('password');
   }
 
   get controlRegister() : any {
@@ -54,14 +51,19 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
-
+    if (this.registerForm.invalid) {
+      return;
+    }
     this.authService.register(this.username.value, this.email.value, this.password.value).subscribe({
       next: data => {
-        console.log(data);
-        this.storage.setToken(data.jwt);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        this.signUpIsSuccessful = true;
-        this.router.navigate(['/home']);
+        if( data.jwt && data.user ) {
+          this.storage.setToken(data.jwt);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          this.signUpIsSuccessful = true;
+          this.router.navigate(['/home']);
+        } else {
+          this.signUpIsSuccessful = false;
+        }
 
       },
       error: err => {
@@ -70,16 +72,11 @@ export class RegisterComponent implements OnInit {
         this.signUpIsSuccessful = false;
       }
     });
-    if (this.registerForm.invalid) {
-      return;
-    }
-
   }
 
-  // Change All controls value
+  
   setDefaultValue() { 
-    this.registerForm.setValue(
-    {
+    this.registerForm.setValue({
       username:'',
       email: '',
       password: ''

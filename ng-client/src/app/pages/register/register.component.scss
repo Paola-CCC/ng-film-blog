@@ -48,6 +48,17 @@ div.register-container {
             border-color: #007bff;
             outline: none;
           }
+
+          &.is-invalid {
+            border: 1px solid #ff3030;
+          }
+          &.is-invalid + div {
+            background-color: rgb(250, 218, 218);
+            color: #a20e0e;
+            padding: 5px 10px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+          }
         }
       }
     

@@ -2,21 +2,40 @@
     <h3> Connexion</h3>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
         <div class="form-group">
-          <label for="email">Adresse e-mail</label>
-          <input type="email"  [formControl]="email" class="form-control" id="email" name="email" placeholder="Adresse e-mail">
-          <div *ngIf="controlLogin['email'].touched && controlLogin['email'].invalid" class="alert alert-danger">
-                <div *ngIf="controlLogin['email'].errors && controlLogin['email'].errors['required']">Email requis.</div>
-                <div *ngIf="controlLogin['email'].errors && controlLogin['email'].errors['email']" [ngClass]= "'error'">Email n'est pas valide</div>
-        </div>      
+          <label for="email">Adresse Email</label>
+          <input type="email"  
+            formControlName="email" 
+            class="form-control" 
+            id="email" 
+            name="email" 
+            placeholder="Adresse Email"
+            [ngClass]="{ 'is-invalid': submitted && controlLogin['email'].errors || controlLogin['email'].touched && controlLogin['email'].invalid}"
+           >
+            <ng-template [ngIf]="controlLogin['email'].touched && controlLogin['email'].invalid" class="alert alert-danger">
+              <div *ngIf="controlLogin['email'].errors && controlLogin['email'].errors['required']">L' Email est requis.</div>
+              <div *ngIf="controlLogin['email'].errors && controlLogin['email'].errors['email']" [ngClass]= "'error'">Email n'est pas valide</div>
+            </ng-template>   
         </div>
+
+
         <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="password" [formControl]="password" class="form-control" id="password" name="password" placeholder="Mot de passe">
-            <div *ngIf="controlLogin['email'].touched && controlLogin['email'].invalid" class="alert alert-danger">
-                <div *ngIf="controlLogin['password'].errors && controlLogin['password'].errors['required']">Mot de passe requis.</div>
-                <div *ngIf="controlLogin['password'].errors && controlLogin['password'].errors['password']" [ngClass]= "'error'">Le mot de passe n'est pas valide</div>
-            </div>
+            <input 
+              type="password" 
+              formControlName="password" 
+              class="form-control" 
+              id="password" 
+              name="password" 
+              placeholder="Mot de passe"
+              [ngClass]="{ 'is-invalid': submitted && controlLogin['password'].errors || controlLogin['password'].touched && controlLogin['password'].invalid}"
+            >
+
+            <ng-template [ngIf]="controlLogin['password'].touched && controlLogin['password'].invalid" class="alert alert-danger">
+              <div *ngIf="controlLogin['password'].errors && controlLogin['password'].errors['required']">Le mot de passe requis.</div>
+              <div *ngIf="controlLogin['password'].errors && controlLogin['password'].errors['password']" [ngClass]= "'error'">Le mot de passe n'est pas valide</div>
+            </ng-template> 
       </div>
+      
       <div>
         <p>
           Vous n'avez pas encore de compte ? 
@@ -25,20 +44,11 @@
       </div>
       <button type="submit" class="btn btn-primary">Se connecter</button>
     </form>
-
-
-    <ng-template [ngIf]="submitted">
-        <ng-template [ngIf]="loginIsSuccess" [ngIfElse]="notSucessful">
-          <div class="messages-success">
-            <p>Votre connexion a bien réussi</p>
-          </div>
-        </ng-template>
-        <ng-template #notSucessful >
-          <div class="messages-failed">
-            <p>{{ errorMessage }}</p>
-          </div>
-        </ng-template>
-      </ng-template>
+    
+    <ng-template [ngIf]="submitted && !loginIsSuccess && errorMessage" >
+      <div class="messages-failed">
+        <p>{{ errorMessage }}</p>
+      </div>
+    </ng-template>
 </div>
 
-<!-- {{ loginForm.value | json }} -->

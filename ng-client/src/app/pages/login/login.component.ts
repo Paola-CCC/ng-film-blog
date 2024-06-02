@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from '../../services/token/token-storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from '@services';
@@ -11,7 +11,10 @@ import { AuthService } from '@services';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm : UntypedFormGroup;
+  loginForm = this.fb.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required]
+  });
   /** indique si la connexion a réussi ou non  */
   loginIsSuccess: boolean | null = null;
   /** message d'erreur en cas d'ehec */
@@ -19,59 +22,55 @@ export class LoginComponent implements OnInit {
   /** message de success */
   sucessMessage = '';
   /** indique si le formualaire a été envoyé ou non  */
-  submitted : boolean | null  = null;
+  submitted: boolean = false;
 
-  constructor(private fb: UntypedFormBuilder,private authService: AuthService , private storage: TokenStorageService , private router: Router) {
-    this.loginForm = this.fb.group({
-      email: new UntypedFormControl('', [Validators.required]),
-      password: new UntypedFormControl('', [Validators.required])
-    });
-  }
+  constructor(private fb: FormBuilder,private authService: AuthService , private storage: TokenStorageService , private router: Router) {}
 
   get email (): any {
-    return this.loginForm.get('email') as UntypedFormGroup ;
+    return this.loginForm.get('email');
   }
 
   get password (): any {
-    return this.loginForm.get('password') as UntypedFormGroup ;
+    return this.loginForm.get('password');
   }
 
-  get controlLogin() : any {
+  get controlLogin() : { [key: string]: AbstractControl }{
     return this.loginForm.controls;
   }
 
-  // Change All controls value
+  /**  Met les valeurs par défaut*/
   setDefaultValue() { 
-    this.loginForm.setValue(
-    {
+    this.loginForm.setValue({
       email: '',
       password: ''
     });
   }
 
   ngOnInit(): void {}
-  
 
   onSubmit(): void {
     this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
     this.authService.login( this.email.value, this.password.value).subscribe({
       next: data => {
-        console.log(data);
-        this.storage.setToken(data.jwt);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        this.loginIsSuccess = true;
-        this.router.navigate(['/home']);
+        if(data.jwt && data.user ) {
+          this.storage.setToken(data.jwt);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          this.loginIsSuccess = true;
+          this.router.navigate(['/home']);
+        } else {
+          this.loginIsSuccess = false;
+        }
 
-        
       },
       error: err => {
         this.errorMessage = err.error.message;
         this.loginIsSuccess = false;
       }
     });
-    if (this.loginForm.invalid) {
-      return;
-    }
+
   }
   
 }
