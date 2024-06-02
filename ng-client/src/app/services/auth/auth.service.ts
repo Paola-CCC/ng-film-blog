@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '@models';
+import { IUser } from '@interfaces';
 
 const API = 'http://localhost:8000/';
 
@@ -17,14 +17,14 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string ): Observable<any> {
-    return this.http.post<User>(API + 'login', {
+    return this.http.post<IUser>(API + 'login', {
       email,
       password
     }, httpOptions);
   }
 
   register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post<User>(API + 'register', {
+    return this.http.post<IUser>(API + 'register', {
       username,
       email,
       password

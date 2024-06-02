@@ -1,4 +1,3 @@
-# Utilisez l'image Node.js comme base pour exécuter Angular
 FROM node:16
 
 WORKDIR /usr/src/app

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Comments } from '@models';
+import { IComments } from '@interfaces';
 import { Observable } from 'rxjs';
 
 
@@ -18,11 +18,11 @@ export class CommentsService {
   constructor(private http: HttpClient) { }
   //OK
   getAll(): Observable<any> {
-    return this.http.get<Comments>(API + 'comment-all', httpOptions);
+    return this.http.get<IComments>(API + 'comment-all', httpOptions);
   }
   //OK
   getOneComment(id : any): Observable<any> {
-    return this.http.get<Comments>(API + `comment-show/${id}`, httpOptions);
+    return this.http.get<IComments>(API + `comment-show/${id}`, httpOptions);
   }
  
   //OK

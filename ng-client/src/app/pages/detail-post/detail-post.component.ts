@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Comments, Posts } from '@models';
+import { IComments, IPosts } from '@interfaces';
 import { AuthService, CommentsService, PostService } from '@services';
 
 
@@ -14,19 +14,22 @@ export class DetailPostComponent implements OnInit {
   /** représente l'Id du post */
   postId : number = 1;
   console = console;
+  /** message d'erreur */
   errorMessage : string = '';
-  post: Posts = new Posts() ;
-  userId: number| null = 13;
+  /** Posts */
+  post: IPosts;
+  userId: number| null ;
   /** commentaire de l'utlisateur */
   commentText: string = '';
   /** listes de commentaires */
-  commentsList: Comments[] = [];
+  commentsList: IComments[] = [];
 
   constructor(
-    private route: ActivatedRoute , 
+    private route: ActivatedRoute, 
     private authService: AuthService,  
-    private postService : PostService, 
-    private commentsService : CommentsService) {}
+    private postService: PostService, 
+    private commentsService: CommentsService
+  ) {}
 
 
   ngOnInit(): void {
