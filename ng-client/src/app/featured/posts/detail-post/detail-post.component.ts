@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IComments, IPosts } from '@interfaces';
-import { AuthService, CommentsService, PostService } from '@services';
+import { IComments, IPosts } from '@shared/interfaces';
+import { AuthService, CommentsService, PostService } from '@shared/services';
 
 
 @Component({

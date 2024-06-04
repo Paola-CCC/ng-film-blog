@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IPosts } from '@interfaces';
+import { IPosts } from '@shared/interfaces';
 import { Observable } from 'rxjs';
 
 const API = 'http://localhost:8000/';

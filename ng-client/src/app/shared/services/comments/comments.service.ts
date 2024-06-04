@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IComments } from '@interfaces';
+import { IComments } from '@shared/interfaces';
 import { Observable } from 'rxjs';
 
 

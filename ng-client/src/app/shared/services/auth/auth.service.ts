@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IUser } from '@interfaces';
+import { IUser } from '@shared/interfaces';
 
 const API = 'http://localhost:8000/';
 
