@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Posts } from '@models';
-import { PostService, UserService } from '@services';
+import { IPosts } from '@interfaces';
+import { PostService } from '@services';
 
 @Component({
   selector: 'app-posts-list',
@@ -10,7 +10,7 @@ import { PostService, UserService } from '@services';
 })
 export class PostsListComponent implements OnInit {
   /** Liste de Posts à afficher */
-  postsList : Posts[] = [];
+  postsList : IPosts[] = [];
   /** Message d'erreur */
   errorMessage : string = '';
 

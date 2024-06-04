@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Posts } from '@models';
+import { IPosts } from '@interfaces';
 import { Observable } from 'rxjs';
 
 const API = 'http://localhost:8000/';
@@ -16,11 +16,11 @@ export class PostService {
   constructor(private http: HttpClient) {}
   //OK
   getAll(): Observable<any> {
-    return this.http.get<Posts>(API + 'posts-all', httpOptions);
+    return this.http.get<IPosts>(API + 'posts-all', httpOptions);
   }
   //OK
   getOnePost(id: any): Observable<any> {
-    return this.http.get<Posts>(API + `post-show/${id}`, httpOptions);
+    return this.http.get<IPosts>(API + `post-show/${id}`, httpOptions);
   }
   //OK
   deleteOnePost(id: any): Observable<any> {
