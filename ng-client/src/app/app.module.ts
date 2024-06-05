@@ -15,10 +15,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserModule } from '@featured/user/user.module';
 import { PostsModule } from '@featured/posts/posts.module';
 import { PublicModule } from '@featured/public/public.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 const APP_ROUTES: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**',  component: PageNotFoundComponent },
+
 ];
 
 @NgModule({
@@ -30,7 +33,8 @@ const APP_ROUTES: Routes = [
     ProfilComponent,
     HeaderComponent,
     DetailPostComponent,
-    PostsListComponent
+    PostsListComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
