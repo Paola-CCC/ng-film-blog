@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : database:3306
--- Généré le : lun. 06 mai 2024 à 17:32
+-- Généré le : sam. 08 juin 2024 à 22:23
 -- Version du serveur : 10.4.33-MariaDB-1:10.4.33+maria~ubu2004
 -- Version de PHP : 8.2.18
 
@@ -18,13 +18,12 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `blog_database`
+-- Base de données : `u574090949_blog_films`
 --
-
-CREATE DATABASE IF NOT EXISTS `blog_database`;
+CREATE DATABASE IF NOT EXISTS `u574090949_blog_films`;
 
 -- Utiliser la base de données
-USE `blog_database`;
+USE `u574090949_blog_films`;
 -- --------------------------------------------------------
 
 --
@@ -67,17 +66,6 @@ CREATE TABLE `comments` (
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Déchargement des données de la table `comments`
---
-
-INSERT INTO `comments` (`id`, `postId`, `userId`, `content`, `createdAt`) VALUES
-(1, 1, 1, 'Commentaire aléatoire numéro 1', '2024-05-06 17:17:06'),
-(2, 7, 2, 'Commentaire aléatoire numéro 2', '2024-05-06 17:17:06'),
-(3, 7, 1, 'Ceci est un commentaire aléatoire', '2024-05-06 17:17:06'),
-(4, 3, 1, 'Juste un autre commentaire', '2024-05-06 17:17:06'),
-(5, 1, 2, 'Voici un commentaire de test', '2024-05-06 17:17:06');
-
 -- --------------------------------------------------------
 
 --
@@ -100,7 +88,7 @@ INSERT INTO `dislikesPosts` (`id`, `postId`, `userId`, `dislikedAt`) VALUES
 (2, 3, 1, '2024-05-06 17:12:58'),
 (3, 6, 2, '2024-05-06 17:12:58'),
 (4, 3, 2, '2024-05-06 17:12:58'),
-(5, 5, 1, '2024-05-06 17:12:58');
+(6, 7, 1, '2024-05-06 18:47:43');
 
 -- --------------------------------------------------------
 
@@ -139,8 +127,7 @@ INSERT INTO `likesPosts` (`id`, `postId`, `userId`, `likedAt`) VALUES
 (1, 5, 2, '2024-05-06 17:12:42'),
 (2, 4, 2, '2024-05-06 17:12:42'),
 (3, 7, 2, '2024-05-06 17:12:42'),
-(4, 2, 1, '2024-05-06 17:12:42'),
-(5, 2, 2, '2024-05-06 17:12:42');
+(4, 2, 1, '2024-05-06 17:12:42');
 
 -- --------------------------------------------------------
 
@@ -194,7 +181,8 @@ INSERT INTO `posts` (`id`, `userId`, `title`, `thumbnail`, `content`, `createdAt
 (4, 1, 'Quatième post', 'https://leclaireur.fnac.com/wp-content/uploads/2023/07/detail-de-l-affiche-de-la-version-restauree-de-asterix-et-obelix-mission-cleopatre-d-alain-chabat-1667751-1256x810.jpg', 'Ceci est le quatième post sur ce site.', '2022-12-31 23:59:59'),
 (5, 1, 'Cinquième post', 'https://www.lavieeco.com/wp-content/uploads/2019/01/volubilis.jpg', 'Ceci est le cinquième post sur ce site.', '2022-12-31 23:59:59'),
 (6, 1, 'Sixième post', 'https://www.challenges.fr/assets/img/2014/12/30/cover-r4x3w1200-5791d67672ec0-taken-3.jpg', 'Ceci est le sixième post sur ce site.', '2022-12-31 23:59:59'),
-(7, 1, 'Septième post', 'https://fr.web.img5.acsta.net/medias/nmedia/18/83/59/73/19698109.jpg', 'Ceci est le septième post sur ce site.', '2022-12-31 23:59:59');
+(7, 1, 'Septième post', 'https://fr.web.img5.acsta.net/medias/nmedia/18/83/59/73/19698109.jpg', 'Ceci est le septième post sur ce site.', '2022-12-31 23:59:59'),
+(8, 1, 'Indiana Jones', 'https://remeng.rosselcdn.net/sites/default/files/dpistyles_v2/rem_16_9_1124w/2023/06/26/node_497527/13284173/public/2023/06/26/B9734614404Z.1_20230626100610_000%2BG1ON0VNH5.1-0.jpg?itok=FdbHUx1V1687766776', 'Indiana Jones au mexique', '2024-05-06 21:08:33');
 
 -- --------------------------------------------------------
 
@@ -213,11 +201,11 @@ CREATE TABLE `posts_categories` (
 --
 
 INSERT INTO `posts_categories` (`id`, `postId`, `categoryId`) VALUES
-(1, 2, 17),
+(1, 2, 8),
 (2, 3, 3),
 (3, 6, 10),
 (4, 1, 16),
-(5, 6, 12);
+(5, 6, 4);
 
 -- --------------------------------------------------------
 
@@ -331,7 +319,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role_id`, `picture_avatar`, `createdAt`) VALUES
 (1, 'Catherine Dupont', 'dupont@free.fr', '$2y$10$EElIbkuU5926aFTLQQXqgu1kvmQa6ulflzU8de3D2nQaXmBy.4WCa', 2, 'https://www.parismatch.com/lmnr/var/pm/public/media/image/2022/03/16/22/Catherine-Deneuve-en-50-photos-d-exception.jpg?VersionId=NnjgphHsAmHkRdqtFta3F.ePhMp7B8vv', '2024-05-06 17:27:52'),
-(2, 'Jonathan Henry', 'henry@free.fr', '$2y$10$mFK..R7Y8fw2tErfUb70q.xorM1rEwIb3/Oj5qDf3S0csL5HuffGa', 2, 'https://media.vogue.fr/photos/5d42f36abf89b40008cd2a44/2:3/w_2560%2Cc_limit/GettyImages-488685851.jpg', '2024-05-06 17:28:21');
+(2, 'Jonathan Henry', 'henry@free.fr', '$2y$10$mFK..R7Y8fw2tErfUb70q.xorM1rEwIb3/Oj5qDf3S0csL5HuffGa', 2, 'https://media.vogue.fr/photos/5d42f36abf89b40008cd2a44/2:3/w_2560%2Cc_limit/GettyImages-488685851.jpg', '2024-05-06 17:28:21'),
+(3, 'John Doe', 'doe@free.fr', '$2y$10$V63.oOo9Uz8darr87./6wuP/ZtnXHTRzucZ5YFlsOjNEp26oAbNLO', 2, 'https://www.voici.fr/imgre/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Fprismamedia_people.2F2017.2F06.2F30.2Fc26431c7-9324-4ac0-8321-ded348df1e64.2Ejpeg/2048x1536/quality/80/kelly-rowland.jpeg', '2024-05-07 19:09:18');
 
 --
 -- Index pour les tables déchargées
@@ -432,19 +421,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `dislikesPosts`
 --
 ALTER TABLE `dislikesPosts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `images`
@@ -456,49 +445,49 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT pour la table `likesPosts`
 --
 ALTER TABLE `likesPosts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `notesPosts`
 --
 ALTER TABLE `notesPosts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `posts_categories`
 --
 ALTER TABLE `posts_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `post_tags`
 --
 ALTER TABLE `post_tags`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
