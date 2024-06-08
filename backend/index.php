@@ -18,3 +18,4 @@ $router = new Router();
 echo $router->run();
 
 echo "Papillon";
+echo "Saloon";
