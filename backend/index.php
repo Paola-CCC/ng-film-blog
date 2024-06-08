@@ -17,8 +17,4 @@ use App\Routing\Router;
 $router = new Router();
 echo $router->run();
 
-
-// $likes = new LikesPostsManager();
-
-
-// echo  json_encode($likes->findAllByPostId((int) 2));
+echo "Papillon";
