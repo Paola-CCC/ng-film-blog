@@ -16,6 +16,3 @@ require 'src/Utils/config.php';
 use App\Routing\Router;
 $router = new Router();
 echo $router->run();
-
-echo "Papillon";
-echo "Saloon";
