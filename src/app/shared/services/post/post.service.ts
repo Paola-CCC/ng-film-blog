@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { IPosts } from '@shared/interfaces';
 import { Observable } from 'rxjs';
 
-const API = 'https://cine-n-co.online/backend/';
+const API = 'https://cine-n-co.org/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

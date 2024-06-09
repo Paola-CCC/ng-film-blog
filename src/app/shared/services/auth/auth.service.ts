@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IUser } from '@shared/interfaces';
 
-const API = 'https://cine-n-co.online/backend/';
+const API = 'https://cine-n-co.org/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
