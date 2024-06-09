@@ -1,5 +1,11 @@
-#
-database/
+
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
 
 # misc
 .DS_Store
@@ -10,24 +16,23 @@ database/
 .env.test.local
 .env.production.local
 
-client/npm-debug.log*
-client/yarn-debug.log*
-client/yarn-error.log*
+ng-client/npm-debug.log*
+ng-client/yarn-debug.log*
+ng-client/yarn-error.log*
 
 # Node artifact files
-/client/node_modules/
-client/dist/# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+/ng-client/node_modules/
+ng-client/dist/# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/client/node_modules
-client/.pnp
-client/.pnp.js
+ng-client/.pnp
+ng-client/.pnp.js
 
 # testing
-client/coverage
+ng-client/coverage
 
 ## API
-api/vendor/
+backend/vendor/
 
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
@@ -39,8 +44,6 @@ api/vendor/
 # Only exists if Bazel was run
 /bazel-out
 
-# Dependencies
-/node_modules
 
 # Cordova
 /www
@@ -103,9 +106,7 @@ Thumbs.db
 # Only exists if Bazel was run
 /bazel-out
 
-# dependencies
-/node_modules
-/.angular
+
 
 # profiling files
 chrome-profiler-events*.json
@@ -151,8 +152,10 @@ Thumbs.db
 
 # Node
 /node_modules
+/.angular
 npm-debug.log
 yarn-error.log
+
 
 # IDEs and editors
 .idea/
