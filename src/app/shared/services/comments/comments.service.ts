@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 
 
-const API = environment.apiURL;
+const API = 'http://localhost:8000';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
