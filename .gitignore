@@ -1,12 +1,4 @@
 
-
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-
-
 # misc
 .DS_Store
 .idea/
@@ -35,15 +27,6 @@ ng-client/coverage
 ## API
 backend/vendor/
 
-
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# Compiled output
-# /dist
-/tmp
-/out-tsc
-# Only exists if Bazel was run
-/bazel-out
 
 
 # Cordova
@@ -96,19 +79,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-
-
-
-
-
-/dist
-/tmp
-/out-tsc
-# Only exists if Bazel was run
-/bazel-out
-
-
-
 # profiling files
 chrome-profiler-events*.json
 
@@ -146,7 +116,7 @@ Thumbs.db
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/dist
+# /dist
 /tmp
 /out-tsc
 /bazel-out
