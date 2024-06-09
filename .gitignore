@@ -22,7 +22,8 @@ ng-client/yarn-error.log*
 
 # Node artifact files
 /ng-client/node_modules/
-ng-client/dist/# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 ng-client/.pnp
