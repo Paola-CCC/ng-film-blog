@@ -16,11 +16,11 @@ export class PostService {
   constructor(private http: HttpClient) {}
   //OK
   getAll(): Observable<any> {
-    return this.http.get<IPosts>(API + 'posts-all', httpOptions);
+    return this.http.get(API + 'posts-all', httpOptions);
   }
   //OK
   getOnePost(id: any): Observable<any> {
-    return this.http.get<IPosts>(API + `post-show/${id}`, httpOptions);
+    return this.http.get(API + `post-show/${id}`, httpOptions);
   }
   //OK
   deleteOnePost(id: any): Observable<any> {
