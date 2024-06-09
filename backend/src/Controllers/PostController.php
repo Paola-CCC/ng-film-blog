@@ -143,17 +143,23 @@ class PostController
     public function all()
     {
 
-        try {
 
-            $results = $this->postManager->findAll();
-            return json_encode($this->getPostsWithComments($results));
 
-		} catch (PDOException $exception) {
-            return json_encode([
-                "status" => http_response_code(404),
-                "eroor-message" => $exception->getMessage()
-            ]);
-		}
+        $results = $this->postManager->findAll();
+        return json_encode($this->getPostsWithComments($results));
+
+
+        // try {
+
+        //     $results = $this->postManager->findAll();
+        //     return json_encode($this->getPostsWithComments($results));
+
+		// } catch (PDOException $exception) {
+        //     return json_encode([
+        //         "status" => http_response_code(404),
+        //         "eroor-message" => $exception->getMessage()
+        //     ]);
+		// }
     }
 
     public function remove(string $id)
