@@ -12,7 +12,7 @@ export class ProfilComponent implements OnInit {
   userId: number | null = 1; 
   userData: any;
 
-  constructor(private route: ActivatedRoute , private userService: UserService , private auth: AuthService) { }
+  constructor( private userService: UserService , private auth: AuthService) { }
 
   ngOnInit(): void {
     this.userId = this.auth.userDatasStored.id;
