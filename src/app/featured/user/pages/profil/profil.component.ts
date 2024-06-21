@@ -9,7 +9,7 @@ import { AuthService, UserService } from '@shared/services';
 })
 export class ProfilComponent implements OnInit {
 
-  userId: number | null = 1; 
+  userId: number; 
   userData: any;
 
   constructor(private route: ActivatedRoute , private userService: UserService , private auth: AuthService) { }
@@ -24,7 +24,6 @@ export class ProfilComponent implements OnInit {
         console.log(err);
       }
     });
-
 
   }
 

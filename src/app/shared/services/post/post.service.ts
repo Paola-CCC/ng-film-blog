@@ -35,7 +35,7 @@ export class PostService {
       {
         title,
         content,
-        userId,
+        userId
       },
       httpOptions
     );
@@ -54,7 +54,7 @@ export class PostService {
         title,
         content,
         userId,
-        postId,
+        postId
       },
       httpOptions
     );

@@ -29,12 +29,15 @@
             </div>
 
             <div class="container-btn">
-                <button>
-                    <i class="fa-solid fa-thumbs-up"></i>
+                <button (click)="addPostLike()"   >
+                    <i class="fa-solid fa-thumbs-up" 
+                    [ngStyle]="{'color': btnLikesSelected === true ? 'green' : (btnLikesSelected === false ? 'grey' : null)}"></i>
                     {{post.likes}}
                 </button>
-                <button>
-                    <i class="fa-solid fa-thumbs-down"></i>
+                <button (click)="addPostDislike()" >
+                    <i class="fa-solid fa-thumbs-down" 
+                    [ngStyle]="{'color': btnDislikesSelected === true ? 'red' : (btnDislikesSelected === false ? 'grey' : null)}"
+                    ></i>
                     {{post.dislikes}}
                 </button>
             </div>
