@@ -1,6 +1,7 @@
 .hero-image {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://img.lemde.fr/2019/05/21/117/0/1600/799/1342/671/60/0/30ce305_obd3AGqDSauwBTKn9lEW7RZt.jpg") center/cover no-repeat;
+    url("https://img.lemde.fr/2019/05/21/117/0/1600/799/1342/671/60/0/30ce305_obd3AGqDSauwBTKn9lEW7RZt.jpg")
+      center/cover no-repeat;
   height: 400px;
   position: relative;
 
@@ -131,7 +132,7 @@ section.home-new-post {
 
         .card-body {
           padding: 10px;
-          width: calc(50% - 20px);
+          width: 55%;
           border-radius: 10px;
 
           .date {
@@ -179,23 +180,26 @@ section.home-new-post {
   }
 }
 
-@media only screen and (max-width: 900px) {
-  .new-post-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-
-    .post-one {
-      .card-post-body .card-img-container {
-        width: 100%;
+@media only screen and (max-width: 1000px) {
+  section.home-new-post {
+    width: 95%;
+    .new-post-container {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      margin: 0 auto;
+      .post-one {
+        .card-post-body .card-img-container {
+          width: 100%;
+        }
       }
     }
   }
 }
 
-@media only screen and (max-width: 500px) {
-  .new-post-container {
-    gap: 25px;
-
+@media only screen and (max-width: 800px) {
+  section.home-new-post .new-post-container {
+    display: block;
+    margin: 0 auto;
     .post-one,
     .post-two,
     .post-three {

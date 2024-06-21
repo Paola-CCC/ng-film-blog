@@ -1,5 +1,5 @@
 section.container-home {
-  width: 95%;
+  // width: 95%;
   margin: 0 auto;
   .title {
     padding: 25px 0;
@@ -22,8 +22,7 @@ section.container-home {
     gap: 25px;
 
     li {
-      flex: 0 0 300px;
-      // background-color: rgb(240, 240, 240);
+      flex: 0 0 280px;
       border-radius: 10px;
 
       .card-img-container {
@@ -98,23 +97,29 @@ section.container-home {
   }
 }
 
-@media only screen and (max-width:700px) {
-  
+
+
+@media only screen and (max-width: 900px) {
+
+  section.container-home {
+    width: 95%;
+
+  }
   section.container-home {
     ul.grid-posts li {
       flex: 1 1 250px;
-
     }
   }
 }
 
 
 
-@media only screen and (max-width:458px) {
-  
+@media only screen and (max-width: 500px) {
   section.container-home {
+    width: 95%;
     ul.grid-posts li {
       flex: 1 1 250px;
     }
+
   }
 }
