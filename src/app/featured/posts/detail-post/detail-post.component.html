@@ -3,7 +3,6 @@
     <section class="app-detail show-post" >
         <div class="card-body-post" >
             <div class="post-category-date">
-
                 <ng-container *ngFor="let category of post.categories" >
                     <span class="category">
                         {{category.name}}
@@ -29,12 +28,12 @@
             </div>
 
             <div class="container-btn">
-                <button (click)="addPostLike()"   >
+                <button (click)=" userId !== undefined ? addPostLike() : null"   >
                     <i class="fa-solid fa-thumbs-up" 
                     [ngStyle]="{'color': btnLikesSelected === true ? 'green' : (btnLikesSelected === false ? 'grey' : null)}"></i>
                     {{post.likes}}
                 </button>
-                <button (click)="addPostDislike()" >
+                <button (click)="userId !== undefined ? addPostDislike() : null" >
                     <i class="fa-solid fa-thumbs-down" 
                     [ngStyle]="{'color': btnDislikesSelected === true ? 'red' : (btnDislikesSelected === false ? 'grey' : null)}"
                     ></i>
@@ -47,10 +46,7 @@
 
     <section class="app-detail diplay-comments">
         <div class="title">
-            <h3> Commentaires</h3>
-            <!-- <button>
-                Commenter
-            </button> -->
+            <h3>  {{ commentsList.length > 1  ? "Commentaires" : "Commentaire" }}  </h3>
         </div>
         <ul *ngIf="commentsList.length > 0" >
 
@@ -69,18 +65,20 @@
                     </div>
                 </div>
                 <p>{{comment?.content}}</p>
-
+                <div class="grp-btn">
+                    <button (click)="deleteComment(comment.id)" > <i class="fa-solid fa-trash"></i>  </button>
+                </div>
             </li>
         </ul>
         <p *ngIf="commentsList.length === 0"> Aucun commentaire</p>
     </section>
 
 
-    <section class="app-detail add-comments">
+    <section class="app-detail add-comments"  *ngIf="userId !== undefined">
         <form>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Saisissez votre commentaire:</label>
-                <textarea class="form-control" rows="7" [(ngModel)]="commentText" name="comment-writing"></textarea>
+                <textarea class="form-control" rows="3" [(ngModel)]="commentText" name="comment-writing"></textarea>
             </div>
             <div class="send-comment-control">
                 <button class="btn-submit" id="add-comment" [disabled]="commentText === '' ? true : false"   (click)="commentText !== '' ? addComment() : null">Envoyer</button>
@@ -88,7 +86,6 @@
         </form>
     </section>
 </div>
-
 
 
 

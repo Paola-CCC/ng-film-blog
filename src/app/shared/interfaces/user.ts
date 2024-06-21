@@ -5,7 +5,7 @@ export interface IUser {
   password?: string;
   createdAt?: string;
   role_name?: string;
-  picture_user?: string;
+  profilePicture?: string;
 }
 
 export interface IAuth {

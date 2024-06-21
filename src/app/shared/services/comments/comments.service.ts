@@ -2,10 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IComments } from '@shared/interfaces';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
+import { environment } from 'environments/environment';
 
-
-const API = 'http://localhost:8000';
+const API: string = environment.apiURL;
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
