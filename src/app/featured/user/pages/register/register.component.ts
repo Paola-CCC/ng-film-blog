@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
     }
     this.authService.register(this.username.value, this.email.value, this.password.value).subscribe({
       next: data => {
-        if( data.jwt && data.user ) {
+        if(data.jwt && data.user) {
           this.storage.setToken(data.jwt);
           localStorage.setItem('user', JSON.stringify(data.user));
           this.signUpIsSuccessful = true;
@@ -64,7 +64,6 @@ export class RegisterComponent implements OnInit {
         } else {
           this.signUpIsSuccessful = false;
         }
-
       },
       error: err => {
         console.log(err);

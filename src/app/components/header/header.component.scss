@@ -1,4 +1,7 @@
-header nav {
+header {
+  box-shadow: 0px 0px 6px #dedede;
+
+  nav {
     // font-size: 16px;
     display: flex;
     flex-direction: row;
@@ -7,42 +10,28 @@ header nav {
 
     button {
       border: none;
-      // background-color: transparent;
     }
 
-    
-      a {
-        list-style: none;
-        text-decoration: none;
-        color: #333;
-
-        // font-weight:300;
-      }
-    
+    a {
+      list-style: none;
+      text-decoration: none;
+      color: #333;
+    }
 
     ul.navbar-nav.desktop {
       list-style-type: none;
       margin: 0;
       display: flex;
       flex-direction: row;
-      li {    
+      li {
         padding: 25px 4px;
         margin: 0 10px;
         position: relative;
         // background-color: blue;
 
-        a {
-          color: #333;
-          text-decoration: none;
-
-          span {
-            padding: 0 5px ;
-          }
-        }
-
-
+        &:not(.logout) {
           &:after {
-            content: '';
+            content: "";
             display: block;
             height: 4px;
             width: 0;
@@ -51,29 +40,36 @@ header nav {
             bottom: 0;
             left: 0;
             right: 0;
-            // transition: width 0.3s ease-in-out;
           }
-          
-          &.active:after, 
+
+          &.active:after,
           &:hover:after {
-              width: 100%;
+            width: 100%;
           }
+        }
 
-          &:focus,
-          &:hover {
-            a {
-              color: #155ca8;
-              font-weight:400;
-            }
+        a {
+          color: #333;
+          text-decoration: none;
+
+          span {
+            padding: 0 5px;
           }
+        }
 
+        &:focus,
+        &:hover {
+          a {
+            color: #155ca8;
+            font-weight: 400;
+          }
+        }
       }
     }
 
     div.icon-menu-mobile {
       display: none;
     }
-
 
     div.mobile-navbar {
       display: none;
@@ -82,18 +78,15 @@ header nav {
     .cache-header-mobile {
       background-color: blue;
     }
-  
+  }
 }
 
-
 @media only screen and (max-width: 900px) {
-
-  nav {
+  header nav {
     padding: 15px 2em;
     position: relative;
     background-color: rgb(255, 255, 255);
     box-shadow: none;
-
 
     ul.navbar-nav.desktop {
       display: none;

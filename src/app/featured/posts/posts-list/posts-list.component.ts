@@ -10,7 +10,7 @@ import { PostService } from '@shared/services';
 })
 export class PostsListComponent implements OnInit {
   /** Liste de Posts à afficher */
-  postsList : IPosts[] = [];
+  postsList: IPosts[] = [];
   /** Message d'erreur */
   errorMessage : string = '';
 
