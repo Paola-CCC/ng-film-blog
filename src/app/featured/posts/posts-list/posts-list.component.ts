@@ -16,16 +16,16 @@ export class PostsListComponent implements OnInit {
 
   console = console
 
-  constructor(private postService: PostService, private router: Router) { }
+  constructor(private PostService: PostService, private router: Router) { }
 
   ngOnInit(): void {
-    this.postService.getAll().subscribe({
+    this.PostService.getAll().subscribe({
         next: data => {
           this.postsList = data;
         },
         error: err => {
           this.console.log(err);
-          this.errorMessage = err;
+          this.errorMessage = err.message;
         }
     });
   }
