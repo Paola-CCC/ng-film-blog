@@ -1,5 +1,5 @@
 import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AuthService } from '@shared/services';
 
 @Component({
@@ -15,8 +15,8 @@ export class HeaderComponent implements OnInit {
   userIsLogger: boolean = false;
 
   constructor(
-    private route : ActivatedRoute ,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {}
@@ -39,5 +39,11 @@ export class HeaderComponent implements OnInit {
 
     }
   };
+
+  navigateToAddPost(){
+    this.router.navigate(['/post/add']);
+    console.log('coco');
+    
+  }
 
 }

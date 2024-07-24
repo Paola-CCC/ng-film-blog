@@ -10,7 +10,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule.forChild(POSTS_ROUTES)
-
   ]
 })
 export class PostsModule { }

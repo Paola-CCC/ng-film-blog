@@ -13,13 +13,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 
 const APP_ROUTES: Routes = [
-  { 
-    path: '', 
-    redirectTo: 'home', 
-    pathMatch: 'full' 
-  },
   {
-    path: 'home',
+    path: '',
     loadChildren: () => import('./featured/public/public.module').then(m => m.PublicModule)
   },
   {
@@ -28,6 +23,10 @@ const APP_ROUTES: Routes = [
   },
   {
     path: 'post',
+    loadChildren: () => import('./featured/posts/posts.module').then(m => m.PostsModule)
+  },
+  {
+    path: 'add-post',
     loadChildren: () => import('./featured/posts/posts.module').then(m => m.PostsModule)
   },
   {
