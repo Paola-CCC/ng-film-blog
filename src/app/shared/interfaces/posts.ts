@@ -14,3 +14,4 @@ export interface IPosts {
   dislikes?: number;
   categories?: ICategories[];
 }
+

@@ -6,6 +6,16 @@
       </div>
       
       <ul class="navbar-nav desktop">
+        <li>
+          <div>
+            <input type="text">
+          </div>
+        </li>
+        <li>
+          <button (click)="navigateToAddPost()">
+           Ajouter un poste
+          </button>
+        </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" >Home</a>
         </li>
@@ -21,11 +31,7 @@
              <i class="fa-solid fa-arrow-right-from-bracket"></i> 
           </a>
         </li>
-        <li>
-          <button (click)="navigateToAddPost()">
-            Cliquer
-          </button>
-        </li>
+
       </ul>
 
       <div class="icon-menu-mobile">

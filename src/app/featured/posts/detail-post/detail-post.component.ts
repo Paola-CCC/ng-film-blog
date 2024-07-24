@@ -18,7 +18,7 @@ export class DetailPostComponent implements OnInit {
   /** message d'erreur */
   errorMessage : string = '';
   /** Posts */
-  post: IPosts;
+  post: IPosts | undefined;
   /** user */
   userId: number| null = null;
   /** commentaire de l'utlisateur */
