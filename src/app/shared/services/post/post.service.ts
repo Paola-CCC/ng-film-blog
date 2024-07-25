@@ -29,13 +29,15 @@ export class PostService {
   }
 
   //OK
-  addNewPost(title: string, content: string, userId: any): Observable<any> {
+  addNewPost( userId: number,title: any, content, thumbnail, categoryId): Observable<any> {
     return this.http.post(
       API + 'post-new',
       {
+        userId,
         title,
         content,
-        userId
+        thumbnail,
+        categoryId
       },
       httpOptions
     );

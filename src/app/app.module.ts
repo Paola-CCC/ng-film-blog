@@ -41,9 +41,8 @@ const APP_ROUTES: Routes = [
     HomeComponent,
     ProfilComponent,
     HeaderComponent,
-    DetailPostComponent,
-    PostsListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PostsListComponent
   ],
   imports: [
     BrowserModule,

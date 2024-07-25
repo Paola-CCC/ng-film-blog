@@ -1,3 +1,55 @@
-<p>
-  add-post works!
-</p>
+
+<section>
+
+
+  <form [formGroup]="insertPostForm" (ngSubmit)="onSubmit()">
+    <h1>Ajouter un film</h1>
+
+    <div>
+      <!-- <input
+        type="text"
+        formControlName="categoryId"
+        placeholder="categoryId"
+        name="categoryId"
+      /> -->
+      <button >
+        Sélectionner une catégorie
+      </button>
+    </div>
+    <div>
+      <label style="display: block">Lien de l'image:</label>
+      <input
+        type="text"
+        formControlName="thumbnail"
+        placeholder="Lien de l'image"
+        name="thumbnail"
+      />
+    </div>
+    <div>
+      <label style="display: block">Titre:</label>
+      <input
+        formControlName="title"
+        type="text"
+        placeholder="Titre"
+        name="title"
+      />
+    </div>
+    <div>
+      <label style="display: block">Contenu:</label>
+      <textarea name="content" id=""></textarea>
+    </div>
+  
+    <button type="submit" style="padding: 20px;">
+      Ajouter
+    </button>
+  </form>
+  
+  <ng-template [ngIf]="submitted && !creationPostIsSuccessfull && errorMessage" >
+    <div class="messages-failed">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </ng-template>
+  
+  
+</section>
+

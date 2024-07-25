@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
   contents : any ;
   /** Message d'erreur */
   errorMessage : string = '';
-  console = console
 
   constructor() {}
 
