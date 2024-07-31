@@ -6,8 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './featured/public/home/home.component';
 import { ProfilComponent } from './featured/user/pages/profil/profil.component';
 import { HeaderComponent } from './components/header/header.component';
-import { DetailPostComponent } from './featured/posts/detail-post/detail-post.component';
-import { PostsListComponent } from './featured/posts/posts-list/posts-list.component';
+import { PostsListComponent } from './shared/components/posts-list/posts-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -23,10 +22,6 @@ const APP_ROUTES: Routes = [
   },
   {
     path: 'post',
-    loadChildren: () => import('./featured/posts/posts.module').then(m => m.PostsModule)
-  },
-  {
-    path: 'add-post',
     loadChildren: () => import('./featured/posts/posts.module').then(m => m.PostsModule)
   },
   {

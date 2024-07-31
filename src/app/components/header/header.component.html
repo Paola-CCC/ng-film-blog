@@ -6,12 +6,7 @@
       </div>
       
       <ul class="navbar-nav desktop">
-        <li>
-          <div>
-            <input type="text">
-          </div>
-        </li>
-        <li>
+        <li *ngIf="userIsLogger">
           <button (click)="navigateToAddPost()">
            Ajouter un poste
           </button>

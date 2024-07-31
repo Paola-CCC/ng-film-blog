@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PostService } from '@shared/services';
+import { AuthService, PostService } from '@shared/services';
 
 @Component({
   selector: 'app-add-post',
@@ -23,7 +23,13 @@ export class AddPostComponent implements OnInit {
 
   creationPostIsSuccessfull: boolean | null = null;
 
-  constructor( private fb: FormBuilder , private PostService: PostService) { }
+  userId: number | null = null;
+
+  constructor( 
+    private fb: FormBuilder, 
+    private PostService: PostService,
+    private authService: AuthService
+  ) { }
 
 
   get title(): any {
@@ -47,11 +53,13 @@ export class AddPostComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userId = this.authService.userDatasStored.id;
+
   }
 
   public onSubmit(){
      
-    this.PostService.addNewPost( 2 ,this.controlAddPost.title.value ,this.controlAddPost.content.value, this.controlAddPost.thumbnail.value , this.controlAddPost.categoryId.value ).subscribe({
+    this.PostService.addNewPost( this.userId ,this.controlAddPost.title.value ,this.controlAddPost.content.value, this.controlAddPost.thumbnail.value , this.controlAddPost.categoryId.value ).subscribe({
       next: data => {
         if(data) {
           this.creationPostIsSuccessfull = true;

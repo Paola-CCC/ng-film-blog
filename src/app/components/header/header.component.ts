@@ -27,6 +27,9 @@ export class HeaderComponent implements OnInit {
 
   logOutNow(){
     this.auth.logOut();
+    this.router.navigate(['/']);
+    window.location.reload();
+
   }
 
   openMobileNavbar() {
@@ -41,9 +44,7 @@ export class HeaderComponent implements OnInit {
   };
 
   navigateToAddPost(){
-    this.router.navigate(['/post/add']);
-    console.log('coco');
-    
+    this.router.navigate(['/post/add']);    
   }
 
 }
