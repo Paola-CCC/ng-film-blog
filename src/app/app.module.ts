@@ -3,12 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './featured/public/home/home.component';
 import { ProfilComponent } from './featured/user/pages/profil/profil.component';
 import { HeaderComponent } from './components/header/header.component';
-import { PostsListComponent } from './shared/components/posts-list/posts-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 const APP_ROUTES: Routes = [
@@ -33,18 +32,17 @@ const APP_ROUTES: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     ProfilComponent,
     HeaderComponent,
     PageNotFoundComponent,
-    PostsListComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(APP_ROUTES, { useHash: true }),
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

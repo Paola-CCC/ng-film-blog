@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { USER_ROUTES } from './user.routes';
 import { LoginComponent, RegisterComponent } from './pages';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '@shared/modules/shared.module';
+import { SharedModule } from '@shared/shared.module';
 
 
 
@@ -15,9 +15,9 @@ import { SharedModule } from '@shared/modules/shared.module';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(USER_ROUTES),
-    SharedModule
-
+    
   ]
 })
 export class UserModule { }

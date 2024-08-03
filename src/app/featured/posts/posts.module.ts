@@ -4,7 +4,8 @@ import { POSTS_ROUTES } from './posts.routes';
 import { RouterModule } from '@angular/router';
 import { AddPostComponent } from './add-post/add-post.component';
 import { DetailPostComponent } from './detail-post/detail-post.component';
-
+import { SharedModule } from '@shared/shared.module';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -12,6 +13,8 @@ import { DetailPostComponent } from './detail-post/detail-post.component';
   exports: [AddPostComponent,DetailPostComponent],
   imports: [
     CommonModule,
+    SharedModule,
+    MatRadioModule,
     RouterModule.forChild(POSTS_ROUTES)
   ]
 })

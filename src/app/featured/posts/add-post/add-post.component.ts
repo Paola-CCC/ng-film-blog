@@ -16,14 +16,18 @@ export class AddPostComponent implements OnInit {
     categoryId: ['', Validators.required],
     thumbnail: ['', Validators.required]
   })
-
+  /** Message erreur */
   errorMessage: string = '' ;
-
+  /** indique si formulaire est envoyé */
   submitted: boolean = false;
-
+  /** indique si la création est réussie */
   creationPostIsSuccessfull: boolean | null = null;
-
+  /** Stock Id utilisateur */
   userId: number | null = null;
+  /** indique si on affiche ou non liste des inputs */
+  canShowInputsCategories: boolean = false;
+
+  categoryPostList: any ;
 
   constructor( 
     private fb: FormBuilder, 
@@ -74,6 +78,10 @@ export class AddPostComponent implements OnInit {
       }
     });
 
+  }
+
+  public handleShowListInput(){
+    this.canShowInputsCategories = !this.canShowInputsCategories;
   }
 }
 

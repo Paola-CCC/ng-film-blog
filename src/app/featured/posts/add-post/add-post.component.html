@@ -5,19 +5,30 @@
   <form [formGroup]="insertPostForm" (ngSubmit)="onSubmit()">
     <h1>Ajouter un film</h1>
 
-    <div>
-      <!-- <input
-        type="text"
-        formControlName="categoryId"
-        placeholder="categoryId"
-        name="categoryId"
-      /> -->
-      <button >
-        Sélectionner une catégorie
+    <div class="zone-list-input">
+
+      <button class="btn add-category" (click)="handleShowListInput()">
+        Ajouter la catégorie
       </button>
+
+      <div class="show-list-input" [ngStyle]="{display: canShowInputsCategories ? 'block' : 'block'}">
+
+      <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group"
+      formControlName="categoryId">
+      <ng-container  *ngFor="let categoryPost of [{ label: 'Tomate' , value:'1'}]"   
+      >        <mat-radio-button class="example-radio-button" [value]="categoryPost.value">{{categoryPost.label}}</mat-radio-button>
+    </ng-container>
+
+    </mat-radio-group>
+        
+
+
+      </div>
     </div>
     <div>
-      <label style="display: block">Lien de l'image:</label>
+      <label style="display: block">Lien de l'image:</label>   
       <input
         type="text"
         formControlName="thumbnail"
@@ -39,7 +50,7 @@
       <textarea name="content" id=""></textarea>
     </div>
   
-    <button type="submit" style="padding: 20px;">
+    <button type="submit" class="btn add-post">
       Ajouter
     </button>
   </form>
@@ -53,3 +64,4 @@
   
 </section>
 
+{{ insertPostForm.value | json}}
