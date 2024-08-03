@@ -5,26 +5,23 @@
   <form [formGroup]="insertPostForm" (ngSubmit)="onSubmit()">
     <h1>Ajouter un film</h1>
 
-    <div class="zone-list-input">
+    <div class="zone-list-input" >
 
-      <button class="btn add-category" (click)="handleShowListInput()">
-        Ajouter la catégorie
+      <button class="btn add-category" (click)="handleShowListInput()"   >
+        
+        {{ categoryId !== '' ?  getLabelInputSelected() : 'Ajouter la catégorie'  }}
       </button>
 
-      <div class="show-list-input" [ngStyle]="{display: canShowInputsCategories ? 'block' : 'block'}">
+      <div class="show-list-input" [ngStyle]="{display: canShowInputsCategories ? 'block' : 'none'}">
+        <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        formControlName="categoryId">
+        <ng-container  *ngFor="let categoryPost of categoryPostList"   
+        >        <mat-radio-button class="example-radio-button" [value]="categoryPost.value">{{categoryPost.label}}</mat-radio-button>
+      </ng-container>
 
-      <mat-radio-group
-      aria-labelledby="example-radio-group-label"
-      class="example-radio-group"
-      formControlName="categoryId">
-      <ng-container  *ngFor="let categoryPost of [{ label: 'Tomate' , value:'1'}]"   
-      >        <mat-radio-button class="example-radio-button" [value]="categoryPost.value">{{categoryPost.label}}</mat-radio-button>
-    </ng-container>
-
-    </mat-radio-group>
-        
-
-
+        </mat-radio-group>
       </div>
     </div>
     <div>
@@ -63,5 +60,3 @@
   
   
 </section>
-
-{{ insertPostForm.value | json}}

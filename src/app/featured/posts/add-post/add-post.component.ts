@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ICategoriesForm } from '@shared/interfaces';
 import { AuthService, PostService } from '@shared/services';
 
 @Component({
@@ -26,8 +27,8 @@ export class AddPostComponent implements OnInit {
   userId: number | null = null;
   /** indique si on affiche ou non liste des inputs */
   canShowInputsCategories: boolean = false;
-
-  categoryPostList: any ;
+  /** liste des labels pour la catégories */
+  categoryPostList: ICategoriesForm[] = [];
 
   constructor( 
     private fb: FormBuilder, 
@@ -45,7 +46,7 @@ export class AddPostComponent implements OnInit {
   }
 
   get categoryId(): any {
-    return this.insertPostForm.get('categoryId');
+    return this.insertPostForm.get('categoryId').value;
   }
 
   get thumbnail(): any {
@@ -59,6 +60,17 @@ export class AddPostComponent implements OnInit {
   ngOnInit() {
     this.userId = this.authService.userDatasStored.id;
 
+    this.PostService.getAllCategories().subscribe({
+      next: data => {
+        if(data) {
+          this.categoryPostList = [...data];
+        } 
+      },
+      error: err => {
+        console.log(err);
+        this.errorMessage = err.error.message;
+      }
+    });
   }
 
   public onSubmit(){
@@ -82,6 +94,15 @@ export class AddPostComponent implements OnInit {
 
   public handleShowListInput(){
     this.canShowInputsCategories = !this.canShowInputsCategories;
+  }
+
+  public getLabelInputSelected(){    
+    let data = this.categoryPostList.find(e => e.value === this.categoryId);
+    return data.label ; 
+  }
+
+  public closeLabelGroup(){    
+    return this.canShowInputsCategories = false;
   }
 }
 

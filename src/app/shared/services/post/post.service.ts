@@ -19,6 +19,12 @@ export class PostService {
   getAll(): Observable<any> {
     return this.http.get(API + 'posts-all', httpOptions);
   }
+
+  //OK
+  getAllCategories(): Observable<any> {
+    return this.http.get(API + 'categories-all', httpOptions);
+  }
+  
   //OK
   getOnePost(id: any): Observable<any> {
     return this.http.get(API + `post-show/${id}`, httpOptions);
