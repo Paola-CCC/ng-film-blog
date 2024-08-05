@@ -32,12 +32,6 @@ export class AuthService {
     }, httpOptions);
   }
 
-  logOut(){
-    if(localStorage.getItem('user')){
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('user');
-    }
-  }
 
   get userDatasStored() {
     const authToken = localStorage.getItem('user');

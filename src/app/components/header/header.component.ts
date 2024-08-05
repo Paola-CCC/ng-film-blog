@@ -26,8 +26,12 @@ export class HeaderComponent implements OnInit {
   }
 
   logOutNow(){
-    this.auth.logOut();
-    this.router.navigate(['/']);
+    if(localStorage.getItem('user')){
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('user');
+    }
+    
+    this.router.navigate(['']);
     window.location.reload();
 
   }
@@ -43,8 +47,6 @@ export class HeaderComponent implements OnInit {
     }
   };
 
-  navigateToAddPost(){
-    this.router.navigate(['/post/add']);    
-  }
+
 
 }

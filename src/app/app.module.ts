@@ -8,20 +8,22 @@ import { HeaderComponent } from './components/header/header.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from '@shared/guard/auth.guard';
 
 
 const APP_ROUTES: Routes = [
   {
     path: '',
-    loadChildren: () => import('./featured/public/public.module').then(m => m.PublicModule)
+    loadChildren: () => import('./featured/public/public.module').then(m => m.PublicModule),
   },
   {
     path: 'user',
-    loadChildren: () => import('./featured/user/user.module').then(m => m.UserModule)
+    loadChildren: () => import('./featured/user/user.module').then(m => m.UserModule),
   },
   {
     path: 'post',
-    loadChildren: () => import('./featured/posts/posts.module').then(m => m.PostsModule)
+    loadChildren: () => import('./featured/posts/posts.module').then(m => m.PostsModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

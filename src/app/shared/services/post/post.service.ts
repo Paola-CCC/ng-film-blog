@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { ICategories, ICategoriesForm, IPosts } from '@shared/interfaces';
 
 
 const API: string = environment.apiURL;
@@ -17,12 +18,12 @@ export class PostService {
   constructor(private http: HttpClient) {}
   //OK
   getAll(): Observable<any> {
-    return this.http.get(API + 'posts-all', httpOptions);
+    return this.http.get<IPosts[]>(API + 'posts-all', httpOptions);
   }
 
   //OK
-  getAllCategories(): Observable<any> {
-    return this.http.get(API + 'categories-all', httpOptions);
+  getAllCategories(): Observable<ICategoriesForm[]> {
+    return this.http.get<ICategoriesForm[]>(API + 'categories-all', httpOptions);
   }
   
   //OK
