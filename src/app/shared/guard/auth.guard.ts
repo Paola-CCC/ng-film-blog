@@ -4,7 +4,7 @@ import { TokenStorageService } from '@shared/services';
 import { Observable } from 'rxjs';
 
 
-export const authGuard: CanActivateFn = (
+export const AuthGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ):
@@ -15,6 +15,6 @@ export const authGuard: CanActivateFn = (
 
   return inject(TokenStorageService).isLoggedIn
     ? true
-    : inject(Router).createUrlTree(['register']);
+    : inject(Router).createUrlTree(['/user/register']);
 
 };

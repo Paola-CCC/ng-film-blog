@@ -9,7 +9,9 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" >Home</a>
         </li>
-
+        <li *ngIf="userIsLogger">
+          <a class="nav-link" [routerLink]="['/post/add']" routerLinkActive="active" >Créer un poste</a>
+        </li>
         <li class="nav-item">
           <a *ngIf="userIsLogger"   class="nav-link"[routerLink]="['/user/profil']" routerLinkActive="active" >Espace personnel</a>
           <a *ngIf="!userIsLogger"   class="nav-link" [routerLink]="['/user/login']" routerLinkActive="active" >Connexion</a>
@@ -21,6 +23,7 @@
              <i class="fa-solid fa-arrow-right-from-bracket"></i> 
           </a>
         </li>
+
       </ul>
 
       <div class="icon-menu-mobile">
@@ -36,7 +39,9 @@
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" >Home</a>
             </li>
-    
+            <li *ngIf="userIsLogger">
+              <a class="nav-link" [routerLink]="['/post/add']" routerLinkActive="active" >Créer un poste</a>
+            </li>
             <li class="nav-item">
               <a *ngIf="userIsLogger"   class="nav-link"[routerLink]="['/user/profil']" routerLinkActive="active" >Espace personnel</a>
               <a *ngIf="!userIsLogger"   class="nav-link" [routerLink]="['/user/login']" routerLinkActive="active" >Connexion</a>

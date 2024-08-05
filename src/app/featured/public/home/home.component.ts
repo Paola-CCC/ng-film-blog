@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { PostService, UserService } from '@shared/services';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +10,6 @@ export class HomeComponent implements OnInit {
   contents : any ;
   /** Message d'erreur */
   errorMessage : string = '';
-  console = console
 
   constructor() {}
 

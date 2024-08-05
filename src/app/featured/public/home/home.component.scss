@@ -12,16 +12,22 @@
     position: absolute;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
-
     bottom: 25px;
     left: 25px;
 
     div.description-text {
       h2 {
         font-weight: 600;
-        font-size: 24px;
+        font-size: 1.25rem; 
         padding: 0;
         margin: 0 0 10px 0;
+      }
+    
+  
+      @media (max-width: 600px) {
+        h2 {
+          font-size: 1rem; 
+        }
       }
     }
 
@@ -239,4 +245,20 @@ section.home-new-post {
       }
     }
   }
+}
+
+
+
+@media (max-width: 600px) {
+
+  .hero-image .hero-text {
+
+    left: 10px;
+    width: fit-content;
+    padding: 0;
+    h2 {
+      font-size: 0; 
+    }
+  }
+
 }

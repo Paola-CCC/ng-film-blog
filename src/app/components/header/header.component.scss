@@ -76,7 +76,7 @@ header {
     }
 
     .cache-header-mobile {
-      background-color: blue;
+      display: none;
     }
   }
 }
@@ -87,7 +87,6 @@ header {
     position: relative;
     background-color: rgb(255, 255, 255);
     box-shadow: none;
-
     ul.navbar-nav.desktop {
       display: none;
     }
@@ -100,7 +99,7 @@ header {
     div.mobile-navbar {
       position: absolute;
       background-color: rgb(255, 255, 255);
-      top: 50px;
+      top: 49px;
       width: 100%;
       right: 0cm;
       left: 0px;
@@ -124,8 +123,9 @@ header {
     .cache-header-mobile {
       background-color: rgba(28, 28, 28, 0.867);
       backdrop-filter: blur(5px);
+      display: block;
       position: absolute;
-      top: 50px;
+      top: 49px;
       width: 100%;
       height: 100vh;
       right: 0cm;

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent, ProfilComponent, RegisterComponent } from './pages';
-import { authGuard } from '@shared/guard/auth.guard';
+import { AuthGuard } from '@shared/guard/auth.guard';
 
 export const USER_ROUTES: Routes = [
     {
@@ -18,7 +18,7 @@ export const USER_ROUTES: Routes = [
     {
         path: 'profil',
         component: ProfilComponent,
-        canActivate: [authGuard],
+        canActivate: [AuthGuard],
     },
 
 ]

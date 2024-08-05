@@ -1,0 +1,63 @@
+
+<section>
+
+
+  <form [formGroup]="insertPostForm" (ngSubmit)="onSubmit()">
+    <h1>Ajouter un film</h1>
+
+    <div class="zone-list-input" >
+      <label style="display: block">Catégorie:</label>   
+
+      <button class="btn add-category" (click)="handleShowListInput()"   >
+        
+        {{ categoryId !== '' ?  getLabelInputSelected() : 'Ajouter la catégorie'  }}
+      </button>
+
+      <div class="show-list-input" [ngStyle]="{display: canShowInputsCategories ? 'block' : 'none'}">
+        <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        formControlName="categoryId">
+        <ng-container  *ngFor="let categoryPost of categoryPostList"   
+        >        <mat-radio-button class="example-radio-button" [value]="categoryPost.value">{{categoryPost.label}}</mat-radio-button>
+      </ng-container>
+
+        </mat-radio-group>
+      </div>
+    </div>
+    <div>
+      <label style="display: block">Lien de l'image:</label>   
+      <input
+        type="text"
+        formControlName="thumbnail"
+        placeholder="Lien de l'image"
+        name="thumbnail"
+      />
+    </div>
+    <div>
+      <label style="display: block">Titre:</label>
+      <input
+        formControlName="title"
+        type="text"
+        placeholder="Titre"
+        name="title"
+      />
+    </div>
+    <div>
+      <label style="display: block">Contenu:</label>
+      <textarea name="content" id=""></textarea>
+    </div>
+  
+    <button type="submit" class="btn add-post">
+      Ajouter
+    </button>
+  </form>
+  
+  <ng-template [ngIf]="submitted && !creationPostIsSuccessfull && errorMessage" >
+    <div class="messages-failed">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </ng-template>
+  
+  
+</section>

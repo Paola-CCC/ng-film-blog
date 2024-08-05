@@ -3,3 +3,8 @@ export interface ICategories {
   name: string;
   slug: string;
 }
+
+export interface ICategoriesForm {
+  value: number;
+  label: string;
+}

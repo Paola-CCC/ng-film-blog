@@ -3,32 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './featured/public/home/home.component';
 import { ProfilComponent } from './featured/user/pages/profil/profil.component';
 import { HeaderComponent } from './components/header/header.component';
-import { DetailPostComponent } from './featured/posts/detail-post/detail-post.component';
-import { PostsListComponent } from './featured/posts/posts-list/posts-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from '@shared/guard/auth.guard';
 
 
 const APP_ROUTES: Routes = [
-  { 
-    path: '', 
-    redirectTo: 'home', 
-    pathMatch: 'full' 
-  },
   {
-    path: 'home',
-    loadChildren: () => import('./featured/public/public.module').then(m => m.PublicModule)
+    path: '',
+    loadChildren: () => import('./featured/public/public.module').then(m => m.PublicModule),
   },
   {
     path: 'user',
-    loadChildren: () => import('./featured/user/user.module').then(m => m.UserModule)
+    loadChildren: () => import('./featured/user/user.module').then(m => m.UserModule),
   },
   {
     path: 'post',
-    loadChildren: () => import('./featured/posts/posts.module').then(m => m.PostsModule)
+    loadChildren: () => import('./featured/posts/posts.module').then(m => m.PostsModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
@@ -39,19 +34,17 @@ const APP_ROUTES: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     ProfilComponent,
     HeaderComponent,
-    DetailPostComponent,
-    PostsListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(APP_ROUTES, { useHash: true }),
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
