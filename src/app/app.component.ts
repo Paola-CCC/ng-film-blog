@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from '../environments/environment';
+import * as posts from './data.json';
+import { IPosts } from '@shared/interfaces';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,7 @@ import { environment } from '../environments/environment';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  baseUrl: string = 'http://localhost:8000';
+  
+  postToSend: IPosts = (posts as IPosts);
+
 }

@@ -24,7 +24,6 @@ const APP_ROUTES: Routes = [
   {
     path: 'post',
     loadChildren: () => import('./featured/posts/posts.module').then(m => m.PostsModule),
-    canActivate: [AuthGuard]
   },
   {
     path: '**',

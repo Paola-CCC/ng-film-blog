@@ -29,10 +29,4 @@ export class PostsListComponent implements OnInit {
         }
     });
   }
-
-
-  navigateToElement(id : number | undefined): void {
-    this.router.navigate(['/post' , id]);
-  }
-
 }
