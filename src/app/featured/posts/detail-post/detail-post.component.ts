@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IComments, IPosts } from '@shared/interfaces';
-import { AuthService, CommentsService, PostService } from '@shared/services';
+import { AuthService, CommentsService, HelperService, PostService } from '@shared/services';
 import { LikesPostsService } from '@shared/services/likes-posts/likes-posts.service';
 
 
@@ -35,7 +35,8 @@ export class DetailPostComponent implements OnInit {
     private authService: AuthService,  
     private postService: PostService, 
     private commentsService: CommentsService,
-    private likesPostsService: LikesPostsService
+    private likesPostsService: LikesPostsService,
+    private helperService: HelperService
   ) {}
 
 
@@ -97,11 +98,9 @@ export class DetailPostComponent implements OnInit {
   deleteComment(commentId: number){
     this.commentsService.deleteOneComment(commentId).subscribe({
       next: data => {
-        this.getPost();
-
-        // if( data ) {
-        //   this.getPost();
-        // } 
+        if( data ) {
+          this.getPost();
+        } 
       },
       error: err => {
         this.console.log(err);
@@ -196,5 +195,9 @@ export class DetailPostComponent implements OnInit {
         this.errorMessage = err;
       } 
     })
+  }
+
+  convertDate(dateStr: string): string  {
+    return this.helperService.converterToFrenchDate(dateStr);
   }
 }
