@@ -1,0 +1,24 @@
+
+button {
+    background-color: rgb(86, 78, 232);
+    padding: 10px 30px;
+    color: white;
+    cursor: pointer;
+    border-radius: 50px;
+
+    &.loading {
+        color: rgb(255, 255, 255);
+        width: max-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+       
+        .text {
+            padding: 0 10px ;
+            color: rgb(255, 255, 255);
+            vertical-align:bottom;
+
+        }
+    }
+}

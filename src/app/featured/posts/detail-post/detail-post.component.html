@@ -8,14 +8,14 @@
                         {{category.name}}
                     </span>    
                 </ng-container>
-                <span class="date"> Le {{post.createdAt}}  </span>
+                <span class="date"> Le {{ convertDate(post.createdAt) }}   </span>
             </div>
             <h1>{{post.title}} </h1>
             <div class="container-thumbnail">
                 <img [src]="post.thumbnail" />
             </div>
             <div class="post-text">
-                <p>{{post.content}}  </p>
+                <p [innerHTML]="post.content"> </p>
             </div>
         </div>
 
@@ -61,7 +61,7 @@
                         <span> De {{comment?.comment_author}}</span>
                     </div>
                     <div class="comment-date">
-                        <span> <small>  le {{comment.createdAt}} </small> </span>
+                        <span> <small>  le {{ convertDate(comment.createdAt)}} </small> </span>
                     </div>
                 </div>
                 <p>{{comment?.content}}</p>

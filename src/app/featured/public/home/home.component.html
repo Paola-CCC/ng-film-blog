@@ -1,25 +1,25 @@
-
-
-<div class="hero-image">
-
-    <div class="hero-text">
-        <span class="cat"> Drame</span>
-
+<div class="hero-image" *ngIf="checkObjectIsEmpty(postNewestAsHero) === false" [ngStyle]="
+{'background':'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + postNewestAsHero.thumbnail + ') center/cover no-repeat'}"
+>
+    <div class="hero-text"  >
+        <ng-container *ngFor="let category of postNewestAsHero.categories" >
+            <span class="cat"> {{category.name}}</span>
+        </ng-container>
         <div class="description-text">
             <h2>
-                Parasite: Le film inconcournable Sud Coréen
+                {{postNewestAsHero.title}}
             </h2>
-            
         </div>
-
         <div>
-            <small> Louise Chanie </small>
+            <small>{{postNewestAsHero.author}}
+            </small>
             <i class="fa-solid fa-circle fa-2xs"></i>  
-            <small> 18 Juin 2024 </small>
+            <small> {{convertDate(postNewestAsHero.createdAt)}} </small>
         </div>
-
     </div>
 </div>
+
+
 
 <section class="home-new-post">
 
@@ -28,64 +28,33 @@
     </div>
     <div class="new-post-container">
     
-        <div class="post-one">
-            <div class="card-post-body"   >
-    
+        <div class="post-area" *ngFor="let latestPost of postLastestList"  >
+            <a class="card-post-body" [routerLink]="['/post',latestPost.id ]" routerLinkActive="router-link-active"  >
                 <div class="card-img-container">
-                    <img class="img-card" [src]="'https://medias.boutique.lab.arte.tv/prod/69959_vod_thumb_318792.JPEG'" />
+                    <img class="img-card" [src]="latestPost.thumbnail" />
                 </div>
-    
                 <div class="card-body">
                     <div class="date">
-                        <small> Jean Reyno <i class="fa-solid fa-circle fa-2xs"></i> 18/06/1995  </small>
+                        <small> {{latestPost.author}} <i class="fa-solid fa-circle fa-2xs"></i> {{convertDate(latestPost.createdAt)}} </small>
                     </div>
                     <div  class="main-content">
-                        <h4>Un long dimanche de Fiancaille </h4>
-                        <p>En 1919, Mathilde a 19 ans. Deux ans plus tôt, son fiancé Manech est parti sur le front de la somme. Comme des millions d'autres, il est mort au champ d'honneur. C'est écrit noir sur blanc sur l'avis officiel. Pourtant, Mathilde refuse d'admettre cette évidence. Si Manech était mort, elle le saurait. Elle se raccroche à son intuition comme au dernier fil ténu qui la relierait encore à son amant. Mathilde refuse de lâcher et se lance dans une véritable contre-enquête.</p>
+                        <h4>{{latestPost.title}} </h4>
+                        <p [innerHtml]="latestPost.content"> </p>
                     </div>
                 </div>
-            </div>
-        </div>
-    
-        <div class="post-two">
-            <div class="card-post-body"   >
-    
-                <div class="card-img-container">
-                    <img class="img-card" [src]="'https://www.kanpai.fr/sites/default/files/styles/og/public/uploads/2006/02/memoires-geisha-5.jpg'" />
-                </div>
-    
-                <div class="card-body">
-                    <div class="date">
-                        <small> Jean Reyno <i class="fa-solid fa-circle fa-2xs"></i> 18/06/1995  </small>
-                    </div>
-                    <div  class="main-content">
-                        <h4>Memoire d'une Geisha </h4>
-                        <p>Née en 1892, vendue à l’âge de huit ans, Kinu Yamaguchi fera l’apprentissage du dur métier de geisha. C’est l’envers du décor qu’elle raconte: avant de porter le kimono de soie, il lui faudra étudier tous les arts de divertissement</p>
-                    </div>
-                </div>
-            </div>
-    
-        </div>
-    
-        <div class="post-three">
-      
-            <div class="card-post-body"   >
-    
-                <div class="card-img-container">
-                    <img class="img-card" [src]="'https://1.vikiplatform.com/c/36348c/e191eddd3b.jpg?x=b&a=0x0'" />
-                </div>
-    
-                <div class="card-body">
-                    <div class="date">
-                        <small> Jean Reyno <i class="fa-solid fa-circle fa-2xs"></i> 18/06/1995  </small>
-                    </div>
-                    <div  class="main-content">
-                        <h4>Sky castle </h4>
-                        <p>SKY Castle suit la vie de quatre femmes d’âge mûr vivant dans le quartier résidentiel « SKY Castle » regroupant l’élite de la Corée.  </p>
-                    </div>
-                </div>
-            </div>
+            </a>
         </div>
     </div>
 </section>
-<app-posts-list> </app-posts-list>
+
+
+<section class="container-home">
+    <div class="title">
+        <h3> Tous les posts</h3>
+    </div>
+    <app-posts-list> </app-posts-list>
+</section>
+
+
+
+

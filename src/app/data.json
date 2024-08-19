@@ -1,0 +1,21 @@
+{
+    "id": 1,
+    "title": "Premier post",
+    "content": "Ceci est le premier post sur ce site.",
+    "createdAt": "31/12/2022",
+    "author": "Catherine Dupont",
+    "thumbnail": "https://media.senscritique.com/media/000004710747/0/inception.jpg",
+    "picture_author_post": "https://www.parismatch.com/lmnr/var/pm/public/media/image/2022/03/16/22/Catherine-Deneuve-en-50-photos-d-exception.jpg?VersionId=NnjgphHsAmHkRdqtFta3F.ePhMp7B8vv",
+    "comments": [],
+    "likes": 0,
+    "dislikes": 1,
+    "categories": [],
+    "likesGroup": [],
+    "dislikesGroup": [
+        {
+            "id": 1,
+            "postId": 1,
+            "userId": 2
+        }
+    ]
+}

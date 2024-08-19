@@ -45,7 +45,7 @@ export class AddPostComponent implements OnInit {
     return this.insertPostForm.get('content');
   }
 
-  get categoryId(): any {
+  get categoryID(): any {
     return this.insertPostForm.get('categoryId').value;
   }
 
@@ -75,7 +75,7 @@ export class AddPostComponent implements OnInit {
 
   public onSubmit(){
      
-    this.PostService.addNewPost( this.userId ,this.controlAddPost.title.value ,this.controlAddPost.content.value, this.controlAddPost.thumbnail.value , this.controlAddPost.categoryId.value ).subscribe({
+    this.PostService.addNewPost( this.userId ,this.controlAddPost.title.value ,this.controlAddPost.content.value, this.controlAddPost.thumbnail.value , Number(this.categoryID) ).subscribe({
       next: data => {
         if(data) {
           this.creationPostIsSuccessfull = true;
@@ -97,7 +97,7 @@ export class AddPostComponent implements OnInit {
   }
 
   public getLabelInputSelected(){    
-    let data = this.categoryPostList.find(e => e.value === this.categoryId);
+    let data = this.categoryPostList.find(e => e.value === this.categoryID);
     return data.label ; 
   }
 

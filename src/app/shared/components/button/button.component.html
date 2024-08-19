@@ -1,0 +1,12 @@
+
+<ng-template [ngIf]="isLoading === false" [ngIfElse]="isLoadingBtn">
+  <button *ngIf="isDisabled"   mat-flat-button  color="primary" [disabled]="true"  >{{ text }}</button>
+  <button *ngIf="isDisabled === false" mat-flat-button  color="primary" [disabled]="false" >{{ text }}</button>
+</ng-template>
+
+<ng-template #isLoadingBtn>
+  <button mat-flat-button  color="primary" [ngClass]="{loading: isLoading}" [disabled]="isDisabled"  >
+    <app-loader></app-loader>
+    <span class="text">{{ text }}</span>
+  </button>
+</ng-template>

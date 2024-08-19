@@ -1,36 +1,5 @@
-
-<section class="container-home">
-    <div class="title">
-        <h3> Tous les posts</h3>
-    </div>
-    <ul class="grid-posts">
-        <ng-container *ngFor="let post of postsList">
-                <li class="card-post-body" (click)="navigateToElement(post.id)"   >
-
-                    <div class="card-img-container">
-                        <img class="img-card" [src]="post.thumbnail" />
-                    </div>
-
-                    <div class="card-body">
-                        <div class="date">
-                            <small>{{post.author}}  </small>
-                                 <i class="fa-solid fa-circle fa-2xs"></i>  
-                            <small> {{post.createdAt}} </small>
-                        </div>
-                        <div  class="main-content">
-                            <h4>{{post.title}}</h4>
-                            <p>{{post.content}}</p>
-                        </div>
-                    </div>
-
-                    <div class="card-footer">
-                        <ng-container *ngFor="let category of post.categories">
-                            <span>
-                                {{ category.name}}
-                            </span>
-                        </ng-container> 
-                    </div>
-                </li>
-        </ng-container>
-    </ul>
-</section>
+<ul class="grid-posts"  >
+    <li *ngFor="let postItem of postsList"> 
+        <app-card [post]="postItem"> </app-card>                
+    </li>
+</ul>

@@ -1,6 +1,20 @@
 <div class="register-container">
   <h3> Inscription </h3>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="profilePicture">Avatar ou photo de profil</label>
+      <input 
+        type="profilePicture" 
+        formControlName="profilePicture" 
+        class="form-control" 
+        id="profilePicture" 
+        name="profilePicture"
+        placeholder="Photo de profile"
+        [ngClass]="{ 'is-invalid': submitted && controlRegister['profilePicture'].errors || controlRegister['profilePicture'].touched && controlRegister['profilePicture'].invalid }"
+      >
+    </div>
+    
     <div class="form-group">
       <label for="username">Nom d'utilisateur</label>
       <input type="text" 
@@ -50,6 +64,7 @@
           <div *ngIf="controlRegister['password'].errors && controlRegister['password'].errors['password']" [ngClass]= "'error'">Le mot de passe n'est pas valide</div>
       </ng-template>
     </div>
+
     <div>
       <p>Vous avez déjà un compte ? 
         <a class="nav-link" [routerLink]="['/user/login']" routerLinkActive="active" > Se connecter</a>
