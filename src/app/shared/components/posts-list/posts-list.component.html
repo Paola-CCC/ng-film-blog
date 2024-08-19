@@ -1,5 +1,11 @@
-<ul class="grid-posts"  >
-    <li *ngFor="let postItem of postsList"> 
-        <app-card [post]="postItem"> </app-card>                
-    </li>
-</ul>
+<section class="container-home" [ngClass]="{'show-all': locationUrl === '/post/all'}" >
+    <div class="title">
+        <h3> {{ titleSection }}</h3>
+        <p *ngIf="locationUrl === '/post/all'"> Pour ceux qui aiment en savoir plus </p>
+    </div>
+    <ul class="grid-posts"  >
+        <li *ngFor="let postItem of postsList"> 
+            <app-card [post]="postItem"> </app-card>                
+        </li>
+    </ul>
+</section>

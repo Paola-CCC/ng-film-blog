@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPosts } from '@shared/interfaces';
 import { PostService } from '@shared/services';
@@ -13,20 +13,42 @@ export class PostsListComponent implements OnInit {
   postsList: IPosts[] = [];
   /** Message d'erreur */
   errorMessage : string = '';
-
   console = console
-
+  
+  @Input()
+  titleSection: string = '';
+  
   constructor(private PostService: PostService, private router: Router) { }
 
   ngOnInit(): void {
-    this.PostService.getFrontListPost().subscribe({
-        next: data => {
+
+    if(this.router.url === '/home' ){
+        this.PostService.getFrontListPost().subscribe({
+          next: (data: IPosts[]) => {
+            this.postsList = data;
+          },
+          error: err => {
+            this.console.log(err);
+            this.errorMessage = err.message;
+          }
+        });
+    }; 
+
+    if(this.router.url === '/post/all' ){
+      this.PostService.getAll().subscribe({
+        next: (data : IPosts[]) => {
           this.postsList = data;
         },
         error: err => {
           this.console.log(err);
           this.errorMessage = err.message;
         }
-    });
+      });
+  };
+
+  }
+
+  get locationUrl(){
+    return this.router.url ;
   }
 }
