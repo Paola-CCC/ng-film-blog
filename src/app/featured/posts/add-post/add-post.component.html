@@ -2,7 +2,7 @@
 <section>
 
 
-  <form [formGroup]="insertPostForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="insertPostForm" >
     <h1>Ajouter un film</h1>
 
     <div class="zone-list-input" >
@@ -10,7 +10,7 @@
 
       <button class="btn add-category" (click)="handleShowListInput()"   >
         
-        {{ categoryId !== '' ?  getLabelInputSelected() : 'Ajouter la catégorie'  }}
+        {{ categoryID !== '' ?  getLabelInputSelected() : 'Ajouter la catégorie'  }}
       </button>
 
       <div class="show-list-input" [ngStyle]="{display: canShowInputsCategories ? 'block' : 'none'}">
@@ -45,10 +45,11 @@
     </div>
     <div>
       <label style="display: block">Contenu:</label>
-      <textarea name="content" id=""></textarea>
+      <textarea name="content" id="" formControlName="content"
+      ></textarea>
     </div>
   
-    <button type="submit" class="btn add-post">
+    <button type="submit" class="btn add-post" (click)="onSubmit()">
       Ajouter
     </button>
   </form>

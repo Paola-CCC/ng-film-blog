@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { ICategories, ICategoriesForm, IPosts } from '@shared/interfaces';
+import { ICategoriesForm, IPosts } from '@shared/interfaces';
 
 
 const API: string = environment.apiURL;
@@ -25,18 +25,25 @@ export class PostService {
   getAllCategories(): Observable<ICategoriesForm[]> {
     return this.http.get<ICategoriesForm[]>(API + 'categories-all', httpOptions);
   }
-  
-  //OK
-  getOnePost(id: any): Observable<any> {
-    return this.http.get(API + `post-show/${id}`, httpOptions);
+
+  getOnePost(id: number): Observable<any> {
+    return this.http.get<IPosts>(API + `post-show/${id}`, httpOptions);
   }
-  //OK
-  deleteOnePost(id: any): Observable<any> {
-    return this.http.delete(API + `post-remove/${id}`, httpOptions);
+
+  getFrontPost(): Observable<any> {
+    return this.http.get<IPosts>(API + `post-front-hero`, httpOptions);
+  }
+
+  getFrontListPost(): Observable<any> {
+    return this.http.get<IPosts>(API + `posts-front-list`, httpOptions);
+  }
+
+  getFrontLatestPost(): Observable<any> {
+    return this.http.get<IPosts>(API + `posts-front-latest`, httpOptions);
   }
 
   //OK
-  addNewPost( userId: number,title: any, content, thumbnail, categoryId): Observable<any> {
+  addNewPost( userId: number, title: string, content :string, thumbnail:string, categoryId: number): Observable<any> {
     return this.http.post(
       API + 'post-new',
       {
@@ -54,8 +61,8 @@ export class PostService {
   updatePost(
     title: string,
     content: string,
-    userId: any,
-    postId: any
+    userId: number,
+    postId: number
   ): Observable<any> {
     return this.http.put(
       API + 'postUpdate',
@@ -67,5 +74,10 @@ export class PostService {
       },
       httpOptions
     );
+  }
+
+  //OK
+  deleteOnePost(id: number): Observable<any> {
+    return this.http.delete(API + `post-remove/${id}`, httpOptions);
   }
 }

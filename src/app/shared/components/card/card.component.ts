@@ -12,11 +12,11 @@ export class CardComponent implements OnInit {
    @Input()
    post: IPosts | undefined = {} as IPosts;
 
-  constructor( private Helper : HelperService) { }
+  constructor( private helperService : HelperService) { }
 
   ngOnInit() {}
 
   convertDate(dateStr: string): string {
-    return this.Helper.converterToFrenchDate(dateStr);
+    return this.helperService.converterToFrenchDate(dateStr);
   }
 }

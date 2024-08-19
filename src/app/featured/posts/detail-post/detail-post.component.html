@@ -15,7 +15,7 @@
                 <img [src]="post.thumbnail" />
             </div>
             <div class="post-text">
-                <p>{{post.content}}  </p>
+                <p [innerHTML]="post.content"> </p>
             </div>
         </div>
 

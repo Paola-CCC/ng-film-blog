@@ -19,7 +19,7 @@ export class PostsListComponent implements OnInit {
   constructor(private PostService: PostService, private router: Router) { }
 
   ngOnInit(): void {
-    this.PostService.getAll().subscribe({
+    this.PostService.getFrontListPost().subscribe({
         next: data => {
           this.postsList = data;
         },

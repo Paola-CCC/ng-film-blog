@@ -14,7 +14,9 @@ export class RegisterComponent implements OnInit {
   registerForm = this.fb.group({
     username: ['' , Validators.required],
     email: ['' , Validators.required],
-    password: ['' , Validators.required]
+    password: ['' , Validators.required],
+    profilePicture: ['' , Validators.required],
+
   })
   /** indique si le formulaire a été envoyé ou non  */
   submitted : boolean = false;
@@ -41,6 +43,10 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('password');
   }
 
+  get profilePicture (): any {
+    return this.registerForm.get('profilePicture');
+  }
+
   get controlRegister() : any {
     return this.registerForm.controls;
   }
@@ -54,7 +60,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.authService.register(this.username.value, this.email.value, this.password.value).subscribe({
+    this.authService.register(this.username.value, this.email.value, this.password.value, this.profilePicture).subscribe({
       next: data => {
         if(data.jwt && data.user) {
           this.storage.setToken(data.jwt);
