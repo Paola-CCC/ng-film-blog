@@ -6,11 +6,12 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { DetailPostComponent } from './detail-post/detail-post.component';
 import { SharedModule } from '@shared/shared.module';
 import {MatRadioModule} from '@angular/material/radio';
+import { AllPostComponent } from './all-post/all-post.component';
 
 
 @NgModule({
-  declarations: [AddPostComponent,DetailPostComponent],
-  exports: [AddPostComponent,DetailPostComponent],
+  declarations: [AddPostComponent,DetailPostComponent,AllPostComponent],
+  exports: [AddPostComponent,DetailPostComponent,AllPostComponent],
   imports: [
     CommonModule,
     SharedModule,
