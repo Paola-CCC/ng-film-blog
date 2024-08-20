@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from '../../../../shared/services/token/token-storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from '@shared/services';
@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('profilePicture');
   }
 
-  get controlRegister() : any {
+  get controlRegister() : { [key: string]: AbstractControl } {
     return this.registerForm.controls;
   }
 
@@ -57,10 +57,12 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+
     if (this.registerForm.invalid) {
       return;
     }
-    this.authService.register(this.username.value, this.email.value, this.password.value, this.profilePicture).subscribe({
+    
+    this.authService.register(this.username.value, this.email.value, this.password.value, this.profilePicture.value).subscribe({
       next: data => {
         if(data.jwt && data.user) {
           this.storage.setToken(data.jwt);

@@ -70,7 +70,7 @@
         <a class="nav-link" [routerLink]="['/user/login']" routerLinkActive="active" > Se connecter</a>
       </p>
     </div>
-    <button type="submit" [disabled]="controlRegister.invalid" class="btn btn-primary">Inscription</button>
+    <button type="submit" class="btn btn-primary">Inscription</button>
   </form>
   
   <ng-template [ngIf]="submitted && !signUpIsSuccessful && errorMessage" >
@@ -79,3 +79,4 @@
     </div>
   </ng-template>
 </div>
+
