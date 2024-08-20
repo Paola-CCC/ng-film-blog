@@ -1,4 +1,4 @@
-<div class="hero-image" *ngIf="checkObjectIsEmpty(postNewestAsHero) === false" [ngStyle]="
+<a class="hero-image"  [routerLink]="['/post',postNewestAsHero.id ]"  *ngIf="checkObjectIsEmpty(postNewestAsHero) === false" [ngStyle]="
 {'background':'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + postNewestAsHero.thumbnail + ') center/cover no-repeat'}"
 >
     <div class="hero-text"  >
@@ -17,7 +17,7 @@
             <small> {{convertDate(postNewestAsHero.createdAt)}} </small>
         </div>
     </div>
-</div>
+</a>
 
 
 
