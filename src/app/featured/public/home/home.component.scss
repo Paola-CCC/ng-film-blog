@@ -1,17 +1,17 @@
 .hero-image {
- 
+  display: block;
   height: 400px;
   position: relative;
 
   .hero-text {
-    width: 600px;
+    width: max-content;
     padding: 1em;
     color: white;
     position: absolute;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     bottom: 25px;
-    left: 25px;
+    left: 5px;
 
     div.description-text {
       h2 {
