@@ -23,7 +23,7 @@
         <div class="post-bottom">
 
             <div class="author-info"> 
-                <img [src]="post.picture_author_post" width="'15px'" height="'15px'"/>
+                <img [src]="post.picture_author_post" />
                 <span> De {{post.author}}</span>
             </div>
 
@@ -57,7 +57,7 @@
 
                 <div class="comment-infos">
                     <div class="author-info"> 
-                        <img [src]="comment?.picture_avatar" width="'15px'" height="'15px'"/>
+                        <img [src]="comment?.picture_avatar" />
                         <span> De {{comment?.comment_author}}</span>
                     </div>
                     <div class="comment-date">

@@ -18,21 +18,25 @@
         aria-labelledby="example-radio-group-label"
         class="example-radio-group"
         formControlName="categoryId">
-        <ng-container  *ngFor="let categoryPost of categoryPostList"   
-        >        <mat-radio-button class="example-radio-button" [value]="categoryPost.value">{{categoryPost.label}}</mat-radio-button>
-      </ng-container>
+        <ng-container  *ngFor="let categoryPost of categoryPostList" >        
+          <mat-radio-button class="example-radio-button" [value]="categoryPost.value">{{categoryPost.label}}</mat-radio-button>
+        </ng-container>
 
         </mat-radio-group>
       </div>
     </div>
     <div>
       <label style="display: block">Lien de l'image:</label>   
-      <input
-        type="text"
-        formControlName="thumbnail"
-        placeholder="Lien de l'image"
-        name="thumbnail"
-      />
+
+      <input type="file" 
+      class="file-upload" 
+      name="thumbnail"         
+      formControlName="thumbnail"
+      (change)="onFileSelected($event)"      
+      >
+
+      <!-- {{fileName || "No file uploaded yet."}} -->
+
     </div>
     <div>
       <label style="display: block">Titre:</label>
@@ -62,3 +66,6 @@
   
   
 </section>
+<button (click)="onSubmitBis()"> 
+  Cliquer 
+</button>

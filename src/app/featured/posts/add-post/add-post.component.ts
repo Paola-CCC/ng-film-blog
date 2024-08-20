@@ -30,10 +30,18 @@ export class AddPostComponent implements OnInit {
   /** liste des labels pour la catégories */
   categoryPostList: ICategoriesForm[] = [];
 
+  console = console;
+
+  fileName: string = '';
+
+  file:File; 
+
+
   constructor( 
     private fb: FormBuilder, 
-    private PostService: PostService,
-    private authService: AuthService
+    private postService: PostService,
+    private authService: AuthService,
+    private http: HttpClient
   ) { }
 
 
@@ -60,7 +68,7 @@ export class AddPostComponent implements OnInit {
   ngOnInit() {
     this.userId = this.authService.userDatasStored.id;
 
-    this.PostService.getAllCategories().subscribe({
+    this.postService.getAllCategories().subscribe({
       next: data => {
         if(data) {
           this.categoryPostList = [...data];
@@ -75,7 +83,7 @@ export class AddPostComponent implements OnInit {
 
   public onSubmit(){
      
-    this.PostService.addNewPost( this.userId ,this.controlAddPost.title.value ,this.controlAddPost.content.value, this.controlAddPost.thumbnail.value , Number(this.categoryID) ).subscribe({
+    this.postService.addNewPost( this.userId ,this.controlAddPost.title.value ,this.controlAddPost.content.value, this.controlAddPost.thumbnail.value , Number(this.categoryID) ).subscribe({
       next: data => {
         if(data) {
           this.creationPostIsSuccessfull = true;
@@ -104,5 +112,28 @@ export class AddPostComponent implements OnInit {
   public closeLabelGroup(){    
     return this.canShowInputsCategories = false;
   }
+
+
+  onFileSelected(event: any) {
+    this.console.log( "Event ", event.target.files[0])
+    if (event.target.files.length > 0) {
+      this.file = event.target.files[0];
+      this.fileName = this.file.name;
+    }
+  }
+
+
+  onSubmitBis() {
+    const formData = new FormData();
+    formData.append('thumbnail', this.thumbnail.value);
+
+    this.postService.uploadImage(formData).subscribe({
+      next:(data) => console.log('Response ', data),
+      error:(err) => {
+        this.console.log("Error ", err)
+      },
+    })
+  }
+
 }
 

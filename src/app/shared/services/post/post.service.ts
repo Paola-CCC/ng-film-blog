@@ -25,10 +25,12 @@ export class PostService {
     return this.http.get<ICategoriesForm[]>(API + 'categories-all', httpOptions);
   }
 
+  //Ok
   getOnePost(id: number): Observable<any> {
     return this.http.get<IPosts>(API + `post-show/${id}`, httpOptions);
   }
 
+  //Ok
   getFrontPost(): Observable<any> {
     return this.http.get<IPosts>(API + `post-front-hero`, httpOptions);
   }
@@ -78,5 +80,14 @@ export class PostService {
   //OK
   deleteOnePost(id: number): Observable<any> {
     return this.http.delete(API + `post-remove/${id}`, httpOptions);
+  }
+
+  uploadImage(data:any ){
+
+    const httpHeaders = {
+      headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
+    };
+
+    return this.http.post(API + 'image-upload', data , httpHeaders);
   }
 }
