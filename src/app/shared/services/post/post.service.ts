@@ -82,12 +82,16 @@ export class PostService {
     return this.http.delete(API + `post-remove/${id}`, httpOptions);
   }
 
+  //OK
   uploadImage(data:any ){
 
-    const httpHeaders = {
-      headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
-    };
+    return this.http.post(API + 'images-upload', data, {
+      responseType: 'json',
+    });
+  };
 
-    return this.http.post(API + 'image-upload', data , httpHeaders);
-  }
+  showImages(){
+    return this.http.get(API + 'images-all', httpOptions);
+  };
+
 }

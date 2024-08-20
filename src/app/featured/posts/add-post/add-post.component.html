@@ -63,9 +63,13 @@
       <p>{{ errorMessage }}</p>
     </div>
   </ng-template>
-  
-  
 </section>
+
+<ng-container *ngFor="let image of imagesList" >
+  <img [src]="image.path" width="350px" height="350px" />
+</ng-container>
+
+
 <button (click)="onSubmitBis()"> 
   Cliquer 
 </button>
