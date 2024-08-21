@@ -15,7 +15,7 @@ div.register-container {
 
     p{
       text-align: center;
-
+      margin: 0;
       a {
         font-weight: 500;
         color: #4747b8;;
@@ -24,6 +24,22 @@ div.register-container {
     }
     
     form {
+
+      button[type=submit] {
+        width: 100%;
+        padding: 10px 0;
+        margin-top: 20px;
+        font-size: 18px;
+        background-color: #4747b8;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    
+        &:hover {
+          background-color: #0069d9;
+        }
+      }
 
       .form-group {
         margin-bottom: 20px;
@@ -34,7 +50,7 @@ div.register-container {
           margin-bottom: 5px;
         }
     
-        input {
+        input:not(input[type=file]) {
           display: block;
           width: 100%;
           padding: 10px;
@@ -52,7 +68,7 @@ div.register-container {
           &.is-invalid {
             border: 1px solid #ff3030;
           }
-          &.is-invalid + div {
+          &.is-invalid ~ div {
             background-color: rgb(250, 218, 218);
             color: #a20e0e;
             padding: 5px 10px;
@@ -60,23 +76,90 @@ div.register-container {
             border-bottom-right-radius: 5px;
           }
         }
-      }
-    
-      button {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin-top: 20px;
-        font-size: 18px;
-        background-color: #4747b8;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    
-        &:hover {
-          background-color: #4343ab;
-        }
+
+        .img-load-container {
+          // background-color: #4747b8;
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          border-radius: 10px;
+
+          img {
+              max-width: 25%;
+              border-radius: 10px;
+          }
+
+          input[type=file] {
+            width: calc(100% - 1px);
+            color: #222245;
+            background-color: #fff;
+            border-radius: 5px;
+
+            &.disabled-input::file-selector-button,
+            &.disabled-input::file-selector-button:hover
+              {
+                background-color: rgb(210, 210, 210);
+                color: rgb(94, 94, 94);
+                cursor: not-allowed;
+            }
+            &:focus {
+                outline: 2px dashed #222245;
+                outline-offset: 2px;
+            }
+                
+            &::file-selector-button {
+                margin-right: 8px;
+                border: none;
+                background: #222245;
+                padding: 8px 20px;
+                color: #fff;
+                cursor: pointer;
+            }
+                  
+            &::file-selector-button:hover {
+                background-color: #4747b8;
+            }
+            
+            &.is-invalid {
+              border: 1px solid #ff3030;
+              box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+            }
+
+            &.is-invalid + div {
+              background-color: rgb(250, 218, 218);
+              border: 1px solid rgb(250, 218, 218);
+              color: #a20e0e;
+              padding: 5px 10px ;
+              border-bottom-left-radius: 5px ;
+              border-bottom-right-radius: 5px ;
+  
+            }
+          }
+
+          .input-btn {
+              margin-top: 10px;
+              button {
+                  float: right;
+                  margin-top: 5px;
+                  padding: 3px 12px;
+                  border-radius: 10px;
+                  cursor: pointer;
+                  // background-color: #fff;
+              }
+
+              &.image-uploaded {
+                  width: calc( 100% - 100px); 
+              }
+
+              &:not(.image-uploaded) {
+                  width: 100%;
+                 
+              }
+          }
+
+        }  
       }
     }
 

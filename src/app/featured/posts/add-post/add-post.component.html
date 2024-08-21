@@ -44,7 +44,6 @@
 
           <div class="input-btn" [ngClass]="{'image-uploaded':  previewImageFile !== '' }"  >
             <input 
-            #inputFileElement
             type="file" 
             class="file-upload"
             [ngClass]="{'disabled-input': thumbnailLink.value !== '' && thumbnailUpload.value === ''}"

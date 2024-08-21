@@ -3,16 +3,27 @@
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
-      <label for="profilePicture">Avatar ou photo de profil</label>
-      <input 
-        type="profilePicture" 
-        formControlName="profilePicture" 
-        class="form-control" 
-        id="profilePicture" 
-        name="profilePicture"
-        placeholder="Photo de profile"
-        [ngClass]="{ 'is-invalid': submitted && controlRegister['profilePicture'].errors || controlRegister['profilePicture'].touched && controlRegister['profilePicture'].invalid }"
-      >
+      <label for="profilePicture">La photo de profil</label>
+
+      <div class="img-load-container">
+          <img *ngIf="previewImageFile !== ''"  [src]="previewImageFile"  width="85px" height="85px" />
+
+          <div class="input-btn" [ngClass]="{'image-uploaded':  previewImageFile !== '' }"  >
+            <input 
+            type="file" 
+            class="form-control file-upload"
+            name="thumbnailUpload"         
+            formControlName="profilePicture" 
+            (change)="onFileSelected($event)"  
+            [ngClass]="{ 'is-invalid': controlRegister['profilePicture'].touched && profilePicture.value == '' || submitted && controlRegister['profilePicture'].errors}"
+            >
+
+            <div *ngIf="(submitted && controlRegister['profilePicture'].errors) || controlRegister['profilePicture'].touched && profilePicture.value == ''">La Photo de profil est requise</div>
+            <button *ngIf="previewImageFile !== ''" (click)="cleanThumbnailUpload()">
+              <i class="fa-solid fa-circle-xmark fa-lg"></i> supprimer
+            </button>
+          </div>
+      </div>
     </div>
     
     <div class="form-group">
@@ -25,9 +36,9 @@
         placeholder="Nom d'utilisateur"
         [ngClass]="{ 'is-invalid': submitted && controlRegister['username'].errors || controlRegister['username'].touched && controlRegister['username'].invalid}"
       >
-      <ng-template [ngIf]="controlRegister['username'].touched && controlRegister['username'].invalid" class="alert alert-danger">
-        <div *ngIf="controlRegister['username'].errors && controlRegister['username'].errors['required']">Le nom d'utilisateur est requis</div>
-        <div *ngIf="controlRegister['username'].errors && controlRegister['username'].errors['username']" [ngClass]= "'error'">Le nom d'utilisateur n'est pas valide</div>
+      <ng-template [ngIf]="controlRegister['username'].invalid">
+        <div *ngIf="!submitted && controlRegister['username'].touched && controlRegister['username'].invalid">Le nom d'utilisateur n'est pas valide</div>
+        <div *ngIf="submitted && controlRegister['username'].errors['required']"   >Un nom d'utilisateur est requis</div>
       </ng-template>
     </div>
 
@@ -39,12 +50,12 @@
       class="form-control" 
       id="email" 
       name="email" 
-      placeholder="Adresse Email"
+      placeholder="Adresse Email" 
       [ngClass]="{ 'is-invalid': submitted && controlRegister['email'].errors || controlRegister['email'].touched && controlRegister['email'].invalid }"
       >
-      <ng-template [ngIf]="controlRegister['email'].touched && controlRegister['email'].invalid" class="alert alert-danger">
-          <div *ngIf="controlRegister['email'].errors && controlRegister['email'].errors['required']">L' Email requis.</div>
-          <div *ngIf="controlRegister['email'].errors && controlRegister['email'].errors['email']" [ngClass]= "'error'">Email n'est pas valide</div>
+      <ng-template [ngIf]="controlRegister['email'].invalid" class="alert alert-danger">
+          <div *ngIf="!submitted && controlRegister['email'].touched && controlRegister['email'].invalid" [ngClass]= "'error'">L' Email n'est pas valide</div>
+          <div *ngIf="submitted && controlRegister['email'].errors && controlRegister['email'].errors['required'] ">L' Email requis.</div>
       </ng-template>
 
     </div>
@@ -59,9 +70,10 @@
         placeholder="Mot de passe"
         [ngClass]="{ 'is-invalid': submitted && controlRegister['password'].errors || controlRegister['password'].touched && controlRegister['password'].invalid }"
       >
-      <ng-template [ngIf]="controlRegister['password'].touched && controlRegister['password'].invalid" class="alert alert-danger">
-          <div *ngIf="controlRegister['password'].errors && controlRegister['password'].errors['required']">Le Mot de passe requis.</div>
-          <div *ngIf="controlRegister['password'].errors && controlRegister['password'].errors['password']" [ngClass]= "'error'">Le mot de passe n'est pas valide</div>
+      <ng-template [ngIf]="controlRegister['password'].invalid" class="alert alert-danger">
+          <div *ngIf="!submitted && controlRegister['email'].touched && controlRegister['password'].invalid">Le mot de passe n'est pas valide</div>
+          <div *ngIf="submitted && controlRegister['password'].errors['required']">Le Mot de passe requis.</div>
+
       </ng-template>
     </div>
 

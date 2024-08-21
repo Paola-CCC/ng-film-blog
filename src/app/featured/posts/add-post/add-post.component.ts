@@ -3,6 +3,7 @@ import { Component, DoCheck, ElementRef, OnInit, ViewChild } from '@angular/core
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICategoriesForm } from '@shared/interfaces';
 import { AuthService, PostService } from '@shared/services';
+import { ImagesService } from '@shared/services/images/images.service';
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
 
 
@@ -54,6 +55,7 @@ export class AddPostComponent implements OnInit ,DoCheck {
     private fb: FormBuilder,
     private postService: PostService,
     private authService: AuthService,
+    private imagesService: ImagesService
   ) { }
 
 
@@ -183,7 +185,7 @@ export class AddPostComponent implements OnInit ,DoCheck {
 
 
   public uploadAndCreatePost(formData: FormData): Observable<any> {
-    return this.postService.uploadImage(formData).pipe(
+    return this.imagesService.uploadImage(formData).pipe(
       switchMap((data: UploadResponse) => this.createPostWithImage(data.imageId)),
       catchError((error) => this.handleError(error))
     );

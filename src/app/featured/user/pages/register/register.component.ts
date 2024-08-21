@@ -3,6 +3,12 @@ import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGro
 import { TokenStorageService } from '../../../../shared/services/token/token-storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from '@shared/services';
+import { catchError, Observable, switchMap, throwError } from 'rxjs';
+import { ImagesService } from '@shared/services/images/images.service';
+
+interface UploadResponse {
+  imageId: string;
+}
 
 @Component({
   selector: 'app-register',
@@ -24,11 +30,20 @@ export class RegisterComponent implements OnInit {
   signUpIsSuccessful = false;
   errorMessage = '';
 
+  previewImageFile = '';
+  /** Nom du fichier chargé */
+  fileName: string = '';
+  /** fichier */
+  file: File | null = null;
+  /** Id de l'image inséré avec succès */
+  insertImageID: number = null;
+
   constructor(
     private fb: UntypedFormBuilder,
     private authService: AuthService,
     private storage: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private imagesService: ImagesService
     ) {}
 
   get username (): any {
@@ -81,6 +96,26 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  public onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.file = file;
+      this.fileName = this.file.name;
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        this.previewImageFile = e.target.result;
+      };
+
+      reader.readAsDataURL(this.file);
+    }
+  }
+
+  public cleanThumbnailUpload(){
+    this.previewImageFile = '';
+    return this.profilePicture.setValue('')
+  }
   
   setDefaultValue() { 
     this.registerForm.setValue({
@@ -94,6 +129,37 @@ export class RegisterComponent implements OnInit {
   onReset(): void {
     this.submitted = false;
     this.registerForm.reset();
+  }
+
+  public uploadAndCreateUser(formData: FormData): Observable<any> {
+    return this.imagesService.uploadImage(formData).pipe(
+      switchMap((data: UploadResponse) => this.createUserWithImage(data.imageId)),
+      catchError((error) => throwError(() => error))
+    );
+  }
+
+  private createUserWithImage(imageId: string): Observable<any> {
+    return this.authService.register(
+      this.username.value, 
+      this.email.value, 
+      this.password.value, 
+      imageId
+    );
+  }
+
+  onSubmitImage(){
+
+    const formData = new FormData();
+    formData.append('thumbnail', this.file, this.fileName);
+
+    this.uploadAndCreateUser(formData).subscribe({
+      next: data => {
+        if (data) {
+          console.log("data ",data)
+        }
+      },
+      error: error => throwError(() => error)
+    });
   }
   
 }
