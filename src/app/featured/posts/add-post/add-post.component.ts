@@ -1,22 +1,29 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICategoriesForm } from '@shared/interfaces';
 import { AuthService, PostService } from '@shared/services';
-import { throwError } from 'rxjs';
+import { catchError, Observable, switchMap, throwError } from 'rxjs';
+
+
+interface UploadResponse {
+  imageId: string;
+}
 
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.scss']
 })
-export class AddPostComponent implements OnInit {
+export class AddPostComponent implements OnInit ,DoCheck {
 
   insertPostForm = this.fb.group({
     title: ['', Validators.required],
     content: ['', Validators.required],
     categoryId: ['', Validators.required],
-    thumbnail: ['', Validators.required]
+    thumbnailLink: [{ value: '', disabled: false }, Validators.required],
+    thumbnailUpload: [{ value: '', disabled: false }, Validators.required]
+
   })
   /** Message erreur */
   errorMessage: string = '';
@@ -33,11 +40,14 @@ export class AddPostComponent implements OnInit {
 
   console = console;
 
+  previewImageFile = '';
+  /** Nom du fichier chargé */
   fileName: string = '';
-
+  /** fichier */
   file: File | null = null;
+  /** Id de l'image inséré avec succès */
+  insertImageID: number = null;
 
-  imagesList: any = [];
 
 
   constructor(
@@ -59,8 +69,12 @@ export class AddPostComponent implements OnInit {
     return this.insertPostForm.get('categoryId').value;
   }
 
-  get thumbnail(): any {
-    return this.insertPostForm.get('thumbnail');
+  get thumbnailLink(): any {
+    return this.insertPostForm.get('thumbnailLink');
+  }
+
+  get thumbnailUpload(): any {
+    return this.insertPostForm.get('thumbnailUpload');
   }
 
   get controlAddPost() {
@@ -85,7 +99,7 @@ export class AddPostComponent implements OnInit {
     this.postService.showImages().subscribe({
       next: data => {
         if (data) {
-          this.imagesList = data;
+         //this.imagesList = data;
         }
       },
       error: err => {
@@ -95,22 +109,22 @@ export class AddPostComponent implements OnInit {
     });
   }
 
-  public onSubmit() {
+  ngDoCheck(): void {
+    
+    if( this.thumbnailLink.value === '' && this.thumbnailUpload.value === ''){
+      this.thumbnailLink.enable();
+      this.thumbnailUpload.enable();
+    }
 
-    this.postService.addNewPost(this.userId, this.controlAddPost.title.value, this.controlAddPost.content.value, this.controlAddPost.thumbnail.value, Number(this.categoryID)).subscribe({
-      next: data => {
-        if (data) {
-          this.creationPostIsSuccessfull = true;
-        } else {
-          this.creationPostIsSuccessfull = false;
-        }
-      },
-      error: err => {
-        console.log(err);
-        this.errorMessage = err.error.message;
-        this.creationPostIsSuccessfull = false;
-      }
-    });
+    if( this.thumbnailLink.value === '' && this.thumbnailUpload.value !== ''){
+      this.thumbnailLink.disable();
+      this.thumbnailUpload.enable();
+    }
+
+    if( this.thumbnailLink.value !== '' && this.thumbnailUpload.value === ''){
+      this.thumbnailLink.enable();
+      this.thumbnailUpload.disable();
+    }
 
   }
 
@@ -118,6 +132,7 @@ export class AddPostComponent implements OnInit {
     this.canShowInputsCategories = !this.canShowInputsCategories;
   }
 
+  /** Afficher la catégorie choisie */
   public getLabelInputSelected() {
     let data = this.categoryPostList.find(e => e.value === this.categoryID);
     return data.label;
@@ -133,22 +148,102 @@ export class AddPostComponent implements OnInit {
     if (file) {
       this.file = file;
       this.fileName = this.file.name;
+
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        console.log(e.target.result);
+        this.previewImageFile = e.target.result;
+      };
+
+      reader.readAsDataURL(this.file);
+
     }
   }
 
-  public onSubmitBis() 
+  public onSubmitUploadImage() 
   {
     const formData = new FormData();
     formData.append('thumbnail', this.file ,this.fileName);
 
     const upload$ = this.postService.uploadImage(formData);
     upload$.subscribe({
-      next: (data) => console.log('Response ', data),
+      next: (data) => this.insertImageID = data['imageId'],
       error: (error) => {
         return throwError(() => error)
       },
     })
   }
 
+
+  public cleanThumbnailUpload(){
+    this.previewImageFile = '';
+    return this.thumbnailUpload.setValue('')
+  }
+
+
+  public uploadAndCreatePost(formData: FormData): Observable<any> {
+    return this.postService.uploadImage(formData).pipe(
+      switchMap((data: UploadResponse) => this.createPostWithImage(data.imageId)),
+      catchError((error) => this.handleError(error))
+    );
+  }
+
+  private createPostWithImage(imageIdOrLink: string): Observable<any> {
+    return this.postService.addNewPost(
+      this.userId,
+      this.title.value,
+      this.content.value,
+      imageIdOrLink,
+      Number(this.categoryID)
+    );
+  }
+
+  private handleError(error: any): Observable<never> {
+    this.creationPostIsSuccessfull = false;
+    return throwError(() => error);
+  }
+
+  /** ajouter un poste dont l'image est charger */
+  public submitImageUpload() {
+    const formData = new FormData();
+    formData.append('thumbnail', this.file, this.fileName);
+
+    this.uploadAndCreatePost(formData).subscribe({
+      next: (data) => {
+        this.creationPostIsSuccessfull = true;
+        console.log('Post created successfully:', data);
+      },
+      error: (err) => {
+        this.errorMessage = err.error.message;
+        this.creationPostIsSuccessfull = false;
+      }
+    });
+  }
+
+  /** ajouter un poste dont l'image est  un lien */
+  public submitImageLink() {
+
+    this.createPostWithImage(this.thumbnailLink.value).subscribe({
+      next: data => {
+        if (data) {
+          this.creationPostIsSuccessfull = true;
+        }
+      },
+      error: err => this.handleError(err)
+    });
+
+  }
+
+
+  onSubmit(){
+    if( this.thumbnailLink.value === '' && this.thumbnailUpload.value !== ''){
+      this.submitImageUpload();
+    }
+
+    if( this.thumbnailLink.value !== '' && this.thumbnailUpload.value === ''){
+      this.submitImageLink();
+    }
+  }
 }
 

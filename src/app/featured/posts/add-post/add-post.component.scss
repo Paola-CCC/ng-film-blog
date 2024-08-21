@@ -12,24 +12,24 @@ section {
 
         h1 {
             text-align: center;
-            color: rgb(58, 58, 224);
-            font-size: 20px;
+            color: #4747b8;;
+            font-size: 24px;
             font-weight: 500;
         }
         button.btn {
             display: block;
             width: 100%;
-            padding: 10px;
+            padding: 10px 0;
             margin-top: 20px;
             font-size: 18px;
-            background-color: #007bff;
+            background-color: #4747b8;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         
             &:hover {
-                background-color: #0069d9;
+                background-color: #4343ab;
             }
 
             &.add-category {
@@ -84,7 +84,7 @@ section {
 
 
         div {
-            input,textarea , label {
+            input[type=text],textarea,label {
                 width: 100%;
                 padding: 10px 0;
 
@@ -92,7 +92,7 @@ section {
 
 
 
-            input {
+            input[type=text] {
                 background-color: rgb(255, 255, 255);
                 border: 1px solid #ddd;
                 border-radius: 5px;
@@ -100,13 +100,91 @@ section {
                     color: rgb(101, 101, 101);
                     font-size: 1em;
                     padding: 0 8px ;
-                  }
-                  &:focus {
-                    border-color: #007bff;
-                    outline: none;
-                  }
+                }
+                &:focus {
+                border-color: #4747b8;
+                outline: none;
+                }
+
+                &:disabled {
+                    background-color: rgb(210, 210, 210);
+                    cursor: not-allowed;
+                    &::placeholder {
+                        color: rgb(94, 94, 94);
+                    }
+                }
+        }
+
+            .img-load-container {
+                // background-color: #4747b8;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                border-radius: 10px;
+
+                img {
+                    max-width: 25%;
+                    border-radius: 10px;
+                }
+
+                .input-btn {
+
+                    button {
+                        float: right;
+                        padding: 6px 12px;
+                        border-radius: 10px;
+                        background-color: #fff;
+                    }
+
+                    &.image-uploaded {
+                        width: calc( 100% - 100px);
+                    }
+
+                    &:not(.image-uploaded) {
+                        width: 100%;
+                    }
+                }
+    
             }
 
+       
+            input[type=file] {
+                width: 100%;
+                margin-bottom: 10px;
+                color: #222245;
+                // padding: 8px;
+                background-color: #fff;
+                // border: 1px solid #222245;
+
+                &.disabled-input::file-selector-button,
+                &.disabled-input::file-selector-button:hover
+                  {
+                    background-color: rgb(210, 210, 210);
+                    color: rgb(94, 94, 94);
+                    cursor: not-allowed;
+                }
+            }
+              
+            input[type=file]:focus {
+            outline: 2px dashed #222245;
+            outline-offset: 2px;
+            }
+            
+            input[type=file]::file-selector-button {
+            margin-right: 8px;
+            border: none;
+            background: #222245;
+            padding: 8px 20px;
+            color: #fff;
+            cursor: pointer;
+            }
+              
+            input[type=file]::file-selector-button:hover {
+            background-color: #4747b8;
+            }
+              
             textarea {
                 background-color: rgb(255, 255, 255);
                 border: 1px solid #ddd;

@@ -27,15 +27,36 @@
     </div>
     <div>
       <label style="display: block">Lien de l'image:</label>   
-
-      <input type="file" 
+      <input 
+      type="text" 
       class="file-upload" 
-      name="thumbnail"         
-      formControlName="thumbnail"
-      (change)="onFileSelected($event)"      
-      >
+      name="thumbnailLink"         
+      formControlName="thumbnailLink"
+      [placeholder]="'Lien de l\'image'"
+      >  
+    </div>
 
-      <!-- {{fileName || "No file uploaded yet."}} -->
+    <div>
+      <label style="display: block">Uploader une image:</label> 
+      
+      <div class="img-load-container">
+        <img *ngIf="previewImageFile !== ''"  [src]="previewImageFile"  width="80px" height="80px" />
+
+          <div class="input-btn" [ngClass]="{'image-uploaded':  previewImageFile !== '' }"  >
+            <input 
+            #inputFileElement
+            type="file" 
+            class="file-upload"
+            [ngClass]="{'disabled-input': thumbnailLink.value !== '' && thumbnailUpload.value === ''}"
+            name="thumbnailUpload"         
+            formControlName="thumbnailUpload"
+            (change)="onFileSelected($event)"  
+            >
+            <button *ngIf="previewImageFile !== ''" (click)="cleanThumbnailUpload()">
+              Supprimer
+            </button>
+          </div>
+      </div>
 
     </div>
     <div>
@@ -65,11 +86,7 @@
   </ng-template>
 </section>
 
-<ng-container *ngFor="let image of imagesList" >
+<!-- <ng-container *ngFor="let image of imagesList" >
   <img [src]="image.path" width="350px" height="350px" />
-</ng-container>
+</ng-container> -->
 
-
-<button (click)="onSubmitBis()"> 
-  Cliquer 
-</button>
