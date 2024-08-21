@@ -70,32 +70,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
   
 
-  onSubmit(): void {
-    this.submitted = true;
-
-    if (this.registerForm.invalid) {
-      return;
-    }
-    
-    this.authService.register(this.username.value, this.email.value, this.password.value, this.profilePicture.value).subscribe({
-      next: data => {
-        if(data.jwt && data.user) {
-          this.storage.setToken(data.jwt);
-          localStorage.setItem('user', JSON.stringify(data.user));
-          this.signUpIsSuccessful = true;
-          this.router.navigate(['/home']);
-        } else {
-          this.signUpIsSuccessful = false;
-        }
-      },
-      error: err => {
-        console.log(err);
-        this.errorMessage = err.error.message;
-        this.signUpIsSuccessful = false;
-      }
-    });
-  }
-
   public onFileSelected(event: any) {
     const file: File = event.target.files[0];
 
@@ -133,7 +107,7 @@ export class RegisterComponent implements OnInit {
 
   public uploadAndCreateUser(formData: FormData): Observable<any> {
     return this.imagesService.uploadImage(formData).pipe(
-      switchMap((data: UploadResponse) => this.createUserWithImage(data.imageId)),
+      switchMap((data: UploadResponse) => this.createUserWithImage(data.imageId +'')),
       catchError((error) => throwError(() => error))
     );
   }
@@ -147,18 +121,32 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  onSubmitImage(){
+  onSubmit(){
+
+    this.submitted = true;
+
+    if (this.registerForm.invalid) {
+      return;
+    }
 
     const formData = new FormData();
     formData.append('thumbnail', this.file, this.fileName);
 
     this.uploadAndCreateUser(formData).subscribe({
       next: data => {
-        if (data) {
-          console.log("data ",data)
+        if(data.jwt && data.user) {
+          this.storage.setToken(data.jwt);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          this.signUpIsSuccessful = true;
+          this.router.navigate(['/home']);
         }
       },
-      error: error => throwError(() => error)
+      error: error => {
+        this.signUpIsSuccessful = false;
+        this.setDefaultValue();
+        this.onReset();
+        throwError(() => error)
+      }
     });
   }
   

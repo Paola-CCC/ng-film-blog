@@ -154,7 +154,6 @@ export class AddPostComponent implements OnInit ,DoCheck {
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
-        console.log(e.target.result);
         this.previewImageFile = e.target.result;
       };
 
