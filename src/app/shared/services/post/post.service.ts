@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
@@ -18,6 +18,13 @@ export class PostService {
   //OK
   getAll(): Observable<any> {
     return this.http.get<IPosts[]>(API + 'posts-all', httpOptions);
+  }
+
+  getPaginatedData(page: number, itemsPerPage: number): Observable<any> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('itemsPerPage', itemsPerPage.toString());
+    return this.http.get<any>(API + 'posts-pages', { params });
   }
 
   //OK

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
-import { PostService } from './post.service';  // Ajustez le chemin d'importation selon la structure de votre projet
+import { PostService } from './post.service'; 
 import { IPosts } from '@shared/interfaces';
 import { of } from 'rxjs';
 

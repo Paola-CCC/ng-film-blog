@@ -17,6 +17,8 @@ export class PostsListComponent implements OnInit {
   
   @Input()
   titleSection: string = '';
+  @Input()
+  postsListItems: IPosts[] = []
   
   constructor(private PostService: PostService, private router: Router) { }
 

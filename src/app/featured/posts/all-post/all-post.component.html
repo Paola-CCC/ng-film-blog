@@ -1,1 +1,14 @@
-<app-posts-list [titleSection]="'Tous les films'" > </app-posts-list>
+<app-posts-list [titleSection]="'Tous les films'"
+[postsListItems]="paginatedData"
+> </app-posts-list>
+
+
+<ng-template [ngIf]="totalItems !== 0">
+  <app-pagination
+  [currentPage]="currentPage"
+  [itemsPerPage]="itemsPerPage"
+  [totalItems]="totalItems"
+  (pageChanged)="onPageChange($event)"
+></app-pagination>
+
+</ng-template>

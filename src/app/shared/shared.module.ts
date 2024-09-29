@@ -7,13 +7,15 @@ import { ButtonComponent } from './components/button/button.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { CardComponent } from './components/card/card.component';
 import { RouterModule } from '@angular/router';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
     PostsListComponent,
     ButtonComponent,
     LoaderComponent,
-    CardComponent
+    CardComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,9 @@ import { RouterModule } from '@angular/router';
     ButtonComponent,
     MaterialModule,
     LoaderComponent,
-    CardComponent
+    CardComponent,
+    PaginationComponent
+
 
   ]
 })
