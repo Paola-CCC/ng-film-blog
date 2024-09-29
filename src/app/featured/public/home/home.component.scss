@@ -229,7 +229,7 @@ section.home-new-post {
 
 
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1440px) {
   section.home-new-post {
     width: 95%;
     .new-post-container {
@@ -246,23 +246,12 @@ section.home-new-post {
 }
 
 
-@media only screen and (max-width: 900px) {
-
-  section.container-home {
-    width: 95%;
-    ul.grid-posts li {
-      flex: 1 1 250px;
-    }
-  }
-}
-
-
-
-
 @media only screen and (max-width: 800px) {
   section.home-new-post .new-post-container {
-    display: block;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px 0;
+    margin: 0 auto 0 auto;
     > div.post-area:nth-child(1),
     > div.post-area:nth-child(2),
     > div.post-area:nth-child(3) {
@@ -285,25 +274,3 @@ section.home-new-post {
 }
 
 
-  // @media (max-width: 600px) {
-
-  //   .hero-image .hero-text {
-
-  //     left: 10px;
-  //     width: fit-content;
-  //     padding: 0;
-  //     h2 {
-  //       font-size: 0; 
-  //     }
-  //   }
-
-  // }
-
-  // @media only screen and (max-width: 500px) {
-  //   section.container-home {
-  //     width: 95%;
-  //     ul.grid-posts li {
-  //       flex: 1 1 250px;
-  //     }
-  //   }
-  // }
