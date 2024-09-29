@@ -78,7 +78,7 @@
         <form>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Saisissez votre commentaire:</label>
-                <textarea class="form-control" rows="3" [(ngModel)]="commentText" name="comment-writing"></textarea>
+                <textarea class="form-control" rows="6" [(ngModel)]="commentText" name="comment-writing"></textarea>
             </div>
             <div class="send-comment-control">
                 <button class="btn-submit" id="add-comment" [disabled]="commentText === '' ? true : false"   (click)="commentText !== '' ? addComment() : null">Envoyer</button>

@@ -1,12 +1,11 @@
 
 
 section {
-
     form {
         box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
         background-color: #f2f2f2;
-        width: 500px;
-        padding: 2em;
+        max-width: 500px;
+        padding: 30px;
         margin: 70px auto;
         border-radius: 10px ;
 
@@ -15,6 +14,11 @@ section {
             color: #4747b8;;
             font-size: 24px;
             font-weight: 500;
+        }
+
+        label {
+            font-weight: bold;
+            
         }
         button.btn {
             display: block;
@@ -33,13 +37,19 @@ section {
             }
 
             &.add-category {
-                width: 250px;
+                width: fit-content;
                 padding: 10px;
                 margin: 0;
                 font-size: small;
-                background-color: #ffffff;
-                color: #767676;
+                border-radius: 0px;
+                background: #222245;
+                padding: 8px 20px;
+                color: #fff;
                 border: 1px solid #d3d3d3;
+                &:hover {
+                    background-color: #4747b8;
+
+                }
             }
 
      
@@ -53,9 +63,10 @@ section {
                 position: absolute;
                 box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
                 border-radius: 10px;
-                top: calc(100% + 10px);
+                top: calc(100% - 5px);
                 padding: 0px;
-                width: 250px;
+                width: 160px;
+
                 font-size: small;
 
                 .mat-mdc-radio-group {
@@ -83,11 +94,13 @@ section {
         }
 
 
-        div {
-            input[type=text],textarea,label {
-                width: 100%;
-                padding: 10px 0;
+        div:not(.img-load-container) {
 
+            margin-top: 10px;
+
+            input[type=text], textarea {
+                width: calc(100% - 20px);
+                padding: 10px ;
             }
 
 
@@ -99,7 +112,7 @@ section {
                 &::placeholder {
                     color: rgb(101, 101, 101);
                     font-size: 1em;
-                    padding: 0 8px ;
+                    // padding: 0 8px ;
                 }
                 &:focus {
                 border-color: #4747b8;
@@ -152,7 +165,6 @@ section {
        
             input[type=file] {
                 width: 100%;
-                margin-bottom: 10px;
                 color: #222245;
                 background-color: #fff;
                 &.disabled-input::file-selector-button,
@@ -186,9 +198,24 @@ section {
                 background-color: rgb(255, 255, 255);
                 border: 1px solid #ddd;
                 border-radius: 10px;
-                height: 115px;
+                resize: none;
 
             }
         }
     }
 }
+
+
+@media only screen and (max-width: 600px) {
+
+    section {
+        width: 90%;
+        margin: 0 auto;
+
+        form {
+            padding: 15px;
+            margin: 50px auto;
+        }
+    }
+
+  }
