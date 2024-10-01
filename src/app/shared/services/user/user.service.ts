@@ -35,11 +35,21 @@ export class UserService {
 
   //OK
   updateUser(userId : number , username : string , email : string , password : string): Observable<any> {
-    return this.http.put(API + 'use-update', {
+    return this.http.put(API + 'user-update', {
       userId,
       username,
       email,
       password
+    }, httpOptions);
+  }
+
+
+  updateUserPhoto(userId : number , profilePictureId: number): Observable<any> {
+
+    console.log( )
+    return this.http.put(API + 'user-update-image', {
+      userId,
+      profilePictureId,
     }, httpOptions);
   }
 

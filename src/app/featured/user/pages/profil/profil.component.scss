@@ -6,6 +6,15 @@
     // justify-content: center;
     text-align: center;
   }
+
+  button {
+    text-decoration: underline;
+    font-size: small;
+    &:hover,
+    &:active {
+      cursor: pointer;
+    }
+  }
   
   .profile-picture {
     width: 180px;

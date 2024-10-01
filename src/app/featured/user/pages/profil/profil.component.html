@@ -1,8 +1,20 @@
 <div class="user-profile">
     <div class="profile-picture">
-      <img src="{{userData.profilePicture}}" alt="User Profile" />
+      <img *ngIf="!canDisplayPreviewImage" [src]="userData.profilePicture" alt="User Profile" />
+      <img *ngIf="canDisplayPreviewImage"  [src]="previewImageFile"  />
     </div>
-  
+    <div>
+        <input type="file" (change)="onFileSelected($event)" #fileUpload>
+    </div>
+    <button (click)="showPreviewImage()"> Modifier la photo de profile</button>
+
+    <button  (click)="deleteImage()">
+      Valider
+    </button>
+    <button>
+      Annuler
+    </button>
+
     <div class="username">
       <h2>{{(userData.username).toUpperCase()}}</h2>
     </div>
@@ -11,4 +23,3 @@
       <p> Email: {{userData.email}}</p>
     </div>
 </div>
-  

@@ -28,4 +28,17 @@ export class ImagesService {
     return this.http.get(API + 'images-all', httpOptions);
   };
 
+  deleteImage(id:any){
+
+    const headers = {
+      headers: new HttpHeaders({ 
+        responseType: 'json'
+      }),
+    };
+
+    return this.http.delete(API + `image-remove/${id}`, {
+      responseType: 'json',
+    });
+  };
+
 }

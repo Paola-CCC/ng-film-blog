@@ -3,12 +3,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const materialModules = [
   MatButtonModule,
   MatDividerModule,
   MatIconModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatProgressBarModule
 
 ];
 
