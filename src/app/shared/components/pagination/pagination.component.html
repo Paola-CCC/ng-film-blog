@@ -1,17 +1,11 @@
-<div class="pagination">
-  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Précépent</button>
-  <span>Page {{ currentPage }} sur {{ totalItems }}</span>
-  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalItems">Suivant</button>
-</div>
 
 <mat-paginator 
     [length]="length"
     [pageSize]="itemsPerPage"
-    [pageSizeOptions]="pageSizeOptions"
-    [hidePageSize]="false"
+    [pageSizeOptions]="[8,12]"
+    [hidePageSize]="true"
     [pageIndex]="0"
     aria-label="Select page"
     (page)="handlePageEvent($event)"
-
 >
 </mat-paginator>

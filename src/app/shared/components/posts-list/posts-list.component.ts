@@ -15,10 +15,9 @@ export class PostsListComponent implements OnInit {
   errorMessage : string = '';
   console = console
   
-  @Input()
-  titleSection: string = '';
-  @Input()
-  postsListItems: IPosts[] = []
+  @Input() titleSection: string = '';
+  /** liste de posts à afficher */
+  @Input() postsListItems: IPosts[] = [];
   
   constructor(private PostService: PostService, private router: Router) { }
 
@@ -35,19 +34,6 @@ export class PostsListComponent implements OnInit {
           }
         });
     }; 
-
-    if(this.router.url === '/post/all' ){
-      this.PostService.getAll().subscribe({
-        next: (data : IPosts[]) => {
-          this.postsList = data;
-        },
-        error: err => {
-          this.console.log(err);
-          this.errorMessage = err.message;
-        }
-      });
-  };
-
   }
 
   get locationUrl(){

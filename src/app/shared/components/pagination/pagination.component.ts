@@ -8,19 +8,20 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class PaginationComponent implements OnInit {
 
-  @Input() 
-  currentPage: number;
-  @Input() 
-  itemsPerPage: number;
-  @Input() 
-  totalItems: number;
-  @Output() 
-  pageChanged: EventEmitter<number> = new EventEmitter();
-
+  @Input() currentPage: number;
+  /** indique posts par page */
+  @Input() itemsPerPage: number;
+  /** nombre de posts au total */
+  @Input() totalItems: number;
+  /** récupère le nombre de pages avec des posts */
+  @Input() pagesWithPosts: number;
+  /** emet la page sur laquelle on se trouve */
+  @Output() pageChanged: EventEmitter<number> = new EventEmitter();
   /**  nombre total page */
   length = 0;
-  pageSizeOptions = [8,12];
+  /** indique si on peut afficher ou non les choix de layout */
   showPageSizeOptions = true;
+  /** indique le nombre d'item par page */
   pageSize: number = 0;   
   pageEvent: PageEvent;
   pageIndex = 0;
@@ -29,18 +30,9 @@ export class PaginationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log( this.totalItems )
     this.pageSize = this.itemsPerPage;
     this.pageIndex = this.currentPage;
     this.length = this.totalItems;
-  }
-
-
-  changePage(page: number): void {
-    if (page >= 1 && page <= this.totalItems) {
-      this.currentPage = page;
-      this.pageChanged.emit(page);
-    }
   }
 
   handlePageEvent(e: PageEvent) {
@@ -48,9 +40,7 @@ export class PaginationComponent implements OnInit {
     this.length = e.length;
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
-    // this.pageChanged.emit(this.currentPage + 1);
-
-
+    this.pageChanged.emit(e.pageIndex + 1);
   }
 
 

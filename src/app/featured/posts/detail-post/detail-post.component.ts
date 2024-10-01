@@ -13,7 +13,7 @@ import { LikesPostsService } from '@shared/services/likes-posts/likes-posts.serv
 export class DetailPostComponent implements OnInit {
 
   /** représente l'Id du post */
-  postId : number| null = null;
+  postId : number | null = null;
   console = console;
   /** message d'erreur */
   errorMessage : string = '';

@@ -1,5 +1,8 @@
-<a class="hero-image"  [routerLink]="['/post',postNewestAsHero.id ]"  *ngIf="checkObjectIsEmpty(postNewestAsHero) === false" [ngStyle]="
-{'background':'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + postNewestAsHero.thumbnail + ') center/cover no-repeat'}"
+<a 
+    class="hero-image"  
+    [routerLink]="['/post',postNewestAsHero.id ]" 
+    *ngIf="checkObjectIsEmpty(postNewestAsHero) === false" 
+    [ngStyle]="{'background':'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + postNewestAsHero.thumbnail + ') center/cover no-repeat'}"
 >
     <div class="hero-text"  >
         <ng-container *ngFor="let category of postNewestAsHero.categories" >
@@ -48,14 +51,10 @@
 </section>
 
 
-<!-- <section class="container-home">
-    <div class="title">
-        <h3> Tous les posts</h3>
-    </div>
-    <app-posts-list> </app-posts-list>
-</section> -->
-
-
-<app-posts-list [titleSection]="'Le meilleur du cinéma'"> </app-posts-list>
+<app-posts-list 
+[titleSection]="'Le meilleur du cinéma'"
+[postsListItems]="topPostsList"
+> 
+</app-posts-list>
 
 

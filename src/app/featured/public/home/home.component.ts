@@ -14,11 +14,8 @@ export class HomeComponent implements OnInit {
   postNewestAsHero: IPosts = {} as IPosts ;
   /** Message d'erreur */
   errorMessage : string = '';
-
-
-
- style = `background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("${this.postNewestAsHero.thumbnail}") center/cover no-repeat;`
+  /** Liste de Posts à afficher */
+  topPostsList: IPosts[] = [];
 
   constructor( 
     private postService: PostService,
@@ -51,7 +48,18 @@ export class HomeComponent implements OnInit {
     }
   });
 
+    this.postService.getFrontListPost().subscribe({
+      next: (data: IPosts[]) => {
+        this.topPostsList = data;
+      },
+      error: err => {
+        console.log(err);
+        this.errorMessage = err.message;
+      }
+    });
   }
+
+
 
 
   public checkObjectIsEmpty(value: any): boolean {

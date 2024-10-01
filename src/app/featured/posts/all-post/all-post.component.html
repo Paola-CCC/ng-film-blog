@@ -1,5 +1,6 @@
-<app-posts-list [titleSection]="'Tous les films'"
-[postsListItems]="paginatedData"
+<app-posts-list 
+  [titleSection]="'Tous les films'"
+  [postsListItems]="paginatedData"
 > </app-posts-list>
 
 
@@ -8,7 +9,9 @@
   [currentPage]="currentPage"
   [itemsPerPage]="itemsPerPage"
   [totalItems]="totalItems"
+  [pagesWithPosts]="pagesWithPosts"
   (pageChanged)="onPageChange($event)"
-></app-pagination>
+  >
+  </app-pagination>
 
 </ng-template>
