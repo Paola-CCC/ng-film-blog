@@ -3,14 +3,14 @@
   <div class="user-info">
     <h2>{{(userData.username).toUpperCase()}}</h2>
     <div class="profile-picture">
-      <img *ngIf="!canDisplayPreviewImage" [src]="userData.profilePicture" alt="User Profile" />
+      <img *ngIf="!canDisplayPreviewImage" [src]="userData.profilePicture ? userData.profilePicture  :  '/assets/sample-user-icon.png'" alt="User Profile" />
       <img *ngIf="canDisplayPreviewImage" [src]="previewImageFile !== '' ? previewImageFile  :  '/assets/sample-user-icon.png'"  />
     </div>
   </div>
 
   <ng-template [ngIf]="hiddenUpdateImageBtns === false" [ngIfElse]="loggedOut">
     <div class="user-detail">
-      <button (click)="showPreviewImage()"> Modifier la photo de profile</button>
+      <button (click)="showPreviewImage()"> {{ userData.profilePicture ? 'Modifier' : 'Ajouter' }} la photo de profile</button>
       <p> Email: {{userData.email}}</p>
     </div>
   </ng-template>
