@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { AddPostComponent } from './add-post/add-post.component';
 import { DetailPostComponent } from './detail-post/detail-post.component';
 import { SharedModule } from '@shared/shared.module';
-import {MatRadioModule} from '@angular/material/radio';
 import { AllPostComponent } from './all-post/all-post.component';
 
 
@@ -15,7 +14,6 @@ import { AllPostComponent } from './all-post/all-post.component';
   imports: [
     CommonModule,
     SharedModule,
-    MatRadioModule,
     RouterModule.forChild(POSTS_ROUTES)
   ]
 })

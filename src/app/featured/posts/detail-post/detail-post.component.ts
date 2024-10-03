@@ -50,7 +50,8 @@ export class DetailPostComponent implements OnInit {
   /** Affiche tous les posts */
   getPost() {
     this.postService.getOnePost(this.postId).subscribe({
-      next: data => {
+      next: (data: IPosts[]) => {
+
         if( this.postId !== null && this.userId !== null) {
           this.post = data[0];
           this.commentsList = this.post.comments; 

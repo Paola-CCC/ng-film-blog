@@ -4,23 +4,20 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatRadioModule } from '@angular/material/radio';
 
 const materialModules = [
   MatButtonModule,
   MatDividerModule,
   MatIconModule,
   MatPaginatorModule,
-  MatProgressBarModule
-
+  MatProgressBarModule,
+  MatRadioModule
 ];
 
 @NgModule({
-  imports: [
-    ...materialModules
-  ],
-  exports: [
-    ...materialModules
-  ]
+  imports: materialModules,
+  exports: materialModules
 })
 
 

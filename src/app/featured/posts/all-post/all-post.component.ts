@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IPosts } from '@shared/interfaces';
+import { IPaginationPostsResponse, IPosts } from '@shared/interfaces';
 import { PostService } from '@shared/services';
 
 @Component({
@@ -8,37 +8,32 @@ import { PostService } from '@shared/services';
   styleUrls: ['./all-post.component.scss']
 })
 export class AllPostComponent implements OnInit {
+  console = console;
   /** Liste de Posts à afficher */
   postsList: IPosts[] = [];
   /** Message d'erreur */
   errorMessage : string = '';
-  console = console;
-
+  /** données à afficher */
   paginatedData: IPosts[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 8;
   totalItems: number = 0;
   pagesWithPosts : number = 0;
+
   constructor(private PostService: PostService) { }
  
   ngOnInit() {
-
     this.getAllPosts();
-
   }
 
   getAllPosts(){
     this.PostService.getPaginatedData(this.currentPage, this.itemsPerPage).subscribe({
-      next: (data: any) => {  
-        
-        console.log("data ",data.counterPosts);
-    
+      next: (data: IPaginationPostsResponse) => {      
         this.paginatedData = data.results;
         this.totalItems = data.counterPosts;
         this.pagesWithPosts = data.pagesWithPosts
       },
       error: err => {
-        this.console.log(err);
         this.errorMessage = err.message;
       }
     });

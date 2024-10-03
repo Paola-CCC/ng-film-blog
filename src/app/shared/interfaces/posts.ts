@@ -10,8 +10,15 @@ export interface IPosts {
   title?: string;
   picture_author_post?: string;
   comments?: IComments[];
-  likes?: number;
-  dislikes?: number;
   categories?: ICategories[];
+  likes?: number;
+  likesGroup: [];
+  dislikes?: number;
+  dislikesGroup?: []
 }
 
+export interface IPaginationPostsResponse {
+   results: IPosts[],
+   counterPosts: number,
+   pagesWithPosts: number
+}

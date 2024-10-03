@@ -1,25 +1,32 @@
-<div class="user-profile">
+<section class="user-profile">
+  
+  <div class="user-info">
+    <h2>{{(userData.username).toUpperCase()}}</h2>
     <div class="profile-picture">
       <img *ngIf="!canDisplayPreviewImage" [src]="userData.profilePicture" alt="User Profile" />
-      <img *ngIf="canDisplayPreviewImage"  [src]="previewImageFile"  />
+      <img *ngIf="canDisplayPreviewImage" [src]="previewImageFile !== '' ? previewImageFile  :  '/assets/sample-user-icon.png'"  />
     </div>
-    <div>
-        <input type="file" (change)="onFileSelected($event)" #fileUpload>
-    </div>
-    <button (click)="showPreviewImage()"> Modifier la photo de profile</button>
+  </div>
 
-    <button  (click)="deleteImage()">
-      Valider
-    </button>
-    <button>
-      Annuler
-    </button>
-
-    <div class="username">
-      <h2>{{(userData.username).toUpperCase()}}</h2>
-    </div>
+  <ng-template [ngIf]="hiddenUpdateImageBtns === false" [ngIfElse]="loggedOut">
     <div class="user-detail">
-      
+      <button (click)="showPreviewImage()"> Modifier la photo de profile</button>
       <p> Email: {{userData.email}}</p>
     </div>
-</div>
+  </ng-template>
+
+  <ng-template #loggedOut>
+    <div class="container-input-file">
+      <input type="file" (change)="onFileSelected($event)" #fileUpload>
+    </div>
+    <div class="container-btn-profile">
+      <button  (click)="updateUserImage()">
+        Valider
+      </button>
+      <button (click)="updateTemplate()">
+        Annuler
+      </button>
+    </div>
+  </ng-template>
+
+</section>

@@ -4,12 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ProfilComponent } from './featured/user/pages/profil/profil.component';
-import { HeaderComponent } from './components/header/header.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthGuard } from '@shared/guard/auth.guard';
-import { SharedModule } from '@shared/shared.module';
+import { HeaderComponent } from '@header/header.component';
 
 
 const APP_ROUTES: Routes = [
@@ -35,8 +33,8 @@ const APP_ROUTES: Routes = [
   declarations: [
     AppComponent,
     ProfilComponent,
-    HeaderComponent,
     PageNotFoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +43,6 @@ const APP_ROUTES: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

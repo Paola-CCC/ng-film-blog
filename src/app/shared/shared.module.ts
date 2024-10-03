@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PostsListComponent } from '@components';
 import { MaterialModule } from './material/material.module';
 import { ButtonComponent } from './components/button/button.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { CardComponent } from './components/card/card.component';
 import { RouterModule } from '@angular/router';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { PostsListComponent } from './components';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ButtonComponent,
     LoaderComponent,
     CardComponent,
-    PaginationComponent
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
@@ -33,9 +33,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     MaterialModule,
     LoaderComponent,
     CardComponent,
-    PaginationComponent
-
-
-  ]
+    PaginationComponent,
+  ],
+  
 })
 export class SharedModule { }

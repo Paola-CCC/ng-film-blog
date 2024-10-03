@@ -18,7 +18,6 @@ export class ImagesService {
 
   //OK
   uploadImage(data:any ){
-
     return this.http.post(API + 'images-upload', data, {
       responseType: 'json',
     });
@@ -28,14 +27,7 @@ export class ImagesService {
     return this.http.get(API + 'images-all', httpOptions);
   };
 
-  deleteImage(id:any){
-
-    const headers = {
-      headers: new HttpHeaders({ 
-        responseType: 'json'
-      }),
-    };
-
+  deleteImage(id: number){
     return this.http.delete(API + `image-remove/${id}`, {
       responseType: 'json',
     });

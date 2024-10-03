@@ -1,9 +1,7 @@
-import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService, UserService } from '@shared/services';
 import { ImagesService } from '@shared/services/images/images.service';
-import { finalize, Subscription, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-profil',
@@ -15,12 +13,17 @@ export class ProfilComponent implements OnInit {
   /** id utilisateur */
   userId: number; 
   /** données utilisateurs */
-  userData: any;
+  userData = {
+    "id": null,
+    "username": "",
+    "email": "",
+    "role_name": "",
+    "profilePicture": null,
+    "userImageId": null
+  };
 
   /** id de l'image de l'utilisateur */
   userImageId : number | undefined = undefined;
-
-  profilePictureId: number;
 
   previewImageFile = '';
   /** Nom du fichier chargé */
@@ -29,12 +32,13 @@ export class ProfilComponent implements OnInit {
   file: File | null = null;
   /** Id de l'image inséré avec succès */
   insertImageID: number = null;
-
+  /** indique si on peut afficher le preview */
   canDisplayPreviewImage: boolean = false ;
+  /** état affichage boutons update image  */
+  hiddenUpdateImageBtns: boolean = false;
 
   constructor( private userService: UserService , 
     private auth: AuthService,
-    private http: HttpClient,
     private imagesService: ImagesService
   
   ) { }
@@ -53,46 +57,46 @@ export class ProfilComponent implements OnInit {
 
   }
 
-  deleteImage() {
-    const formData = new FormData();
-    formData.append('thumbnail', this.file ,this.fileName);
+  public updateUserImage() {
 
-      const deleteImage = this.imagesService.deleteImage(Number(this.userImageId)).subscribe({
+    if(this.userData.userImageId !== null){
+      this.imagesService.deleteImage(this.userImageId).subscribe({
         next:(response) => {
           console.log( response)
         },
         error:(error)=> {
           return throwError(() => error)
-
         }
       })
+    }
 
+    this.uploadImage();
+  }
 
-      const upload = this.imagesService.uploadImage(formData).subscribe({
-        next:(response:any) => {
-          this.profilePictureId = response.imageId;
+  public uploadImage(){
 
-          const updateUserPhoto = this.userService.updateUserPhoto(this.userId, response.imageId).subscribe({
-            next:(response:any) => {
-              console.log( response)
-            },
-            error:(error)=> {
-              return throwError(() => error)
-    
-            }
-          })
-        },
-        error:(error)=> {
-          return throwError(() => error)
+    const formData = new FormData();
+    formData.append('thumbnail', this.file ,this.fileName);
 
-        }
-      });
-      
+    this.imagesService.uploadImage(formData).subscribe({
+      next:(response:any) => {
+        this.updateUserPhoto(response.imageId);
+      },
+      error:(error)=> {
+        return throwError(() => error)
+      }
+    });
+  }
 
-  
-
-
-
+  public updateUserPhoto(imageId: number){
+    this.userService.updateUserPhoto(this.userId, imageId).subscribe({
+      next:(response:any) => {
+        console.log( response)
+      },
+      error:(error)=> {
+        return throwError(() => error)
+      }
+    });
   }
 
   public onFileSelected(event: any) {
@@ -109,14 +113,19 @@ export class ProfilComponent implements OnInit {
       };
 
       reader.readAsDataURL(this.file);
-
     }
   }
 
-
+  /** permet afficher le preview  */
   public showPreviewImage(){
+    this.previewImageFile = '';
+    this.hiddenUpdateImageBtns = !this.hiddenUpdateImageBtns;
     return this.canDisplayPreviewImage = !this.canDisplayPreviewImage;
   }
 
+  public updateTemplate(){
+    this.hiddenUpdateImageBtns = false;
+    this.canDisplayPreviewImage = false;
+  }
 
 }
