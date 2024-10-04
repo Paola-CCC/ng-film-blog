@@ -1,7 +1,7 @@
 <section class="user-profile">
   
   <div class="user-info">
-    <h2>{{(userData.username).toUpperCase()}}</h2>
+    <h2>{{(userData.username)?.toUpperCase()}}</h2>
     <div class="profile-picture">
       <img *ngIf="!canDisplayPreviewImage" [src]="userData.profilePicture ? userData.profilePicture  :  '/assets/sample-user-icon.png'" alt="User Profile" />
       <img *ngIf="canDisplayPreviewImage" [src]="previewImageFile !== '' ? previewImageFile  :  '/assets/sample-user-icon.png'"  />

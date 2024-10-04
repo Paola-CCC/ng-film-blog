@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IUserProfile } from '@shared/interfaces';
 import { AuthService, UserService } from '@shared/services';
 import { ImagesService } from '@shared/services/images/images.service';
 import { throwError } from 'rxjs';
@@ -13,14 +14,7 @@ export class ProfilComponent implements OnInit {
   /** id utilisateur */
   userId: number; 
   /** données utilisateurs */
-  userData = {
-    "id": null,
-    "username": "",
-    "email": "",
-    "role_name": "",
-    "profilePicture": null,
-    "userImageId": null
-  };
+  userData : IUserProfile = {} as IUserProfile;
 
   /** id de l'image de l'utilisateur */
   userImageId : number | undefined = undefined;
