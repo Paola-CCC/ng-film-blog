@@ -9,32 +9,16 @@ import { PostService } from '@shared/services';
   styleUrls: ['./posts-list.component.scss']
 })
 export class PostsListComponent implements OnInit {
-  /** Liste de Posts à afficher */
-  postsList: IPosts[] = [];
   /** Message d'erreur */
   errorMessage : string = '';
-  console = console
-  
+  console = console;
   @Input() titleSection: string = '';
   /** liste de posts à afficher */
   @Input() postsListItems: IPosts[] = [];
   
-  constructor(private PostService: PostService, private router: Router) { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
-
-    if(this.router.url === '/home' ){
-        this.PostService.getFrontListPost().subscribe({
-          next: (data: IPosts[]) => {
-            this.postsList = data;
-          },
-          error: err => {
-            this.console.log(err);
-            this.errorMessage = err.message;
-          }
-        });
-    }; 
-  }
+  ngOnInit(): void {}
 
   get locationUrl(){
     return this.router.url ;

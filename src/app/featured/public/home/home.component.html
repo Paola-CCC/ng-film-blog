@@ -1,10 +1,13 @@
-<a 
+
+<section class="hero-section">
+
+    <a 
     class="hero-image"  
     [routerLink]="['/post',postNewestAsHero.id ]" 
     *ngIf="checkObjectIsEmpty(postNewestAsHero) === false" 
-    [ngStyle]="{'background':'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + postNewestAsHero.thumbnail + ') center/cover no-repeat'}"
->
-    <div class="hero-text"  >
+    [ngStyle]="{'background':'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + postNewestAsHero.thumbnail + ') center/cover no-repeat'}" >
+
+    <div class="hero-text" >
         <ng-container *ngFor="let category of postNewestAsHero.categories" >
             <span class="cat"> {{category.name}}</span>
         </ng-container>
@@ -20,7 +23,11 @@
             <small> {{convertDate(postNewestAsHero.createdAt)}} </small>
         </div>
     </div>
-</a>
+    </a>
+
+
+</section>
+
 
 
 
